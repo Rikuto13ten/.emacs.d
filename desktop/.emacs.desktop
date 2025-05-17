@@ -1,0 +1,55 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Sun May 18 02:50:57 2025
+;; Desktop file format version 208
+;; Emacs version 29.4
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (26664 52353 600208 0) (desktop . "208") "rikuto13ten@nodarikutounoMacBook-Pro.local" nil nil ((((minibuffer . t) (fontsize . 0) (font . "-*-Iosevka Custom Rikuto Code-regular-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#cdd6f4") (background-color . "#1e1e2e") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (undecorated-round) (ns-appearance) (ns-transparent-titlebar) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 1) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (alpha) (alpha-background) (fullscreen) (scroll-bar-foreground) (scroll-bar-background) (display-type . color) (background-mode . dark) (cursor-color . "#f5e0dc") (font-parameter) (environment) (last-focus-update . t) (tabs (current-tab (name . "ui.el") (explicit-name))) (frameset--id . "0F12-3078-C38B-8A4F") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (visibility . t) (display . "nodarikutounoMacBook-Pro.local") (explicit-name) (tool-bar-position . top) (height . 56) (width . 198) (left . 1049) (top . 275)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 8) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 60) (min-pixel-width . 60) (min-pixel-height-ignore . 30) (min-pixel-width-ignore . 48) (min-pixel-height-safe . 15) (min-pixel-width-safe . 12)) leaf (pixel-width . 1219) (pixel-height . 825) (total-width . 203) (total-height . 55) (normal-height . 1.0) (normal-width . 1.0) (buffer "ui.el" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 85) (start . 1)) (prev-buffers ("init.el" 1 997) ("ui.el" 1 1) ("package.el" 569 826) ("*scratch*" 1 1))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring nil)
+(setq regexp-search-ring nil)
+(setq register-alist '((48 . #("(load (expand-file-name \"keybind.el\" user-emacs-directory))\n" 0 24 (yank-handler (evil-yank-line-handler nil t) fontified t) 24 36 (yank-handler (evil-yank-line-handler nil t) face font-lock-string-face fontified t) 36 60 (yank-handler (evil-yank-line-handler nil t) fontified t)))))
+(setq file-name-history '("/Users/rikuto13ten/.emacs.d/ui.el" "/Users/rikuto13ten/.emacs.d/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/ui.el"
+  "ui.el"
+  'emacs-lisp-mode
+  '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
+  85
+  '(118 nil)
+  nil
+  nil
+  '((buffer-display-time 26664 52350 930560 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (1 546 1))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(font-lock-mode eldoc-mode evil-leader-mode evil-local-mode evil-collection-unimpaired-mode)
+  997
+  '(997 nil)
+  nil
+  nil
+  '((buffer-display-time 26664 52243 900046 917000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (996 699 636 590 636 636 635 635 635 635 635 635 635 635 635 635))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/package.el"
+  "package.el"
+  'emacs-lisp-mode
+  '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
+  826
+  '(827 nil)
+  nil
+  nil
+  '((buffer-display-time 26664 52343 8126 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring nil)))
+
