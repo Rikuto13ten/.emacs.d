@@ -6,6 +6,10 @@
   (setq org-startup-indented t)
   ;; 強調マーカーを非表示にする
   (setq org-hide-emphasis-markers t)
+  ;; * を非表示にしない
+  (setq org-hide-leading-stars nil
+        org-indent-mode-turns-on-hiding-stars nil)
+
   (custom-set-faces
    '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
    '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.2))))

@@ -2,17 +2,17 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Sun May 18 18:16:17 2025
+;; Created Mon May 19 00:53:49 2025
 ;; Desktop file format version 208
 ;; Emacs version 29.4
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (26665 42337 810908 0) (desktop . "208") "rikuto13ten@nodarikutounoMacBook-Pro.local" nil nil ((((minibuffer . t) (fontsize . 0) (font . "-*-Iosevka Custom Rikuto Code-regular-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#cdd6f4") (background-color . "#1e1e2e") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (undecorated-round) (ns-appearance) (ns-transparent-titlebar) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 1) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (alpha) (alpha-background) (fullscreen) (scroll-bar-foreground) (scroll-bar-background) (display-type . color) (background-mode . dark) (cursor-color . "#f5e0dc") (font-parameter) (environment) (last-focus-update . t) (tabs (current-tab (name . "README.org") (explicit-name))) (frameset--id . "0F12-3078-C38B-8A4F") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (visibility . t) (display . "nodarikutounoMacBook-Pro.local") (explicit-name) (tool-bar-position . top) (height . 78) (width . 405) (left . 621) (top . 327)) ((min-height . 4) (min-width . 48) (min-height-ignore . 2) (min-width-ignore . 16) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 60) (min-pixel-width . 288) (min-pixel-height-ignore . 30) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 15) (min-pixel-width-safe . 24)) hc (pixel-width . 2461) (pixel-height . 1155) (total-width . 410) (total-height . 77) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 228) (pixel-height . 1155) (total-width . 38) (total-height . 77) (normal-height . 1.0) (normal-width . 0.09284843559528647) (parameters (window-side . left) (window-slot . 0)) (buffer " *NeoTree*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated . t) (point . 86) (start . 1))) (leaf (last . t) (pixel-width . 2233) (pixel-height . 1155) (total-width . 372) (total-height . 77) (normal-height . 1.0) (normal-width . 0.9071515644047136) (buffer "README.org" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 648) (start . 1)) (prev-buffers ("README.org" 1 950) ("programming-memo.org" 1 9231) ("notes.org" 1 2523) ("org-mode-memo.org" 1 576) ("init.el" 1 179) ("ui.el" 1 278)))))])
+(setq desktop-saved-frameset [frameset 1 (26666 653 95768 0) (desktop . "208") "rikuto13ten@nodarikutounoMacBook-Pro.local" nil nil ((((minibuffer . t) (fontsize . 0) (font . "-*-Iosevka Custom Rikuto Code-regular-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#cdd6f4") (background-color . "#1e1e2e") (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (undecorated) (undecorated-round) (ns-appearance) (ns-transparent-titlebar) (z-group) (no-focus-on-map) (no-accept-focus) (menu-bar-lines . 1) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (alpha) (alpha-background) (fullscreen) (scroll-bar-foreground) (scroll-bar-background) (display-type . color) (background-mode . dark) (cursor-color . "#f5e0dc") (font-parameter) (environment) (last-focus-update . t) (tabs (current-tab (name . "README.org") (explicit-name))) (frameset--id . "0F12-3078-C38B-8A4F") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (visibility . t) (display . "nodarikutounoMacBook-Pro.local") (explicit-name) (tool-bar-position . top) (height . 78) (width . 405) (left . 621) (top . 327)) ((min-height . 4) (min-width . 48) (min-height-ignore . 2) (min-width-ignore . 16) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 60) (min-pixel-width . 288) (min-pixel-height-ignore . 30) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 15) (min-pixel-width-safe . 24)) hc (pixel-width . 2461) (pixel-height . 1155) (total-width . 410) (total-height . 77) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 228) (pixel-height . 1155) (total-width . 38) (total-height . 77) (normal-height . 1.0) (normal-width . 0.09284843559528647) (parameters (window-side . left) (window-slot . 0)) (buffer " *NeoTree*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated . t) (point . 86) (start . 1))) (leaf (last . t) (pixel-width . 2233) (pixel-height . 1155) (total-width . 372) (total-height . 77) (normal-height . 1.0) (normal-width . 0.9071515644047136) (buffer "README.org" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 8) (start . 1)) (prev-buffers ("org-mode.el" 1 456) ("package.el" 770 1832) ("README.org" 1 10) ("ui.el" 1 126)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
 (setq search-ring nil)
-(setq regexp-search-ring nil)
+(setq regexp-search-ring '(#("\\<))\\>" 0 6 (isearch-case-fold-search nil))))
 (setq register-alist '((48 . #("| <SPC> h  |                     |\n" 0 1 (yank-handler (evil-yank-line-handler nil t) face org-table fontified t) 1 2 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t display (space :relative-width 1)) 2 7 (yank-handler (evil-yank-line-handler nil t) face org-table fontified t) 7 8 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t) 8 9 (yank-handler (evil-yank-line-handler nil t) face org-table fontified t) 9 10 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t) 10 11 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t display (space :relative-width 1.001)) 11 12 (yank-handler (evil-yank-line-handler nil t) face org-table fontified t) 12 13 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t display (space :relative-width 1)) 13 32 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t) 32 33 (yank-handler (evil-yank-line-handler nil t) face whitespace-space fontified t display (space :relative-width 1.001)) 33 34 (yank-handler (evil-yank-line-handler nil t) face org-table fontified t) 34 35 (yank-handler (evil-yank-line-handler nil t) fontified t)))))
 (setq file-name-history '("/Users/rikuto13ten/.emacs.d/org-mode.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/org-mode-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/README.org" "/Users/rikuto13ten/org/programming-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/org.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/ui.el" "/Users/rikuto13ten/.emacs.d/"))
 
@@ -22,24 +22,48 @@
   "README.org"
   'org-mode
   '(evil-leader-mode evil-local-mode evil-collection-unimpaired-mode org-appear-mode font-lock-mode org-indent-mode)
-  648
-  '(648 nil)
+  8
+  '(630 nil)
   nil
   nil
-  '((indent-tabs-mode) (buffer-display-time 26665 42335 997635 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (666 802 628 432 388 525 525 3 525 38 628 646))))
+  '((indent-tabs-mode) (buffer-display-time 26666 652 162244 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
+  '((mark-ring (244 600 188 114 723 741 877 703 448 448 600 600 3 600 38 703))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/org-mode.el"
+  "org-mode.el"
+  'emacs-lisp-mode
+  '(font-lock-mode eldoc-mode evil-leader-mode evil-local-mode evil-collection-unimpaired-mode)
+  456
+  '(456 nil)
+  nil
+  nil
+  '((buffer-display-time 26666 630 245294 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (457 1191 1190 1151 1194 380 878 1011 879 879 879 879 879 879 879 879))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/package.el"
+  "package.el"
+  'emacs-lisp-mode
+  '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
+  1832
+  '(1920 nil)
+  nil
+  nil
+  '((buffer-display-time 26665 58354 667305 493000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring nil)))
 
 (desktop-create-buffer 208
   "/Users/rikuto13ten/.emacs.d/ui.el"
   "ui.el"
   'emacs-lisp-mode
   '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
-  278
-  '(1271 nil)
+  126
+  '(188 nil)
   nil
   nil
-  '((buffer-display-time 26665 41953 730214 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring nil)))
+  '((buffer-display-time 26665 43982 666337 493000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((mark-ring (185 188 154 154 187))))
 
 (desktop-create-buffer 208
   "/Users/rikuto13ten/.emacs.d/keybind.el"
@@ -50,78 +74,6 @@
   '(nil nil)
   nil
   nil
-  '((buffer-display-time 26665 41765 23841 995000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
+  '((buffer-display-time 26666 623 999841 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
   '((mark-ring nil)))
-
-(desktop-create-buffer 208
-  "/Users/rikuto13ten/.emacs.d/org-mode.el"
-  "org-mode.el"
-  'emacs-lisp-mode
-  '(font-lock-mode eldoc-mode evil-leader-mode evil-local-mode evil-collection-unimpaired-mode)
-  636
-  '(1087 nil)
-  nil
-  nil
-  '((buffer-display-time 26665 41548 6375 995000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (1048 1091 277 775 908 776 776 776 776 776 776 776 776 776 776 776))))
-
-(desktop-create-buffer 208
-  "/Users/rikuto13ten/.emacs.d/package.el"
-  "package.el"
-  'emacs-lisp-mode
-  '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
-  372
-  '(372 nil)
-  nil
-  nil
-  '((buffer-display-time 26665 41951 219642 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/rikuto13ten/.emacs.d/init.el"
-  "init.el"
-  'emacs-lisp-mode
-  '(evil-collection-unimpaired-mode evil-leader-mode evil-local-mode eldoc-mode font-lock-mode)
-  179
-  '(698 nil)
-  nil
-  nil
-  '((buffer-display-time 26665 41364 469544 995000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/rikuto13ten/org/org-mode-memo.org"
-  "org-mode-memo.org"
-  'org-mode
-  '(evil-leader-mode evil-local-mode evil-collection-unimpaired-mode org-appear-mode font-lock-mode org-indent-mode)
-  576
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26665 40147 193543 523000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/rikuto13ten/org/notes.org"
-  "notes.org"
-  'org-mode
-  '(org-appear-mode font-lock-mode org-indent-mode evil-leader-mode evil-local-mode evil-collection-unimpaired-mode)
-  2523
-  '(2523 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26665 39651 331049 756000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (1824 3151 3151))))
-
-(desktop-append-buffer-args 208
-  "/Users/rikuto13ten/org/programming-memo.org"
-  "programming-memo.org"
-  'org-mode
-  '(evil-leader-mode evil-local-mode evil-collection-unimpaired-mode org-appear-mode font-lock-mode org-indent-mode)
-  9231
-  '(9231 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26665 41010 957785 995000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (9535))))
 

@@ -81,7 +81,4 @@
         ;; 重要: 見出しの * を表示するための設定
         org-appear-inside-latex t
         org-appear-trigger 'always) ; 常に表示（Evilモード対応）
-
-  ;; * を非表示にしない
-  (setq org-hide-leading-stars nil
-        org-indent-mode-turns-on-hiding-stars nil))
+)
