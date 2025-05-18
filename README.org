@@ -19,15 +19,15 @@
 
 *** org-mode 関連
 - 見出しは折りたたんだ状態で開く
-- ~~~~ , ~**~ etc.. 等の強調マーカを非表示に
+- 強調マーカを非表示に
 - 見出しで ~<Tab>~ を押したときに、サブツリーに対しては操作しないように
 
 ** キーバインド
 |----------+---------------------|
-| <SPC> fe | neotree-change-root |
-| <SPC> e  | neotree-toggle      |
-| <SPC> h  | evil-window-left    |
-| <SPC> j  | evil-window-down    |
-| <SPC> k  | evil-window-up      |
-| <SPC> l  | evil-window-right   |
+| ~<SPC> fe~ | neotree-change-root |
+| ~<SPC> e~  | neotree-toggle      |
+| ~<SPC> h~  | evil-window-left    |
+| ~<SPC> j~  | evil-window-down    |
+| ~<SPC> k~  | evil-window-up      |
+| ~<SPC> l~  | evil-window-right   |
 |----------+---------------------|
