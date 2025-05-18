@@ -1,3 +1,4 @@
+;; Font
 (when (display-graphic-p)
   ;; デフォルトフォント（プログラミング用）
   (set-face-attribute 'default nil
@@ -34,3 +35,5 @@
 
 ;; グローバルに有効化
 (global-whitespace-mode 1)
+
+(setq-default indent-tabs-mode nil)   ; タブの代わりにスペースを使用

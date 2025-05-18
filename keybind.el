@@ -1,7 +1,8 @@
 (evil-leader/set-key
   ;; ファイル操作
-  "fe" 'neotree-change-root        ;; SPC f f でファイルを開く
-  "e" 'neotree-toggle           ;; SPC f e でneotreeの表示/非表示を切り替え
+  "fe" 'neotree-change-root
+  "e" 'neotree-toggle
+
   ;; ウィンドウ間の移動（hjkl）
   "h" 'evil-window-left         ;; SPC w h で左のウィンドウに移動
   "j" 'evil-window-down         ;; SPC w j で下のウィンドウに移動

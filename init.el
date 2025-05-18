@@ -17,11 +17,16 @@
 
 ;; その他の基本設定
 (setq make-backup-files nil)       ;; バックアップファイルを作らない
-(setq auto-save-default nil)       ;; 自動保存ファイルを作らない 
+(setq auto-save-default nil)       ;; 自動保存ファイルを作らない
 
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
 
 ;; キーバインド設定のロード
 (load (expand-file-name "keybind.el" user-emacs-directory))
+
+;; UI 関連
 (load (expand-file-name "ui.el" user-emacs-directory))
+
+;; org mode 関連
+(load (expand-file-name "org-mode.el" user-emacs-directory))

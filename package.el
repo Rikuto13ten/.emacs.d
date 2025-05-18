@@ -68,3 +68,20 @@
   (setq neo-window-width 32)
   (setq neo-smart-open t)
   (setq neo-show-hidden-files t))
+
+;; マーカ編集中に強調マーカを表示する
+(use-package org-appear
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t ; 強調マーカー (*bold* など)
+        org-appear-autosubmarkers t ; 下付き/上付きマーカー
+        org-appear-autolinks t ; リンクマーカー
+        org-appear-autoentities t ; エンティティ
+        org-appear-autokeywords t ; キーワード
+        ;; 重要: 見出しの * を表示するための設定
+        org-appear-inside-latex t
+        org-appear-trigger 'always) ; 常に表示（Evilモード対応）
+
+  ;; * を非表示にしない
+  (setq org-hide-leading-stars nil
+        org-indent-mode-turns-on-hiding-stars nil))
