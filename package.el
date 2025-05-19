@@ -62,6 +62,7 @@
   (global-evil-leader-mode)
   (evil-leader/set-leader "SPC"))
 
+
 ;; neotree（ファイルツリー表示）
 (use-package neotree
   :config

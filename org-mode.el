@@ -26,8 +26,8 @@
       (when (eq state 'children)
         (setq org-cycle-subtree-status 'subtree))))
 
-(with-eval-after-load 'org
-  (set-face-attribute 'org-code nil
-                      :background "black"
-                      :foreground "#fab387"
-                      :height 1))
+;;(with-eval-after-load 'org
+;;  (set-face-attribute 'org-code nil
+;;                      :background "black"
+;;                      :foreground "#fab387"
+;;                      :height 1))
