@@ -16,8 +16,10 @@
   (make-directory "~/.emacs.d/desktop" t)) (load custom-file))
 
 ;; その他の基本設定
-(setq make-backup-files nil)       ;; バックアップファイルを作らない
-(setq auto-save-default nil)       ;; 自動保存ファイルを作らない
+(setq make-backup-files nil) ;; バックアップファイルを作らない
+(setq auto-save-default nil) ;; 自動保存ファイルを作らない
+
+(mac-auto-ascii-mode 1)
 
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
@@ -30,3 +32,6 @@
 
 ;; org mode 関連
 (load (expand-file-name "org-mode.el" user-emacs-directory))
+
+;; Coding 関係のまとめる
+(load (expand-file-name "coding.el" user-emacs-directory))

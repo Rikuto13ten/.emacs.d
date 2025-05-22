@@ -11,29 +11,33 @@
                          trailing   ;; 行末の空白
                          tabs       ;; タブ
                          spaces     ;; スペース
-                         empty      ;; 先頭/末尾の空行
-                         space-mark ;; 空白マークを表示
-                         tab-mark)) ;; タブマークを表示
+                         empty      ;; 先頭/末尾ノ空行
+                         space-mark ;; 空白マークヲ表示
+                         tab-mark)) ;; タブマークヲ表示
 
-;; 色設定（控えめな色、背景色なし）
+;; 色設定（控エメナ色、背景色ナシ）
 (set-face-attribute 'whitespace-trailing nil
                     :background nil
-                    :foreground "#40404a"  ;; 行末の空白（薄いグレー）
-                    :underline t)          ;; 下線で強調
+                    :foreground "#40404a"  ;; 行末ノ空白（薄イグレー）
+                    :underline t)          ;; 下線デ強調
 
 (set-face-attribute 'whitespace-tab nil
                     :background nil
-                    :foreground "#40404a")  ;; タブ（薄いグレー）
+                    :foreground "#40404a")  ;; タブ（薄イグレー）
 
 (set-face-attribute 'whitespace-space nil
                     :background nil
-                    :foreground "#40404a")  ;; スペース（薄いグレー）
+                    :foreground "#40404a")  ;; スペース（薄イグレー）
 
 (set-face-attribute 'whitespace-empty nil
                     :background nil
-                    :foreground "#40404a")  ;; 空行（薄いグレー）
+                    :foreground "#40404a")  ;; 空行（薄イグレー）
 
-;; グローバルに有効化
+;; グローバルニ有効化
 (global-whitespace-mode 1)
 
-(setq-default indent-tabs-mode nil)   ; タブの代わりにスペースを使用
+;; Tab to Space に変換
+(setq-default indent-tabs-mode nil)
+
+;; 行番号を表示
+(global-display-line-numbers-mode)

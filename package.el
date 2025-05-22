@@ -1,4 +1,4 @@
-;; パッケージ管理の初期化
+;; パッケージ管理の初期
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -42,25 +42,25 @@
   (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
   (load-theme 'catppuccin t))
 
-;; Evilモード（Vimキーバインド）
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1))
-
-;; Evilの拡張
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-;; Evilリーダーキー
-(use-package evil-leader
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader "SPC"))
+;;;; Evilモード（Vimキーバインド）
+;;(use-package evil
+;;  :init
+;;  (setq evil-want-integration t)
+;;  (setq evil-want-keybinding nil)
+;;  :config
+;;  (evil-mode 1))
+;;
+;;;; Evilの拡張
+;;(use-package evil-collection
+;;  :after evil
+;;  :config
+;;  (evil-collection-init))
+;;
+;;;; Evilリーダーキー
+;;(use-package evil-leader
+;;  :config
+;;  (global-evil-leader-mode)
+;;  (evil-leader/set-leader "SPC"))
 
 
 ;; neotree（ファイルツリー表示）
@@ -83,3 +83,11 @@
         org-appear-inside-latex t
         org-appear-trigger 'always) ; 常に表示（Evilモード対応）
 )
+
+;; DDSKK設定
+;; やったぜ 完成したぜ。
+(use-package ddskk
+  :ensure t
+  :config
+  (setq default-input-method "japanese-skk")
+  (global-set-key (kbd "C-x C-j") 'skk-mode))

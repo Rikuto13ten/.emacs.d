@@ -1,13 +1,23 @@
-;; SPC 起点としたキーバインド
-(evil-leader/set-key
-  ;; ファイル操作
-  "fe" 'neotree-change-root
-  "e" 'neotree-toggle
+;; Mac OS向けのキー設定
+(when (eq system-type 'darwin)
+  ;; Option/Altキーをメタキーとして使用
+  (setq mac-option-modifier 'meta)
+  (setq mac-command-modifier 'super)
 
-  ;; ウィンドウ間の移動（hjkl）
-  "h" 'evil-window-left  ;; SPC h で左のウィンドウに移動
-  "j" 'evil-window-down ;; SPC j で下のウィンドウに移動
-  "k" 'evil-window-up ;; SPC k で上のウィンドウに移動
-  "l" 'evil-window-right
-  "x" 'execute-extended-command ;; コマンド実行
-  )
+  ;; 日本語入力時のIMEの挙動を改善（任意）
+  (setq mac-pass-control-to-system nil)
+  (setq mac-pass-command-to-system nil)
+  (setq mac-pass-option-to-system nil))
+
+;; C-hをバックスペースとして設定
+(keyboard-translate ?\C-h ?\C-?) ;; C-h を DEL（バックスペース）に翻訳
+
+;; C-x 関連の設定
+(global-set-key (kbd "C-x ?") 'help-command) ;; ヘルプ
+
+;; C-c 関係の設定
+(global-set-key (kbd "C-c e") 'neotree-toggle)
+
+;; SKK の変換を ; に
+(setq skk-sticky-key ";")
+
