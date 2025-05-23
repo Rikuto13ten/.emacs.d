@@ -1,4 +1,3 @@
-;; パッケージ管理の初期
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
@@ -16,6 +15,9 @@
 ;; ===== パッケージインストール =====
 
 ;; Ivy/Counsel/Swiper（補完と検索強化）
+;; Ivy、Emacs の汎用補完メカニズム。
+;; Counsel は、一般的な Emacs コマンドの Ivy 拡張バージョンのコレクション。
+;; Swiper は、Isearch の Ivy 強化代替品。
 (use-package ivy
   :config
   (ivy-mode 1)
@@ -41,27 +43,6 @@
   :config
   (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
   (load-theme 'catppuccin t))
-
-;;;; Evilモード（Vimキーバインド）
-;;(use-package evil
-;;  :init
-;;  (setq evil-want-integration t)
-;;  (setq evil-want-keybinding nil)
-;;  :config
-;;  (evil-mode 1))
-;;
-;;;; Evilの拡張
-;;(use-package evil-collection
-;;  :after evil
-;;  :config
-;;  (evil-collection-init))
-;;
-;;;; Evilリーダーキー
-;;(use-package evil-leader
-;;  :config
-;;  (global-evil-leader-mode)
-;;  (evil-leader/set-leader "SPC"))
-
 
 ;; neotree（ファイルツリー表示）
 (use-package neotree
@@ -91,3 +72,15 @@
   :config
   (setq default-input-method "japanese-skk")
   (global-set-key (kbd "C-x C-j") 'skk-mode))
+
+;; リアルタイムにソースの
+;; エラーやワーニングを表示するマイナーモード
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+(use-package flycheck-inline)
+
+;; コードの補完をするパッケージ
+(use-package company)
+(add-hook 'after-init-hook 'global-company-mode)
+

@@ -21,3 +21,12 @@
 ;; SKK の変換を ; に
 (setq skk-sticky-key ";")
 
+;; C-k の動作を、
+;; 行頭移動してから行削除する
+(defun custom-kill-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line))
+
+(global-set-key (kbd "C-k") 'custom-kill-line)
+

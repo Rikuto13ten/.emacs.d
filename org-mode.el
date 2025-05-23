@@ -7,8 +7,8 @@
   ;; 強調マーカーを非表示にする
   (setq org-hide-emphasis-markers t)
   ;; * を非表示にしない
-  (setq org-hide-leading-stars nil
-        org-indent-mode-turns-on-hiding-stars nil)
+  (setq org-hide-leading-stars nil)
+  (setq org-indent-mode-turns-on-hiding-stars nil)
 
   (custom-set-faces
    '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
@@ -20,14 +20,3 @@
    '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
    '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
 
-;; 見出しで Tab を押したときに、サブツリーに対して操作しないようにする
-(add-hook 'org-cycle-hook
-    (lambda (state)
-      (when (eq state 'children)
-        (setq org-cycle-subtree-status 'subtree))))
-
-;;(with-eval-after-load 'org
-;;  (set-face-attribute 'org-code nil
-;;                      :background "black"
-;;                      :foreground "#fab387"
-;;                      :height 1))

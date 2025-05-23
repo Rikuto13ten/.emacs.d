@@ -41,3 +41,4 @@
 
 ;; 行番号を表示
 (global-display-line-numbers-mode)
+
