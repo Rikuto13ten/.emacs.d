@@ -84,3 +84,11 @@
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
 
+(use-package rainbow-delimiters)
+
+;; buffer tabs
+(use-package centaur-tabs
+  :demand
+  :config
+  (centaur-tabs-mode t))
+

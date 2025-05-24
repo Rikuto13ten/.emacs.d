@@ -2,270 +2,54 @@
 ;; --------------------------------------------------------------------------
 ;; Desktop File for Emacs
 ;; --------------------------------------------------------------------------
-;; Created Fri May 23 18:29:47 2025
+;; Created Sat May 24 14:54:49 2025
 ;; Desktop file format version 208
 ;; Emacs version 29.1
 
 ;; Global section:
-(setq desktop-saved-frameset [frameset 1 (26672 16395 949207 0) (desktop . "208") "impl@implMacBookPro-082.local" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-*-Iosevka Custom Rikuto Code-medium-normal-normal-*-12-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 2) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#cdd6f4") (background-color . "#1e1e2e") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (alpha) (alpha-background) (scroll-bar-foreground) (scroll-bar-background) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (inhibit-double-buffering) (menu-bar-lines . 1) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#f5e0dc") (font-parameter) (environment) (fontsize . 0) (undecorated-round) (ns-appearance) (ns-transparent-titlebar) (last-focus-update) (tabs (current-tab (name . "package.el") (explicit-name))) (frameset--id . "0F12-3078-C38B-8A4F") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . "Mac") (explicit-name) (tool-bar-position . top) (ccc-frame-cursor-color . "#f5e0dc") (ccc-frame-foreground-color . "#cdd6f4") (ccc-frame-background-color . "#1e1e2e") (height . 119) (width . 551) (left . 8) (top . 33)) ((min-height . 4) (min-width . 48) (min-height-ignore . 2) (min-width-ignore . 16) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 60) (min-pixel-width . 288) (min-pixel-height-ignore . 30) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 15) (min-pixel-width-safe . 24)) hc (pixel-width . 3337) (pixel-height . 1770) (total-width . 556) (total-height . 118) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 228) (pixel-height . 1770) (total-width . 38) (total-height . 118) (normal-height . 1.0) (normal-width . 0.06847467785436018) (parameters (window-side . left) (window-slot . 0)) (buffer " *NeoTree*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated . t) (point . 184) (start . 1))) (leaf (last . t) (pixel-width . 3109) (pixel-height . 1770) (total-width . 518) (total-height . 118) (normal-height . 1.0) (normal-width . 0.9315253221456399) (buffer "package.el<2>" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 1209) (start . 1)) (prev-buffers ("org-mode.el" 1 840) ("custom.el" 1 1) ("coding.el" 1 161) ("ui.el" 1 766) (".emacs.d" 1 1056) ("package.el<2>" 1 1869) ("init.el" 1 830) (".yabairc" 1 513) (".skhdrc" 1 174) ("org-mode-memo.org" 1 1) ("README.org" 1 140) ("/" 1 654) ("Users" 1 279) ("impl" 1 7823) ("Katta.org<2>" 1 159) ("notes.org" 1 3206) ("org" 1 860) ("todo.org" 1 920) ("history.el" 1 1) ("keybind.el" 1 709) ("*scratch*" 1 1)))))])
+(setq desktop-saved-frameset [frameset 1 (26673 24361 22050 0) (desktop . "208") "rikuto13ten@nodarikutounoMacBook-Pro.local" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-*-Helvetica-medium-normal-normal-*-12-*-*-*-p-0-iso10646-1") (border-width . 0) (internal-border-width . 0) (child-frame-border-width) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars . right) (horizontal-scroll-bars) (foreground-color . "#cdd6f4") (background-color . "#1e1e2e") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (alpha) (alpha-background) (scroll-bar-foreground) (scroll-bar-background) (tab-bar-lines . 0) (tool-bar-lines . 1) (title) (inhibit-double-buffering) (menu-bar-lines . 1) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (no-focus-on-map) (no-accept-focus) (fullscreen) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . dark) (cursor-color . "#f5e0dc") (font-parameter) (environment) (powerline-cache) (last-focus-update) (frameset--id . "059E-2327-CEDA-1EEA") (frameset--mini t . t) (modeline . t) (unsplittable) (icon-name) (display . "Mac") (explicit-name) (tool-bar-position . top) (ccc-frame-cursor-color . "#f5e0dc") (ccc-frame-foreground-color . "#cdd6f4") (ccc-frame-background-color . "#1e1e2e") (height . 104) (width . 273) (left . 1048) (top . 47)) ((min-height . 4) (min-width . 48) (min-height-ignore . 4) (min-width-ignore . 16) (min-height-safe . 1) (min-width-safe . 4) (min-pixel-height . 44) (min-pixel-width . 288) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 96) (min-pixel-height-safe . 11) (min-pixel-width-safe . 24)) hc (pixel-width . 1669) (pixel-height . 1133) (total-width . 278) (total-height . 103) (normal-height . 1.0) (normal-width . 1.0) (combination-limit) (leaf (pixel-width . 228) (pixel-height . 1133) (total-width . 38) (total-height . 103) (normal-height . 1.0) (normal-width . 0.13690832834032357) (parameters (window-side . left) (window-slot . 0)) (buffer " *NeoTree*" (selected) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated . t) (point . 198) (start . 1))) (leaf (last . t) (pixel-width . 1441) (pixel-height . 1133) (total-width . 240) (total-height . 103) (normal-height . 1.0) (normal-width . 0.8630916716596764) (buffer "ui.el" (selected . t) (hscroll . 0) (fringes 8 8 nil nil) (margins nil) (scroll-bars nil 3 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 95) (start . 1)) (prev-buffers ("init.el" 1 869)))))])
 (setq desktop-missing-file-warning nil)
 (setq tags-file-name nil)
 (setq tags-table-list nil)
 (setq search-ring '(#("dis" 0 3 (isearch-case-fold-search t isearch-regexp-function nil)) #("skk" 0 3 (isearch-case-fold-search t isearch-regexp-function nil)) #("keybord" 0 7 (isearch-case-fold-search t isearch-regexp-function nil)) #("keyboord" 0 8 (isearch-case-fold-search t isearch-regexp-function nil))))
 (setq regexp-search-ring '("ri" "use-package" #("x" 0 1 (isearch-case-fold-search t)) #("\\<))\\>" 0 6 (isearch-case-fold-search nil))))
 (setq register-alist '((48 . #("- [ ] apple script で輝度を調整する方法\n" 0 1 (yank-handler (evil-yank-line-handler nil t) fontified t) 1 2 (yank-handler (evil-yank-line-handler nil t) fontified t face whitespace-space) 2 3 (yank-handler (evil-yank-line-handler nil t) fontified t face (org-checkbox)) 3 4 (yank-handler (evil-yank-line-handler nil t) fontified t face whitespace-space) 4 5 (yank-handler (evil-yank-line-handler nil t) fontified t face (org-checkbox)) 5 6 (yank-handler (evil-yank-line-handler nil t) fontified t face whitespace-space) 6 11 (yank-handler (evil-yank-line-handler nil t) fontified t) 11 12 (yank-handler (evil-yank-line-handler nil t) fontified t face whitespace-space) 12 18 (yank-handler (evil-yank-line-handler nil t) fontified t) 18 19 (yank-handler (evil-yank-line-handler nil t) fontified t face whitespace-space) 19 29 (yank-handler (evil-yank-line-handler nil t) fontified t) 29 30 (yank-handler (evil-yank-line-handler nil t))))))
-(setq file-name-history '("/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/package.el" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/package.el" "/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/ui.el" "/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/init.el" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/todo.org" "/Users/impl/org/notes.org" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/coding.el" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/todo.org" "/Users/impl/.emacs.d/" "/Users/impl/.config/karabiner/karabiner.json" "/Users/impl/" "/" "/Users/impl/.emacs.d/" "/Users/impl/org/todo.org" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/.skhdrc" "/Users/impl/org/" "/Users/impl/.yabairc" "/Users/impl/.emacs.d/" "/Users/rikuto13ten/.emacs.d/org-mode.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/org-mode-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/README.org" "/Users/rikuto13ten/org/programming-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/org.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/ui.el" "/Users/rikuto13ten/.emacs.d/"))
+(setq file-name-history '("/Users/rikuto13ten/.emacs.d/package.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/package.el" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/package.el" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/.#init.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/keybind.el" "/Users/rikuto13ten/.emacs.d/custom.el" "/Users/rikuto13ten/.emacs.d/coding.el" "/Users/rikuto13ten/.emacs.d/ui.el" "/Users/rikuto13ten/.emacs.d/package.el" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/package.el" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/README.org" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/" "/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/package.el" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/package.el" "/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/ui.el" "/Users/impl/.emacs.d/" "/Users/impl/.emacs.d/init.el" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/todo.org" "/Users/impl/org/notes.org" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/coding.el" "/Users/impl/.emacs.d/init.el" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/todo.org" "/Users/impl/.emacs.d/" "/Users/impl/.config/karabiner/karabiner.json" "/Users/impl/" "/" "/Users/impl/.emacs.d/" "/Users/impl/org/todo.org" "/Users/impl/.emacs.d/keybind.el" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/org/" "/Users/impl/.emacs.d/" "/Users/impl/.skhdrc" "/Users/impl/org/" "/Users/impl/.yabairc" "/Users/impl/.emacs.d/" "/Users/rikuto13ten/.emacs.d/org-mode.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/org-mode-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/README.org" "/Users/rikuto13ten/org/programming-memo.org" "/Users/rikuto13ten/org/notes.org" "/Users/rikuto13ten/.emacs.d/org.el" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/org/" "/Users/rikuto13ten/.emacs.d/ui.el" "/Users/rikuto13ten/.emacs.d/"))
 
 ;; Buffer section -- buffers listed in same order as in buffer list:
 (desktop-create-buffer 208
-  "/Users/impl/.emacs.d/package.el"
-  "package.el<2>"
-  'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode company-mode font-lock-mode eldoc-mode)
-  1209
-  '(537 nil)
-  nil
-  nil
-  '((buffer-display-time 26672 16321 345156 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (523 420 2006 1965 1965 1832 1869 1935 1828 1079 1 1 1828 1670 690 690))))
-
-(desktop-create-buffer 208
-  "/Users/impl/.emacs.d/org-mode.el"
-  "org-mode.el"
-  'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode eldoc-mode)
-  840
-  '(249 nil)
-  nil
-  nil
-  '((buffer-display-time 26672 12429 71182 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (840 627 627 839 840 840))))
-
-(desktop-create-buffer 208
-  "/Users/impl/.emacs.d/custom.el"
-  "custom.el"
-  'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
-  1
-  '(1 nil)
-  nil
-  nil
-  '((buffer-display-time 26672 12175 885582 0) (buffer-file-coding-system . prefer-utf-8-unix) (overwrite-mode))
-  '((mark-ring (1))))
-
-(desktop-create-buffer 208
-  "/Users/impl/.emacs.d/coding.el"
-  "coding.el"
-  'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
-  161
-  '(40 nil)
-  nil
-  nil
-  '((buffer-display-time 26672 12161 947556 0) (buffer-file-coding-system . utf-8-unix))
-  '((mark-ring (1))))
-
-(desktop-create-buffer 208
-  "/Users/impl/.emacs.d/ui.el"
+  "/Users/rikuto13ten/.emacs.d/ui.el"
   "ui.el"
   'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
-  766
-  '(1319 nil)
+  '(font-lock-mode eldoc-mode flycheck-inline-mode flycheck-mode display-line-numbers-mode company-mode outline-minor-mode rainbow-delimiters-mode)
+  95
+  '(nil nil)
   nil
   nil
-  '((buffer-display-time 26672 10889 884169 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (304 1284 1283 1283 1283 409 1271 1318))))
-
-(desktop-append-buffer-args 208
-  nil
-  ".emacs.d"
-  'dired-mode
-  '(display-line-numbers-mode font-lock-mode)
-  1056
-  '(760 nil)
-  t
-  '("/Users/impl/.emacs.d/")
-  '((buffer-display-time 26672 10243 177989 0) (overwrite-mode))
+  '((buffer-display-time 26673 24327 492848 0) (buffer-file-coding-system . utf-8-unix))
   '((mark-ring nil)))
 
-(desktop-append-buffer-args 208
-  "/Users/impl/.emacs.d/init.el"
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/init.el"
   "init.el"
   'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
-  830
-  '(830 nil)
+  '(rainbow-delimiters-mode outline-minor-mode company-mode display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
+  869
+  '(906 nil)
   nil
   nil
-  '((buffer-display-time 26672 9086 481052 0) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (806 804 165 845))))
+  '((buffer-display-time 26673 24323 956076 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (43 42 42 189 189 189 189 189 189 907 42 42 42 42 42 869))))
 
-(desktop-append-buffer-args 208
-  "/Users/impl/.emacs.d/transient/history.el"
-  "history.el"
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/package.el"
+  "package.el"
   'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
-  1
-  '(nil nil)
+  '(rainbow-delimiters-mode outline-minor-mode company-mode display-line-numbers-mode flycheck-inline-mode flycheck-mode eldoc-mode font-lock-mode)
+  2088
+  '(1902 nil)
   nil
   nil
-  '((buffer-display-time 26672 7240 419526 703000) (buffer-file-coding-system . prefer-utf-8-unix))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/.emacs.d/keybind.el"
-  "keybind.el"
-  'emacs-lisp-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode eldoc-mode)
-  709
-  '(576 nil)
-  nil
-  nil
-  '((buffer-display-time 26672 7186 184688 703000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode))
-  '((mark-ring (709 663 519 519 455 501 294 441 501 379 318 1 1 1 501 711))))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/org/todo.org"
-  "todo.org"
-  'org-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode org-appear-mode font-lock-mode org-indent-mode)
-  920
-  '(1075 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26672 6969 742554 703000) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
-  '((mark-ring (424 1 894 894 894 310 762 792 945 424 444 1075 836 987 1076 920))))
-
-(desktop-append-buffer-args 208
-  nil
-  "org"
-  'dired-mode
-  '(display-line-numbers-mode font-lock-mode)
-  860
-  '(351 nil)
-  t
-  '("/Users/impl/org/")
-  '((buffer-display-time 26671 63600 412436 703000) (overwrite-mode))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/org/notes.org"
-  "notes.org"
-  'org-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode org-indent-mode org-appear-mode)
-  3206
-  '(3268 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26671 60532 812334 703000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (3238 3303 3295))))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/org/Katta.org"
-  "Katta.org<2>"
-  'org-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode org-indent-mode org-appear-mode)
-  159
-  '(683 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26671 59411 554295 703000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (539 539 539 539 1382 1377 1382 1379 539 755))))
-
-(desktop-append-buffer-args 208
-  nil
-  "impl"
-  'dired-mode
-  '(display-line-numbers-mode font-lock-mode)
-  7823
-  '(nil nil)
-  t
-  '("/Users/impl/")
-  '((buffer-display-time 26670 32111 430853 289000))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  nil
-  "Users"
-  'dired-mode
-  '(display-line-numbers-mode font-lock-mode)
-  279
-  '(nil nil)
-  t
-  '("/Users/")
-  '((buffer-display-time 26669 29122 602123 289000))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  nil
-  "/"
-  'dired-mode
-  '(display-line-numbers-mode font-lock-mode)
-  654
-  '(nil nil)
-  t
-  '("/")
-  '((buffer-display-time 26669 22580 747354 310000))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  nil
-  "*info*"
-  'Info-mode
-  '(display-line-numbers-mode isearch-fold-quotes-mode font-lock-mode)
-  131612
-  '(nil nil)
-  t
-  '("/opt/homebrew/share/info/efaq" "Packages that do not come with Emacs" nil)
-  '((tab-width . 8) (buffer-display-time 26669 22110 617879 688000) (buffer-file-coding-system . utf-8-unix) (case-fold-search . t))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/.emacs.d/README.org"
-  "README.org"
-  'org-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode org-appear-mode font-lock-mode org-indent-mode)
-  140
-  '(140 nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26669 17581 219827 688000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring (1047))))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/org/org-mode-memo.org"
-  "org-mode-memo.org"
-  'org-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode org-indent-mode org-appear-mode)
-  1
-  '(nil nil)
-  nil
-  nil
-  '((indent-tabs-mode) (buffer-display-time 26668 11564 963705 835000) (buffer-file-coding-system . utf-8-unix) (overwrite-mode) (truncate-lines . t))
-  '((mark-ring nil)))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/.skhdrc"
-  ".skhdrc"
-  'fundamental-mode
-  '(display-line-numbers-mode font-lock-mode)
-  174
-  '(5 nil)
-  nil
-  nil
-  '((buffer-display-time 26667 43252 397393 522000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
-  '((mark-ring (1998))))
-
-(desktop-append-buffer-args 208
-  "/Users/impl/.yabairc"
-  ".yabairc"
-  'sh-mode
-  '(display-line-numbers-mode flycheck-inline-mode flycheck-mode font-lock-mode sh-electric-here-document-mode)
-  513
-  '(nil nil)
-  nil
-  nil
-  '((buffer-display-time 26667 38302 417969 543000) (buffer-file-coding-system . undecided-unix) (overwrite-mode))
-  '((mark-ring nil)))
+  '((buffer-display-time 26673 24238 205682 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (2055 2088))))
 

@@ -23,11 +23,4 @@
 - 見出しで ~<Tab>~ を押したときに、サブツリーに対しては操作しないように
 
 ** キーバインド
-|----------+---------------------|
-| ~<SPC> fe~ | neotree-change-root |
-| ~<SPC> e~  | neotree-toggle      |
-| ~<SPC> h~  | evil-window-left    |
-| ~<SPC> j~  | evil-window-down    |
-| ~<SPC> k~  | evil-window-up      |
-| ~<SPC> l~  | evil-window-right   |
-|----------+---------------------|
+
