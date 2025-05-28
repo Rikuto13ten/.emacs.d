@@ -138,3 +138,7 @@
       (magit-restore-window-configuration)
       (mapc #'kill-buffer buffers)))
   (bind-key "q" #'mu-magit-kill-buffers magit-status-mode-map))
+
+(use-package forge
+  :after magit)
+
