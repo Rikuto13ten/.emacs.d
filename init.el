@@ -60,9 +60,8 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
-
-;;;; outline
-;;; 見出しを変える
+;;;;; outline 関連
+;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("^;;;\\([;]*\\) \\(.*\\)$"
                            (2 '(:inherit org-level-1 :height 1.1) t))
@@ -73,34 +72,61 @@
                           ("^;;;;;;\\([;]*\\) \\(.*\\)$"
                            (2 '(:inherit org-level-4 :height 1.4) t))))
 
-;;; outliEne-minor-modeでTABキーを使って開閉する設定
-;; 個々の見出しの開閉を切り替える関数
+;;;; outliEne-minor-modeでTABキーを使って開閉する設定
+;;; 個々の見出しの開閉を切り替える関数
 (defun my-outline-toggle ()
   "Toggle outline body visibility at point."
   (interactive)
+  ;; 現在行が、ヘッダー行の場合処理を続ける
+  ;; それ以外は処理をしない
   (when (outline-on-heading-p)
-      (if (outline-invisible-p (line-end-position))
-          (outline-show-entry)
-        (outline-hide-entry))))
+    ;; 行末に隠れたテキストがある場合
+    (if (outline-invisible-p (line-end-position))
+        ;; t: 本文を表示し、小見出しも表示する。
+        (progn (outline-show-entry)
+               (outline-show-children))
+      ;; nil: 本文と、小見出しの全てを非表示にする
+      (outline-hide-subtree))))
 
-;; すべての見出しの開閉を切り替える関数
+;;; すべての見出しの開閉を切り替える関数
 (defun my-outline-toggle-all ()
   "Toggle all outline visibility."
   (interactive)
   (if (outline-invisible-p (line-end-position))
       (outline-show-all)
-    (outline-hide-all)))
+    (outline-hide-subtree)))
 
-;; TABキーとS-TABキーにカスタム関数を割り当てる設定関数
+;;; TABキーとS-TABキーにカスタム関数を割り当てる設定関数
 (defun my-outline-minor-mode-setup ()
   "Set up outline-minor-mode to use TAB for folding/unfolding."
   (local-set-key (kbd "<tab>") 'my-outline-toggle)
   (local-set-key (kbd "<backtab>") 'my-outline-toggle-all))
 
+;;; 連続する見出しの最上位のみ表示する
+(defun my-hide-subordinate-headings ()
+  "Hide headings that are subordinate to preceding higher-level headings."
+  (interactive)
+  (save-excursion
+    (outline-show-all) ; まず全て表示
+    (goto-char (point-min))
+    (let ((current-max-level 0))
+      (while (outline-next-heading)
+        (let ((this-level (funcall outline-level)))
+          (if (<= this-level current-max-level)
+              ;; 現在のレベル以上なら表示し、新しい最大レベルを更新
+              (setq current-max-level this-level)
+            ;; より深いレベルなら隠す
+            (outline-hide-subtree)))))))
+;;; Hook する
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (outline-minor-mode 1)
-            (setq outline-regexp "^;;;+\\s-*.*$")
+            (setq outline-regexp "^;;;+\\s-*")
+            (setq outline-level
+                  (lambda ()
+                    (looking-at outline-regexp)
+                    (let ((semicolon-count (- (match-end 0) (match-beginning 0))))
+                      (- 10 semicolon-count))))
             (setq outline-headers-indent-max 0)
-            (outline-hide-body)
+            (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
