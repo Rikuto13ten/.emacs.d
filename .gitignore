@@ -7,8 +7,8 @@
 *.elc
 
 # Emacsデスクトップ復元ファイル
-/.emacs.desktop
-/.emacs.desktop.lock
+desktop/
+tutorial/
 
 # 自動保存リスト
 auto-save-list/
