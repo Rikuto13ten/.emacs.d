@@ -1,4 +1,4 @@
-#+STARTUP: showeverything
+XF#+STARTUP: showeverything
 * .emacs.d
 自分用の設定ファイル置き場
 ** ディレクトリ構成

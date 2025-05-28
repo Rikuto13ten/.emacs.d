@@ -92,3 +92,36 @@
   :config
   (centaur-tabs-mode t))
 
+(use-package lsp-mode
+    :hook (XXX-mode . lsp-deferred)
+    :commands (lsp lsp-deferred))
+
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nixfmt"]))
+
+(use-package nix-mode
+  :hook (nix-mode . lsp-deferred)
+  :ensure t)
+
+(use-package nerd-icons
+  :ensure t)
+
+(use-package dirvish
+  :ensure t
+  :after nerd-icons
+  :init (dirvish-override-dired-mode)
+  :config
+  ;; フォルダを先に表示 + 左寄せ
+  (setq dired-listing-switches "-l --all --human-readable --group-directories-first --no-group")
+
+  ;; dirvish属性の設定（左寄せ）
+  (setq dirvish-attributes
+        '(nerd-icons file-time file-size collapse subtree-state vc-state git-msg))
+
+  ;; モードライン設定
+  (setq dirvish-mode-line-format
+        '(:left (sort symlink) :right (omit yank index))))

@@ -66,3 +66,43 @@
 (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'c-mode-hook 'rainbow-delimiters-mode)
 
+(defun darwin-rebuild-switch ()
+  "Run darwin-rebuild switch command."
+  (interactive)
+  (async-shell-command "sudo darwin-rebuild switch --flake ~/.config/nix-darwin"))
+
+;; Emacs Lisp専用のコメント折りたたみ設定（関数型スタイル）
+
+(defun elisp-comment-outline-regexp ()
+  "Emacs Lisp用のアウトライン正規表現を返す"
+  ";;;;\\|;;;[^;]")
+
+(defun elisp-setup-outline-mode ()
+  "Emacs Lispモード用のアウトラインモードを設定"
+  (setq-local outline-regexp (elisp-comment-outline-regexp))
+  (outline-minor-mode 1))
+
+(defun elisp-outline-toggle-children-safe ()
+  "アウトライン見出し上でのみ子要素を切り替える"
+  (interactive)
+  (when (outline-on-heading-p)
+    (outline-toggle-children)))
+
+(defun elisp-smart-tab ()
+  "コンテキストに応じたTAB動作を提供"
+  (interactive)
+  (cond
+   ((outline-on-heading-p) (elisp-outline-toggle-children-safe))
+   (t (indent-for-tab-command))))
+
+(defun elisp-setup-comment-folding-keybind ()
+  "Emacs Lisp用の折りたたみキーバインドを設定"
+  (local-set-key (kbd "TAB") #'elisp-smart-tab))
+
+(defun elisp-enable-comment-folding ()
+  "Emacs Lispモードでコメント折りたたみ機能を有効化"
+  (funcall #'elisp-setup-outline-mode)
+  (funcall #'elisp-setup-comment-folding-keybind))
+
+;; Emacs Lispモードのみに適用
+(add-hook 'emacs-lisp-mode-hook #'elisp-enable-comment-folding)

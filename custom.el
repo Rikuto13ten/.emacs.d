@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(centaur-tabs rainbow-delimiters company flycheck-inline flycheck ddskk org-appear neotree catppuccin-theme which-key counsel ivy)))
+   '(dired nerd-icons dirvish lsp-mode centaur-tabs rainbow-delimiters company flycheck-inline flycheck ddskk org-appear neotree catppuccin-theme which-key counsel ivy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,9 +1,17 @@
 ;; Font
+
 (when (display-graphic-p)
-  ;; デフォルトフォント（プログラミング用）
-  (set-face-attribute 'default nil
-                      :family "Iosevka Custom Rikuto Code"
-                      :height 120))
+  (cond
+   ;; 第一優先のフォントが利用可能かチェック
+   ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
+    (set-face-attribute 'default nil
+                        :family "Iosevka Custom Rikuto Code"
+                        :height 120))
+   ;; フォールバック1
+   (t
+    (set-face-attribute 'default nil
+                        :family "Menlo"
+                        :height 120))))
 
 ;; whitespace-modeの設定
 (require 'whitespace)

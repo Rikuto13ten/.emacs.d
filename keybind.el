@@ -29,4 +29,5 @@
   (kill-line))
 
 (global-set-key (kbd "C-k") 'custom-kill-line)
+(global-set-key (kbd "C-z") 'set-mark-command)
 
