@@ -125,3 +125,4 @@
   ;; モードライン設定
   (setq dirvish-mode-line-format
         '(:left (sort symlink) :right (omit yank index))))
+
