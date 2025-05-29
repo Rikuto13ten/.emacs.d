@@ -1,3 +1,4 @@
+;;;;; 起動オプション
 ;;; カスタム変数用ファイルの設定
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
@@ -20,27 +21,103 @@
 (when (and (boundp 'custom-file) custom-file (file-exists-p custom-file))
   (load custom-file))
 
-;;; その他の基本設定
+;;; backup file & auto save file settings
 (setq make-backup-files nil) ;; バックアップファイルを作らない
 (setq auto-save-default nil) ;; 自動保存ファイルを作らない
 
+;;;;; Basic
+;;;; Font 関係
+(when (display-graphic-p)
+  (cond
+   ;; 第一優先のフォントが利用可能かチェック
+   ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
+    (set-face-attribute 'default nil
+                        :family "Iosevka Custom Rikuto Code"
+                        :height 160))
+   ;; フォールバック1
+   (t
+    (set-face-attribute 'default nil
+                        :family "Menlo"
+                        :height 120))))
+
+;;;; whitespace-modeの設定
+(require 'whitespace)
+(setq whitespace-style '(face       ;; 見た目
+                         trailing   ;; 行末の空白
+                         tabs       ;; タブ
+                         spaces     ;; スペース
+                         empty      ;; 先頭/末尾ノ空行
+                         space-mark ;; 空白マークヲ表示
+                         tab-mark)) ;; タブマークヲ表示
+
+;; 色設定（控エメナ色、背景色ナシ）
+(set-face-attribute 'whitespace-trailing nil
+                    :background nil
+                    :foreground "#40404a"  ;; 行末ノ空白（薄イグレー）
+                    :underline t)          ;; 下線デ強調
+
+(set-face-attribute 'whitespace-tab nil
+                    :background nil
+                    :foreground "#40404a")  ;; タブ（薄イグレー）
+
+(set-face-attribute 'whitespace-space nil
+                    :background nil
+                    :foreground "#40404a")  ;; スペース（薄イグレー）
+
+(set-face-attribute 'whitespace-empty nil
+                    :background nil
+                    :foreground "#40404a")  ;; 空行（薄イグレー）
+
+;; グローバルニ有効化
+(global-whitespace-mode 1)
+
+;; Tab to Space に変換
+(setq-default indent-tabs-mode nil)
+
+;;;; 行番号を表示
+(global-display-line-numbers-mode)
+
+;;;; ascii mode
 (mac-auto-ascii-mode 1)
-;;; ろーど
+;;;;; ろーど
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
 
 ;; キーバインド設定のロード
 (load (expand-file-name "keybind.el" user-emacs-directory))
 
-;; org mode 関連
-(load (expand-file-name "org-mode.el" user-emacs-directory))
-
 ;; Coding 関係のまとめる
 (load (expand-file-name "coding.el" user-emacs-directory))
 
 (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
 
-;;; 括弧を色つける
+;;;;; outline 関連
+;;;;; org mode 関連
+;;; 見出し設定
+(use-package org
+  :config
+  ;; 見出しの初期状態を折りたたんだ状態に変更
+  (setq org-startup-folded t)
+  ;; インデント表示を有効に
+  (setq org-startup-indented t)
+  ;; 強調マーカーを非表示にする
+  (setq org-hide-emphasis-markers t)
+  ;; * を非表示にしない
+  (setq org-hide-leading-stars nil)
+  (setq org-indent-mode-turns-on-hiding-stars nil)
+
+  (custom-set-faces
+   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
+   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.2))))
+   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
+   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
+   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
+   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
+   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
+   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
+
+;;;;; extention
+;;;; 括弧を色つける
 (require 'cl-lib)
 (require 'color)
 
@@ -57,7 +134,6 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
-;;;;; outline 関連
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("^;;;\\([;]*\\) \\(.*\\)$"
@@ -127,26 +203,3 @@
             (setq outline-headers-indent-max 0)
             (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
-;;;;; Basic
-;;;;; org mode
-(use-package org
-  :config
-  ;; 見出しの初期状態を折りたたんだ状態に変更
-  (setq org-startup-folded t)
-  ;; インデント表示を有効に
-  (setq org-startup-indented t)
-  ;; 強調マーカーを非表示にする
-  (setq org-hide-emphasis-markers t)
-  ;; * を非表示にしない
-  (setq org-hide-leading-stars nil)
-  (setq org-indent-mode-turns-on-hiding-stars nil)
-
-  (custom-set-faces
-   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
-   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.2))))
-   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
-   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
-   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
-   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
-   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
-   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
