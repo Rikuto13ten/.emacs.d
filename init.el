@@ -32,9 +32,6 @@
 ;; キーバインド設定のロード
 (load (expand-file-name "keybind.el" user-emacs-directory))
 
-;; UI 関連
-(load (expand-file-name "ui.el" user-emacs-directory))
-
 ;; org mode 関連
 (load (expand-file-name "org-mode.el" user-emacs-directory))
 
@@ -130,3 +127,32 @@
             (setq outline-headers-indent-max 0)
             (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
+<<<<<<< Updated upstream
+=======
+
+;;;;; Basic
+
+
+;;;;; org mode
+(use-package org
+  :config
+  ;; 見出しの初期状態を折りたたんだ状態に変更
+  (setq org-startup-folded t)
+  ;; インデント表示を有効に
+  (setq org-startup-indented t)
+  ;; 強調マーカーを非表示にする
+  (setq org-hide-emphasis-markers t)
+  ;; * を非表示にしない
+  (setq org-hide-leading-stars nil)
+  (setq org-indent-mode-turns-on-hiding-stars nil)
+
+  (custom-set-faces
+   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
+   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.2))))
+   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
+   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
+   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
+   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
+   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
+   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
+>>>>>>> Stashed changes
