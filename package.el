@@ -104,11 +104,6 @@
 (set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
-;;;; buffer tabs
-(use-package centaur-tabs
-  :demand
-  :config
-  (centaur-tabs-mode t))
 ;;;; lsp
 ;;; lsp-mode
 (use-package lsp-mode
@@ -161,3 +156,11 @@
       (magit-restore-window-configuration)
       (mapc #'kill-buffer buffers)))
   (bind-key "q" #'mu-magit-kill-buffers magit-status-mode-map))
+
+;;;; moody
+;; モードラインの要素をタブやリボンとして表示
+(use-package moody
+  :config
+  (moody-replace-mode-line-front-space)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
