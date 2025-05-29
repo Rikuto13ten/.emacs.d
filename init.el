@@ -206,6 +206,18 @@
             (setq outline-headers-indent-max 0)
             (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
+;;;; nix darwin
+(defun nix-darwin-rebuild ()
+  "Run sudo darwin-rebuild switch --flake ~/.config/nix-darwin and close buffer when done"
+  (interactive)
+  (let ((buffer (async-shell-command "sudo darwin-rebuild switch --flake ~/.config/nix-darwin")))
+    (with-current-buffer buffer
+      (set-process-sentinel
+       (get-buffer-process buffer)
+       (lambda (process event)
+         ;; 正常に終了したら、バッファを閉じる
+         (when (string-match "finished\\|exited" event)
+           (kill-buffer (process-buffer process))))))))
 ;;;;; Keymap
 ;;;; Mac OS向けのキー設定
 (when (eq system-type 'darwin)
@@ -240,4 +252,5 @@
 
 ;;;; C-z に、Mark を割り当て
 (global-set-key (kbd "C-z") 'set-mark-command)
+
 
