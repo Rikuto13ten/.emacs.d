@@ -6,7 +6,7 @@
    ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
     (set-face-attribute 'default nil
                         :family "Iosevka Custom Rikuto Code"
-                        :height 120))
+                        :height 160))
    ;; フォールバック1
    (t
     (set-face-attribute 'default nil

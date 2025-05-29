@@ -130,3 +130,6 @@
             (setq outline-headers-indent-max 0)
             (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
+
+;;;;; Basic
+
