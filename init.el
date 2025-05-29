@@ -127,12 +127,7 @@
             (setq outline-headers-indent-max 0)
             (my-hide-subordinate-headings)
             (my-outline-minor-mode-setup))) ;; 設定関数をここで呼び出す
-<<<<<<< Updated upstream
-=======
-
 ;;;;; Basic
-
-
 ;;;;; org mode
 (use-package org
   :config
@@ -155,4 +150,3 @@
    '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
    '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
    '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
->>>>>>> Stashed changes
