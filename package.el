@@ -79,6 +79,9 @@
   :ensure t
   :init (global-flycheck-mode))
 (use-package flycheck-inline)
+;; flycheck で、インラインにエラーメッセージを追加
+(with-eval-after-load 'flycheck
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
 ;; コードの補完をするパッケージ
 (use-package company)
