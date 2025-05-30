@@ -30,6 +30,20 @@
 (setq make-backup-files nil) ;; バックアップファイルを作らない
 (setq auto-save-default nil) ;; 自動保存ファイルを作らない
 
+;;; Emacs Server
+;; Emacs Server設定
+(require 'server)
+
+;; サーバーが既に起動していない場合のみ起動
+(unless (server-running-p)
+  (server-start))
+
+;; サーバーソケットのディレクトリを指定（オプション）
+(setq server-socket-dir "~/.emacs.d/server")
+
+;; クライアント終了時の動作設定
+(setq server-kill-new-buffers t)  ; 新しいバッファは自動削除
+(setq server-temp-file-regexp "^/tmp/\\|/draft$")  ; 一時ファイルの設定
 ;;;;; 基本的な設定
 ;;;; Font 関係
 (when (display-graphic-p)
