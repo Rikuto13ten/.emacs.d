@@ -21,10 +21,13 @@
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 ;;;; counsel
+;; ivy というコマンド補完機能を
+;; 用いて、絞りこみ検索をする
 (use-package counsel
   :config
   (counsel-mode 1))
 ;;;; swiper
+;; Isearch の強化版
 (use-package swiper)
 
 ;;;; Which Key（キーバインドヘルプ）
@@ -105,12 +108,24 @@
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
 ;;;; lsp
-;;; lsp-mode
-(use-package lsp-mode
-    :hook (XXX-mode . lsp-deferred)
-    :commands (lsp lsp-deferred))
+;;; Eglot
+(use-package eglot
+  :ensure t
+  :hook
+  (html-mode . eglot-ensure)
+  (css-mode . eglot-ensure)
+  (js-mode .eglot-ensure)
+  :config
+  (add-to-list 'eglot-server-programs
+               '(astro-mode . ("astro-ls" "--stdio"
+                               :initializationOptions
+                               (:typescript (:tsdk "./node_modules/typescript/lib")))))
+  :init
+  ;; astro-mode の eglot を自動起動
+  (add-hook 'astro-mode-hook 'eglot-ensure))
 
-;;; lsp-nix
+;;; nix
+;; lsp-nix
 (use-package lsp-nix
   :ensure lsp-mode
   :after (lsp-mode)
@@ -118,10 +133,36 @@
   :custom
   (lsp-nix-nil-formatter ["nixfmt"]))
 
-;;; nix-mode
+;; nix-mode
 (use-package nix-mode
   :hook (nix-mode . lsp-deferred)
   :ensure t)
+;;; ts
+(use-package typescript-ts-mode
+  :mode (("\\\\.tsx\\\\'" . tsx-ts-mode)
+         ("\\\\.ts\\\\'" . tsx-ts-mode))
+  :config
+  (setq typescript-ts-mode-indent-offset 2))
+
+;;; html
+(add-to-list 'auto-mode-alist '("\\\\.html\\\\" . html-mode))
+
+;;; js
+(add-to-list 'auto-mode-alist '("\\\\.js\\\\" . js-mode))
+
+;;; css
+(add-to-list 'auto-mode-alist '("\\\\.css\\\\" . css-mode))
+
+;;; astro
+;; WEB モード
+(use-package web-mode
+  :ensure t)
+
+;; ASTRO
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+              auto-mode-alist))
 ;;;; nerd-icons
 (use-package nerd-icons
   :ensure t)
@@ -165,4 +206,30 @@
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
+
+
+;;;; exwm
+(use-package exwm)
+(require 'exwm)
+;; Set the initial workspace number.
+(setq exwm-workspace-number 4)
+;; Make class name the buffer name.
+(add-hook 'exwm-update-class-hook
+  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+;; Global keybindings.
+(setq exwm-input-global-keys
+      `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
+        ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
+        ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
+                     (interactive (list (read-shell-command "$ ")))
+                     (start-process-shell-command cmd nil cmd)))
+        ;; s-N: Switch to certain workspace.
+        ,@(mapcar (lambda (i)
+                    `(,(kbd (format "s-%d" i)) .
+                      (lambda ()
+                        (interactive)
+                        (exwm-workspace-switch-create ,i))))
+                  (number-sequence 0 9))))
+;; Enable EXWM
+(exwm-enable)
 

@@ -266,5 +266,5 @@
 
 ;;;; C-z に、Mark を割り当て
 (global-set-key (kbd "C-z") 'set-mark-command)
-
-
+;;;; C-s に、Swiper を割り当て
+(global-set-key (kbd "C-s") 'swiper)
