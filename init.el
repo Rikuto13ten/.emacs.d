@@ -95,8 +95,8 @@
 (load (expand-file-name "package.el" user-emacs-directory))
 
 ;;;;; outline 関連
-;;;;; org pmode 関連
-;;; 見出し設定
+;;;;; org mode 関連
+;;;; 見出し設定
 (use-package org
   :config
   ;; 見出しの初期状態を折りたたんだ状態に変更
@@ -119,6 +119,50 @@
    '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
    '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
 
+;;;; org bable
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '((shell . t)))
+;;;; bold 見ため
+(with-eval-after-load 'org
+  (setq org-emphasis-alist
+        '(("*" (:foreground "OliveDrab3" :weight bold))
+          ("/" italic)
+          ("_" underline)
+          ("=" org-verbatim verbatim)
+          ("~" (:foreground "tan1"))
+          ("+" (:strike-through t)))))
+;;;; org fold をカスタムする
+;;; 文字が不可視かどうか
+(defun is-fold-org-heading (eol)
+  "heading が fold されているか"
+  (or (get-char-property eol 'invisible) ;; 文字が不可視か
+      (get-char-property eol 'org-fold-type) ;; fold されているか
+      (and (fboundp 'outline-invisible-p) ;; outline-invisible-p が存在するか
+           (outline-invisible-p eol)))) ;; 非表示プロパティを持っている
+
+;;; heading の表示、非表示を切り替える
+(defun my-org-heading-toggle ()
+  "Toggle org heading visibility - recommended version."
+  (interactive)
+  ;; heading にポイントがあるとき
+  (when (org-at-heading-p)
+    (let ((eol (line-end-position)))  ;; 行の最後の位置の文字を eol に束縛
+      ;; 不可視チェック
+      (if (is-fold-org-heading eol)
+          ;; 表示
+          (progn
+            (org-show-entry)
+            (org-show-children))
+        ;; 非表示
+        (org-fold-hide-subtree)))))
+
+(defun custom-org-mode-heading-toggle ()
+  "set org mode"
+  )
+;;; hook する
+(add-hook 'org-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<tab>") 'my-org-heading-toggle)))
 ;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
@@ -197,7 +241,8 @@
             ;; → これは従属的な見出し（サブセクション）
             ;; → この見出しとその配下の全内容を隠す
             (outline-hide-subtree)))))))
-;;; Hook する
+
+;;; elisp hook
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (outline-minor-mode 1)
@@ -363,3 +408,5 @@
 
 ;;;; C-c w に、window 移動
 (global-set-key (kbd "C-c w") 'window-move-mode)
+
+
