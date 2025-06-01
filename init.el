@@ -258,6 +258,72 @@
                (message "Quit")
                (throw 'end-flag t)))))))
 
+;;;; window move
+(defvar window-move-overlay-list nil
+  "ウィンドウ移動モード用のオーバーレイリスト")
+
+(defvar window-move-keys "asdfjkl;qwertyuiopzxcvbnm"
+  "ウィンドウに割り当てる文字")
+
+(defface window-move-label-face
+  '((t (:foreground "red" :background "yellow" :bold t :height 3.0)))
+  "ウィンドウラベルの表示スタイル")
+
+(defun window-move--clear-overlays ()
+  "すべてのオーバーレイを削除"
+  (dolist (overlay window-move-overlay-list)
+    (delete-overlay overlay))
+  (setq window-move-overlay-list nil))
+
+(defun window-move--create-overlay (window char)
+  "ウィンドウにラベルオーバーレイを作成"
+  (with-selected-window window
+    (let* ((start (window-start))
+           (overlay (make-overlay start (1+ start))))
+      (overlay-put overlay 'display 
+                   (propertize (string char) 'face 'window-move-label-face))
+      (overlay-put overlay 'window window)
+      (push overlay window-move-overlay-list))))
+
+(defun window-move--assign-labels ()
+  "各ウィンドウにラベルを割り当て"
+  (let ((windows (window-list))
+        (chars (string-to-list window-move-keys))
+        (assignments '()))
+    (cl-loop for window in windows
+             for char in chars
+             do (progn
+                  (window-move--create-overlay window char)
+                  (push (cons char window) assignments)))
+    assignments))
+
+(defvar window-move-assignments nil
+  "文字とウィンドウの対応表")
+
+(defun window-move-mode ()
+  "ウィンドウ移動モードを開始"
+  (interactive)
+  (message "Window Move Mode: 移動先の文字を押してください (ESC で終了)")
+  (window-move--clear-overlays)
+  (setq window-move-assignments (window-move--assign-labels))
+  (window-move--read-char))
+
+(defun window-move--read-char ()
+  "文字入力を待機して対応するウィンドウに移動"
+  (let ((char (read-char)))
+    (window-move--clear-overlays)
+    (cond
+     ;; ESCで終了
+     ((= char 27)
+      (message "Window Move Mode 終了"))
+     ;; 割り当てられた文字なら移動
+     ((assoc char window-move-assignments)
+      (let ((target-window (cdr (assoc char window-move-assignments))))
+        (select-window target-window)
+        (message "ウィンドウ '%c' に移動しました" char)))
+     ;; 無効な文字
+     (t
+      (message "無効な文字です: %c" char)))))
 ;;;;; Keymap
 ;;;; Mac OS向けのキー設定
 (when (eq system-type 'darwin)
@@ -277,7 +343,7 @@
 (global-set-key (kbd "C-x ?") 'help-command) ;; ヘルプ
 
 ;;;; C-c 関係の設定
-(global-set-key (kbd "C-c e") 'dirvish-side)
+(global-set-key (kbd "C-c d") 'dirvish-side)
 
 ;;;; SKK の変換を ; に
 (setq skk-sticky-key ";")
@@ -295,3 +361,5 @@
 ;;;; C-s に、Swiper を割り当て
 (global-set-key (kbd "C-s") 'swiper)
 
+;;;; C-c w に、window 移動
+(global-set-key (kbd "C-c w") 'window-move-mode)
