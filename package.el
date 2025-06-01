@@ -178,12 +178,18 @@
 
   ;; dirvish属性の設定（左寄せ）
   (setq dirvish-attributes
-        '(nerd-icons file-time file-size collapse subtree-state vc-state git-msg))
+        '(nerd-icons subtree-state))
 
   ;; モードライン設定
   (setq dirvish-mode-line-format
         '(:left (sort symlink) :right (omit yank index))))
 
+;;; side bar mode
+(setq dirvish-side-follow-mode t)
+
+;;; tab を押したらディレクトリを開く
+(with-eval-after-load 'dirvish
+  (define-key dirvish-mode-map (kbd "TAB") 'dirvish-subtree-toggle))
 ;;;; magit
 (use-package magit
   :ensure t
@@ -207,29 +213,4 @@
   (moody-replace-vc-mode))
 
 
-
-;;;; exwm
-(use-package exwm)
-(require 'exwm)
-;; Set the initial workspace number.
-(setq exwm-workspace-number 4)
-;; Make class name the buffer name.
-(add-hook 'exwm-update-class-hook
-  (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
-;; Global keybindings.
-(setq exwm-input-global-keys
-      `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
-        ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
-        ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
-                     (interactive (list (read-shell-command "$ ")))
-                     (start-process-shell-command cmd nil cmd)))
-        ;; s-N: Switch to certain workspace.
-        ,@(mapcar (lambda (i)
-                    `(,(kbd (format "s-%d" i)) .
-                      (lambda ()
-                        (interactive)
-                        (exwm-workspace-switch-create ,i))))
-                  (number-sequence 0 9))))
-;; Enable EXWM
-(exwm-enable)
 

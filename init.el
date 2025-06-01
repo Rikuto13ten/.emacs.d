@@ -241,7 +241,7 @@
 (global-set-key (kbd "C-x ?") 'help-command) ;; ヘルプ
 
 ;;;; C-c 関係の設定
-(global-set-key (kbd "C-c e") 'neotree-toggle)
+(global-set-key (kbd "C-c e") 'dirvish-side)
 
 ;;;; SKK の変換を ; に
 (setq skk-sticky-key ";")
