@@ -173,12 +173,11 @@
   :after nerd-icons
   :init (dirvish-override-dired-mode)
   :config
-  ;; フォルダを先に表示 + 左寄せ
-  (setq dired-listing-switches "-l --all --human-readable --group-directories-first --no-group")
+  (setq dired-listing-switches "-l --almost-all --human-readable --group-directories-first --no-group")
 
   ;; dirvish属性の設定（左寄せ）
   (setq dirvish-attributes
-        '(nerd-icons subtree-state))
+        '(vc-state nerd-icons subtree-state))
 
   ;; モードライン設定
   (setq dirvish-mode-line-format
@@ -187,9 +186,9 @@
 ;;; side bar mode
 (setq dirvish-side-follow-mode t)
 
-;;; tab を押したらディレクトリを開く
+;;; C-f を押したらディレクトリを開く
 (with-eval-after-load 'dirvish
-  (define-key dirvish-mode-map (kbd "TAB") 'dirvish-subtree-toggle))
+  (define-key dirvish-mode-map (kbd "C-f") 'dirvish-subtree-toggle))
 ;;;; magit
 (use-package magit
   :ensure t
