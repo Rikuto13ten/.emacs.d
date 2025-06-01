@@ -222,6 +222,42 @@
          ;; 正常に終了したら、バッファを閉じる
          (when (string-match "finished\\|exited" event)
            (kill-buffer (process-buffer process))))))))
+;;;; window resize command
+(defun window-resizer ()
+  "Control window size and position."
+  (interactive)
+  (let ((window-obj (selected-window))
+        (current-width (window-width))
+        (current-height (window-height))
+        (dx (if (= (nth 0 (window-edges)) 0) 1
+              -1))
+        (dy (if (= (nth 1 (window-edges)) 0) 1
+              -1))
+        action c)
+    (catch 'end-flag
+      (while t
+        (setq action
+              (read-key-sequence-vector (format "size[%dx%d]"
+                                                (window-width)
+                                                (window-height))))
+        (setq c (aref action 0))
+        (cond ((= c ?f)
+               (enlarge-window-horizontally dx))
+              ((= c ?b)
+               (shrink-window-horizontally dx))
+              ((= c ?n)
+               (enlarge-window dy))
+              ((= c ?p)
+               (shrink-window dy))
+              ;; otherwise
+              (t
+               (let ((last-command-char (aref action 0))
+                     (command (key-binding action)))
+                 (when command
+                   (call-interactively command)))
+               (message "Quit")
+               (throw 'end-flag t)))))))
+
 ;;;;; Keymap
 ;;;; Mac OS向けのキー設定
 (when (eq system-type 'darwin)
@@ -258,3 +294,4 @@
 (global-set-key (kbd "C-z") 'set-mark-command)
 ;;;; C-s に、Swiper を割り当て
 (global-set-key (kbd "C-s") 'swiper)
+

@@ -38,18 +38,11 @@
   (setq which-key-prefix-prefix "⚡ ")
   (setq which-key-sort-order 'which-key-key-order-alpha))
 
-;;;; nテーマ設定
+;;;; テーマ設定
 (use-package catppuccin-theme
   :config
   (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
   (load-theme 'catppuccin t))
-
-;;;; neotree（ファイルツリー表示）
-(use-package neotree
-  :config
-  (setq neo-window-width 32)
-  (setq neo-smart-open t)
-  (setq neo-show-hidden-files t))
 
 ;;;; org-appear
 ;; マーカ編集中に強調マーカを表示する
@@ -168,6 +161,7 @@
   :ensure t)
 
 ;;;; dirvish
+;;; 基本設定
 (use-package dirvish
   :ensure t
   :after nerd-icons
