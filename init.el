@@ -1,3 +1,4 @@
+;;;;;; H1
 ;;;;; Header rule
 ;; `;;;;;` -> category
 ;; `;;;;` -> ひとつの機能
@@ -86,6 +87,9 @@
 (mac-auto-ascii-mode 1)
 ;;;; 対応する括弧を自動挿入
 (electric-pair-mode 1)
+;;;; auto save
+(auto-save-visited-mode 1)
+(setq auto-save-visited-interval 2)
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
@@ -149,7 +153,7 @@
   (interactive)
   (if (outline-invisible-p (line-end-position))
       (outline-show-all)
-    (outline-hide-subtree)))
+    (outline-hide-body)))
 
 ;;; TABキーとS-TABキーにカスタム関数を割り当てる設定関数
 (defun my-outline-minor-mode-setup ()
