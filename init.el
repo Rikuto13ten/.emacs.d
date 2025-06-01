@@ -144,21 +144,18 @@
 (defun my-org-heading-toggle ()
   "Toggle org heading visibility - recommended version."
   (interactive)
-  ;; heading にポイントがあるとき
-  (when (org-at-heading-p)
-    (let ((eol (line-end-position)))  ;; 行の最後の位置の文字を eol に束縛
-      ;; 不可視チェック
-      (if (is-fold-org-heading eol)
-          ;; 表示
-          (progn
-            (org-show-entry)
-            (org-show-children))
-        ;; 非表示
-        (org-fold-hide-subtree)))))
+  (let ((eol (line-end-position)))  ;; 行の最後の位置の文字を eol に束縛
+    (if (org-at-heading-p)
+        ;; 不可視チェック
+        (if (is-fold-org-heading eol)
+            ;; 表示
+            (progn
+              (org-show-children)
+              (org-show-entry))
+          ;; 非表示
+          (org-fold-hide-subtree))
+      (org-cycle))))
 
-(defun custom-org-mode-heading-toggle ()
-  "set org mode"
-  )
 ;;; hook する
 (add-hook 'org-mode-hook
           (lambda ()
