@@ -19,7 +19,10 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) "))
+  (setq ivy-count-format "(%d/%d) ")
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
+  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
+
 ;;;; counsel
 ;; ivy というコマンド補完機能を
 ;; 用いて、絞りこみ検索をする
@@ -47,6 +50,7 @@
 ;;;; org-appear
 ;; マーカ編集中に強調マーカを表示する
 (use-package org-appear
+  :after org
   :hook (org-mode . org-appear-mode)
   :config
   (setq org-appear-autoemphasis t ; 強調マーカー (*bold* など)
@@ -57,7 +61,8 @@
         ;; 重要: 見出しの * を表示するための設定
         org-appear-inside-latex t
         org-appear-trigger 'always) ; 常に表示（Evilモード対応）
-)
+  )
+(add-hook 'org-mode-hook 'org-appear-mode)
 
 ;;;; DDSKK設定
 ;; やったぜ 完成したぜ。
@@ -82,13 +87,16 @@
 ;; コードの補完をするパッケージ
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
+(setq orderless-component-separator "[ &]")
 
 ;;;; rainbow-delimiters
 (use-package rainbow-delimiters)
 (require 'cl-lib)
 (require 'color)
 (rainbow-delimiters-mode 1)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq rainbow-delimiters-outermost-only-face-count 1)
+
 ;; 色をつける
 (set-face-foreground 'rainbow-delimiters-depth-1-face "#fed4ff")
 (set-face-foreground 'rainbow-delimiters-depth-2-face "#ff5e5e")
@@ -107,15 +115,7 @@
   :hook
   (html-mode . eglot-ensure)
   (css-mode . eglot-ensure)
-  (js-mode .eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs
-               '(astro-mode . ("astro-ls" "--stdio"
-                               :initializationOptions
-                               (:typescript (:tsdk "./node_modules/typescript/lib")))))
-  :init
-  ;; astro-mode の eglot を自動起動
-  (add-hook 'astro-mode-hook 'eglot-ensure))
+  (js-mode .eglot-ensure))
 
 ;;; nix
 ;; lsp-nix
@@ -146,16 +146,6 @@
 ;;; css
 (add-to-list 'auto-mode-alist '("\\\\.css\\\\" . css-mode))
 
-;;; astro
-;; WEB モード
-(use-package web-mode
-  :ensure t)
-
-;; ASTRO
-(define-derived-mode astro-mode web-mode "astro")
-(setq auto-mode-alist
-      (append '((".*\\.astro\\'" . astro-mode))
-              auto-mode-alist))
 ;;;; nerd-icons
 (use-package nerd-icons
   :ensure t)
@@ -182,7 +172,7 @@
 
 ;;; C-f を押したらディレクトリを開く
 (with-eval-after-load 'dirvish
-  (define-key dirvish-mode-map (kbd "C-f") 'dirvish-subtree-toggle))
+  (define-key dirvish-mode-map (kbd "<tab>") 'dirvish-subtree-toggle))
 ;;;; magit
 (use-package magit
   :ensure t
@@ -210,10 +200,11 @@
 
 
 ;;;; org-roam
+;;; config
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/org/blog"))
+  (org-roam-directory (file-truename "~/blog/org-blog/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
@@ -228,19 +219,58 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 
+;;; org-roam-capture
 (with-eval-after-load 'org-roam-capture
   (setq org-roam-capture-templates '(("f" "Fleeting(一時メモ)" plain "%?"
                                       :target (file+head "fleeting/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
                                       :unnarrowed t)
+
                                      ("p" "Permanent(記事)" plain "%?"
-                                      :target (file+head "permanent/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
+                                      :target (file+head
+                                               "permanent/%<%Y%m%d%H%M%S>-${slug}.org"
+                                               "#+TITLE: ${title}\n
+                                               #+AUTHOR:\n
+                                               #+DATE:\n
+                                               #+HUGO_BASE_DIR: ../../\n
+                                               #+HUGO_DRAFT: false\n
+                                               #+HUGO_TAGS:\n
+                                               #+STARTUP: nohideblocks\n")
                                       :unnarrowed t)
+
                                      ("d" "Diary(日記)" plain "%?"
                                       :target (file+head "diary/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
                                       :unnarrowed t)
+
                                      ("z" "Zenn" plain "%?"
                                       :target (file+head "zenn/%<%Y%m%d%H%M%S>.org" "#+TITLE: ${title}\n")
                                       :unnarrowed t)
+
                                      ("m" "Private" plain "%?"
                                       :target (file+head "private/%<%Y%m%d%H%M%S>.org" "#+TITLE: ${title}\n")
+                                      :unnarrowed t)
+
+                                     ;; TODO専用テンプレート
+                                     ("t" "TODO" plain "* TODO ${title}%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"
+                                      :target (file+head "todo.org"
+                                                         "#+title: TODO List\n
+                                                          #+filetags: :todo:\n\n")
                                       :unnarrowed t))))
+
+;;;; one.el
+(use-package one)
+
+;;;; ox-hugo
+(use-package ox-hugo
+  :ensure t
+  :pin melpa
+  :after ox
+  :config
+  (setq org-hugo-preserve-filling t)
+  (setq org-export-preserve-breaks t))
+
+;;;; orderless
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))

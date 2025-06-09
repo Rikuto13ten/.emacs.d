@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/org/blog/fleeting/20250601194736-emacs_describe_command_list.org")
- (front-context-string . "* Emacs Describe")
- (rear-context-string . "be-command-list\n")
- (position . 105)
- (last-modified 26684 12421 681986 0))
+ (filename . "~/blog/org-blog/todo.org")
+ (front-context-string . "* TODO Embark 入れ")
+ (rear-context-string . "iletags: :todo:\n")
+ (position . 183)
+ (last-modified 26693 37364 391245 0))
 )

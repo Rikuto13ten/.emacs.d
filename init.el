@@ -90,13 +90,28 @@
 ;;;; auto save
 (auto-save-visited-mode 1)
 (setq auto-save-visited-interval 2)
+;;;; show paren mode
+(show-paren-mode 1)
+(custom-set-faces
+ '(show-paren-match ((t (:background "cyan" :foreground "black" :weight bold)))))
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
 
-;;;;; outline 関連
 ;;;;; org mode 関連
 ;;;; 見出し設定
+;;; face
+(defun org-mode-custom-face ()
+  (custom-set-faces
+   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.8))))
+   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.5))))
+   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
+   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
+   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
+   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
+   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
+   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
+;;; config
 (use-package org
   :config
   ;; 見出しの初期状態を折りたたんだ状態に変更
@@ -107,17 +122,13 @@
   (setq org-hide-emphasis-markers t)
   ;; * を非表示にしない
   (setq org-hide-leading-stars nil)
+  ;; * が減るのを防ぐ
   (setq org-indent-mode-turns-on-hiding-stars nil)
+  ;; インデントの幅を設定
+  (setq org-indent-indentation-per-level 4)
 
-  (custom-set-faces
-   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.3))))
-   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.2))))
-   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
-   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
-   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
-   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
-   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
-   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
+  :hook
+  (org-mode . org-mode-custom-face))
 
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
@@ -366,6 +377,17 @@
      ;; 無効な文字
      (t
       (message "無効な文字です: %c" char)))))
+;;;; buffer の再読み込み
+(defun revert-buffer-no-confirm (&optional force-reverting)
+  "Interactive call to revert-buffer. Ignoring the auto-save
+ file and not requesting for confirmation. When the current buffer
+ is modified, the command refuses to revert it, unless you specify
+ the optional argument: force-reverting to true."
+  (interactive "P")
+  ;;(message "force-reverting value is %s" force-reverting)
+  (if (or force-reverting (not (buffer-modified-p)))
+      (revert-buffer :ignore-auto :noconfirm)
+    (error "The buffer has been modified")))
 ;;;;; Keymap
 ;;;; Mac OS向けのキー設定
 (when (eq system-type 'darwin)
@@ -384,8 +406,11 @@
 ;;;; C-x 関連の設定
 (global-set-key (kbd "C-x ?") 'help-command) ;; ヘルプ
 
-;;;; C-c 関係の設定
+;;;; C-c 関係の設定c
+;; dired-mode以外でのみ有効
 (global-set-key (kbd "C-c d") 'dirvish-side)
+(define-key dired-mode-map (kbd "C-c d") nil) ; dired-modeでは無効化
+(define-key dirvish-mode-map (kbd "C-c d") nil)
 
 ;;;; SKK の変換を ; に
 (setq skk-sticky-key ";")
@@ -407,3 +432,6 @@
 (global-set-key (kbd "C-c w") 'window-move-mode)
 
 
+
+;;;; M-r に、 Buffer の再読み込み
+(global-set-key (kbd "M-r") 'revert-buffer-no-confirm)
