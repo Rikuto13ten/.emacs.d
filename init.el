@@ -133,7 +133,7 @@
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
                              '((shell . t)))
-;;;; bold 見ため
+;;;; 見ため
 (with-eval-after-load 'org
   (setq org-emphasis-alist
         '(("*" (:foreground "OliveDrab3" :weight bold))

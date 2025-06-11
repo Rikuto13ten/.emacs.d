@@ -228,13 +228,7 @@
                                      ("p" "Permanent(記事)" plain "%?"
                                       :target (file+head
                                                "permanent/%<%Y%m%d%H%M%S>-${slug}.org"
-                                               "#+TITLE: ${title}\n
-                                               #+AUTHOR:\n
-                                               #+DATE:\n
-                                               #+HUGO_BASE_DIR: ../../\n
-                                               #+HUGO_DRAFT: false\n
-                                               #+HUGO_TAGS:\n
-                                               #+STARTUP: nohideblocks\n")
+                                               "#+TITLE: ${title}\n#+AUTHOR:\n#+DATE:\n#+HUGO_BASE_DIR: ../../\n#+HUGO_DRAFT: false\n#+HUGO_TAGS:\n#+STARTUP: nohideblocks\n")
                                       :unnarrowed t)
 
                                      ("d" "Diary(日記)" plain "%?"
@@ -251,7 +245,7 @@
 
                                      ;; TODO専用テンプレート
                                      ("t" "TODO" plain "* TODO ${title}%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"
-                                      :target (file+head "todo.org"
+                                      :target (file+head "private/todo.org"
                                                          "#+title: TODO List\n
                                                           #+filetags: :todo:\n\n")
                                       :unnarrowed t))))
