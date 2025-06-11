@@ -94,6 +94,9 @@
 (show-paren-mode 1)
 (custom-set-faces
  '(show-paren-match ((t (:background "cyan" :foreground "black" :weight bold)))))
+;;;; gls を使うようにする
+(when (eq system-type 'darwin)
+    (setq insert-directory-program "/opt/homebrew/bin/gls"))
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))

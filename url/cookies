@@ -1,0 +1,31 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ 'nil)
+(setq url-cookie-secure-storage
+ '(("github.com"
+  [url-cookie "logged_in" "no" "Tue, 02 Jun 2026 01:44:46 GMT" "/" "github.com" t]
+  [url-cookie "_octo" "GH1.1.1417889083.1748828686" "Tue, 02 Jun 2026 01:44:46 GMT" "/" "github.com" t])
+ (".wikipedia.org"
+  [url-cookie "WMF-Uniq" "_xixV0G4pM8E7V_-6M6DEwIGAAEBAFvdz5mDvB4RgyMx8gz0jMArXNJd5DzwMnvV" "Tue, 02 Jun 2026 00:00:00 GMT" "/" ".wikipedia.org" t]
+  [url-cookie "WMF-Last-Access-Global" "02-Jun-2025" "Fri, 04 Jul 2025 00:00:00 GMT" "/" ".wikipedia.org" t])
+ ("ja.wikipedia.org"
+  [url-cookie "NetworkProbeLimit" "0.001" "Mon Jun 02 07:10:35 2025 GMT" "/" "ja.wikipedia.org" t]
+  [url-cookie "WMF-Last-Access" "02-Jun-2025" "Fri, 04 Jul 2025 00:00:00 GMT" "/" "ja.wikipedia.org" t])
+ (".youtube.com"
+  [url-cookie "VISITOR_INFO1_LIVE" "T73DWme6DTw" "Sat, 29-Nov-2025 06:09:18 GMT" "/" ".youtube.com" t]
+  [url-cookie "VISITOR_PRIVACY_METADATA" "CgJKUBIEGgAgYw%3D%3D" "Sat, 29-Nov-2025 06:09:18 GMT" "/" ".youtube.com" t])
+ ("youtube.com"
+  [url-cookie "__Secure-ROLLOUT_TOKEN" "CPTgy9HR3abkahDfgt-_idKNAxjr05_BidKNAw%3D%3D" "Sat, 29-Nov-2025 06:08:36 GMT" "/" "youtube.com" t])
+ ("html.duckduckgo.com"
+  [url-cookie "kl" "jp-jp" "Tue, 02 Jun 2026 02:08:15 GMT" "/html/" "html.duckduckgo.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; coding: utf-8-emacs-unix
+;; End:
+
+;;; cookies ends here
