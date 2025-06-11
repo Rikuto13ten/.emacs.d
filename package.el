@@ -272,3 +272,19 @@
 ;;;; php-mode
 (use-package php-mode
   :ensure t)
+
+;;;; eat
+(use-package eat
+  :ensure t
+  :config
+  ;; シェル統合の有効化
+  (add-hook 'eshell-load-hook #'eat-eshell-mode)
+  ;; 視覚的コマンドの処理もeatで行う
+  (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
+
+;;;; hiwin-mode
+(use-package hiwin-mode
+  :vc
+  (:fetcher github :repo fenril058/hiwin-mode)
+  :config
+  (hiwin-mode 1))

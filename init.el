@@ -391,6 +391,21 @@
   (if (or force-reverting (not (buffer-modified-p)))
       (revert-buffer :ignore-auto :noconfirm)
     (error "The buffer has been modified")))
+;;;; M-x open init.el
+(defun open-init-el ()
+  "open init.el"
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+;;;; M-x open blog/
+(defun open-blog ()
+  "open blog"
+  (interactive)
+  (find-file "~/blog"))
+;;;; M-x load file init.el
+(defun load-file-init-el ()
+  "load-file init.el"
+  (interactive)
+  (load-file (expand-file-name "~/.emacs.d/init.el")))
 ;;;;; Keymap
 ;;;; Mac OS向けのキー設定
 (when (eq system-type 'darwin)
