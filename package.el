@@ -19,9 +19,7 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
-  (add-to-list 'ivy-highlight-functions-alist '(orderless-ivy-re-builder . orderless-ivy-highlight)))
+  (setq ivy-count-format "(%d/%d) "))
 
 ;;;; counsel
 ;; ivy というコマンド補完機能を
@@ -45,7 +43,18 @@
 (use-package catppuccin-theme
   :config
   (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
-  (load-theme 'catppuccin t))
+  )
+
+(use-package timu-rouge-theme
+  :ensure t
+  :init
+  (customize-set-variable 'timu-rouge-mode-line-border t)
+  (customize-set-variable 'timu-rouge-scale-org-level-1 1.8)
+  (customize-set-variable 'timu-rouge-scale-org-level-2 1.4)
+  (customize-set-variable 'timu-rouge-scale-org-level-3 1.2)
+  (customize-set-variable 'timu-rouge-org-intense-colors t)
+  :config
+  (load-theme 'timu-rouge t))
 
 ;;;; org-appear
 ;; マーカ編集中に強調マーカを表示する
@@ -87,7 +96,6 @@
 ;; コードの補完をするパッケージ
 (use-package company)
 (add-hook 'after-init-hook 'global-company-mode)
-(setq orderless-component-separator "[ &]")
 
 ;;;; rainbow-delimiters
 (use-package rainbow-delimiters)
@@ -262,13 +270,6 @@
   (setq org-hugo-preserve-filling t)
   (setq org-export-preserve-breaks t))
 
-;;;; orderless
-(use-package orderless
-  :ensure t
-  :custom
-  (completion-styles '(orderless basic))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
-
 ;;;; php-mode
 (use-package php-mode
   :ensure t)
@@ -282,9 +283,3 @@
   ;; 視覚的コマンドの処理もeatで行う
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
-;;;; hiwin-mode
-(use-package hiwin-mode
-  :vc
-  (:fetcher github :repo fenril058/hiwin-mode)
-  :config
-  (hiwin-mode 1))

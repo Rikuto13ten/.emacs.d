@@ -95,26 +95,14 @@
 (custom-set-faces
  '(show-paren-match ((t (:background "cyan" :foreground "black" :weight bold)))))
 ;;;; gls を使うようにする
-(when (eq system-type 'darwin)
-    (setq insert-directory-program "/opt/homebrew/bin/gls"))
+;;(when (eq system-type 'darwin)
+;;(setq insert-directory-program "/opt/homebrew/bin/gls"))
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
 
 ;;;;; org mode 関連
 ;;;; 見出し設定
-;;; face
-(defun org-mode-custom-face ()
-  (custom-set-faces
-   '(org-level-1 ((t (:foreground "#f38ba8" :weight bold :height 1.8))))
-   '(org-level-2 ((t (:foreground "#fab387" :weight bold :height 1.5))))
-   '(org-level-3 ((t (:foreground "#f9e2af" :weight bold :height 1.1))))
-   '(org-level-4 ((t (:foreground "#a6e3a1" :weight bold))))
-   '(org-level-5 ((t (:foreground "#89b4fa" :weight bold))))
-   '(org-level-6 ((t (:foreground "#cba6f7" :weight bold))))
-   '(org-level-7 ((t (:foreground "#f5c2e7" :weight bold))))
-   '(org-level-8 ((t (:foreground "#94e2d5" :weight bold))))))
-;;; config
 (use-package org
   :config
   ;; 見出しの初期状態を折りたたんだ状態に変更
@@ -129,9 +117,8 @@
   (setq org-indent-mode-turns-on-hiding-stars nil)
   ;; インデントの幅を設定
   (setq org-indent-indentation-per-level 4)
-
   :hook
-  (org-mode . org-mode-custom-face))
+  (org-mode . custom-org-header))
 
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
@@ -174,6 +161,15 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (local-set-key (kbd "<tab>") 'my-org-heading-toggle)))
+
+;;;; 文字色を変える
+;; org-modeでのみ文字色を変更
+(defun my-org-mode-text-color ()
+  "org-modeでのテキスト色を変更"
+  (face-remap-add-relative 'default :foreground "#d4d4d4"))
+
+(add-hook 'org-mode-hook #'my-org-mode-text-color)
+
 ;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
@@ -391,17 +387,17 @@
   (if (or force-reverting (not (buffer-modified-p)))
       (revert-buffer :ignore-auto :noconfirm)
     (error "The buffer has been modified")))
-;;;; M-x open init.el
+;;;; M-x open-init.el
 (defun open-init-el ()
   "open init.el"
   (interactive)
   (find-file "~/.emacs.d/init.el"))
-;;;; M-x open blog/
+;;;; M-x open-blog/
 (defun open-blog ()
   "open blog"
   (interactive)
   (find-file "~/blog"))
-;;;; M-x load file init.el
+;;;; M-x load-file-init.el
 (defun load-file-init-el ()
   "load-file init.el"
   (interactive)
@@ -453,3 +449,6 @@
 
 ;;;; M-r に、 Buffer の再読み込み
 (global-set-key (kbd "M-r") 'revert-buffer-no-confirm)
+
+;;;; ¥ -> \
+(define-key global-map [?¥] [?\\])
