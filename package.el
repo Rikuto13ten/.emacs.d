@@ -43,18 +43,7 @@
 (use-package catppuccin-theme
   :config
   (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
-  )
-
-(use-package timu-rouge-theme
-  :ensure t
-  :init
-  (customize-set-variable 'timu-rouge-mode-line-border t)
-  (customize-set-variable 'timu-rouge-scale-org-level-1 1.8)
-  (customize-set-variable 'timu-rouge-scale-org-level-2 1.4)
-  (customize-set-variable 'timu-rouge-scale-org-level-3 1.2)
-  (customize-set-variable 'timu-rouge-org-intense-colors t)
-  :config
-  (load-theme 'timu-rouge t))
+  (load-theme 'catppuccin t))
 
 ;;;; org-appear
 ;; マーカ編集中に強調マーカを表示する
@@ -94,8 +83,19 @@
 
 ;;;; company
 ;; コードの補完をするパッケージ
-(use-package company)
-(add-hook 'after-init-hook 'global-company-mode)
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)
+  :config
+  (setq company-minimum-prefix-length 1)  ; 1文字から補完開始
+  (setq company-idle-delay 0.3)           ; 補完表示遅延
+  (setq company-backends '(company-capf)) ; eglotではcapfを使用
+
+  ;; キーバインド
+  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-n") 'company-select-next)
+  (define-key company-active-map (kbd "C-p") 'company-select-previous))
+
 
 ;;;; rainbow-delimiters
 (use-package rainbow-delimiters)
@@ -117,43 +117,33 @@
 (set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
 ;;;; lsp
-;;; Eglot
+;;; eglot
 (use-package eglot
   :ensure t
   :hook
-  (html-mode . eglot-ensure)
-  (css-mode . eglot-ensure)
-  (js-mode .eglot-ensure))
-
-;;; nix
-;; lsp-nix
-(use-package lsp-nix
-  :ensure lsp-mode
-  :after (lsp-mode)
-  :demand t
-  :custom
-  (lsp-nix-nil-formatter ["nixfmt"]))
-
-;; nix-mode
-(use-package nix-mode
-  :hook (nix-mode . lsp-deferred)
-  :ensure t)
-;;; ts
-(use-package typescript-ts-mode
-  :mode (("\\\\.tsx\\\\'" . tsx-ts-mode)
-         ("\\\\.ts\\\\'" . tsx-ts-mode))
+  (elm-mode . eglot-ensure)
+  (kotlin-mode . eglot-ensure)
   :config
-  (setq typescript-ts-mode-indent-offset 2))
-
-;;; html
-(add-to-list 'auto-mode-alist '("\\\\.html\\\\" . html-mode))
-
-;;; js
-(add-to-list 'auto-mode-alist '("\\\\.js\\\\" . js-mode))
-
-;;; css
-(add-to-list 'auto-mode-alist '("\\\\.css\\\\" . css-mode))
-
+  (add-to-list
+   'eglot-server-programs `((kotlin-mode) . (,(concat user-emacs-directory "") ""))))
+;;; envrc
+(use-package envrc
+  :ensure t
+  :config
+  (envrc-global-mode))
+;;; elm-mode
+;; Elm Mode
+(use-package elm-mode
+  :ensure t
+  :mode "\\.elm\\'"
+  :config
+  ;; 自動フォーマット
+  (setq elm-format-on-save t)
+  ;; キーバインド
+  (define-key elm-mode-map (kbd "C-c C-l") 'elm-repl-load)
+  (define-key elm-mode-map (kbd "C-c C-r") 'elm-repl)
+  (define-key elm-mode-map (kbd "C-c C-f") 'elm-format-buffer)
+  )
 ;;;; nerd-icons
 (use-package nerd-icons
   :ensure t)
@@ -202,10 +192,6 @@
   (moody-replace-mode-line-front-space)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
-
-
-
-
 
 ;;;; org-roam
 ;;; config

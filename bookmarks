@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/permanent/20250609211401-index.org")
- (front-context-string)
- (rear-context-string . "P: nohideblocks\n")
- (position . 98)
- (last-modified 26694 53283 761658 0))
+ (filename . "~/blog/org-blog/fleeting/20250615175958-nix_develop_でプロジェクト内に_lsp_をインストールして_emacs_に認識させる.org")
+ (front-context-string . "\n* 最小構成\n#+begin_")
+ (rear-context-string . "して Emacs に認識させる\n")
+ (position . 126)
+ (last-modified 26702 36021 487687 0))
 )
