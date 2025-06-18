@@ -126,11 +126,6 @@
   :config
   (add-to-list
    'eglot-server-programs `((kotlin-mode) . (,(concat user-emacs-directory "") ""))))
-;;; envrc
-(use-package envrc
-  :ensure t
-  :config
-  (envrc-global-mode))
 ;;; elm-mode
 ;; Elm Mode
 (use-package elm-mode
@@ -269,3 +264,10 @@
   ;; 視覚的コマンドの処理もeatで行う
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
+
+;;;; org-superstar
+(use-package org-superstar
+  :ensure t
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (setq org-superstar-headline-bullets-list '("●" "○" "●" "○" "●")))

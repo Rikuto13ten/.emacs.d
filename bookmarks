@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/fleeting/20250615175958-nix_develop_でプロジェクト内に_lsp_をインストールして_emacs_に認識させる.org")
- (front-context-string . "\n* 最小構成\n#+begin_")
- (rear-context-string . "して Emacs に認識させる\n")
- (position . 126)
- (last-modified 26702 36021 487687 0))
+ (filename . "~/blog/org-blog/fleeting/20250618112534-kotlin_seald_class_seald_interface_について.org")
+ (front-context-string . "* 結論\n#+begin_src")
+ (rear-context-string . "interface~ について\n")
+ (position . 122)
+ (last-modified 26706 12147 773360 0))
 )

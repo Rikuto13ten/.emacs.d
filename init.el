@@ -70,8 +70,8 @@
 (custom-set-faces
  '(show-paren-match ((t (:background "cyan" :foreground "black" :weight bold)))))
 ;;;; gls を使うようにする
-;;(when (eq system-type 'darwin)
-;;(setq insert-directory-program "/opt/homebrew/bin/gls"))
+(when (eq system-type 'darwin)
+(setq insert-directory-program "/opt/homebrew/bin/gls"))
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
@@ -81,21 +81,34 @@
 (use-package org
   :config
   ;; 見出しの初期状態を折りたたんだ状態に変更
-  (setq org-startup-folded t)
+  ;;(setq org-startup-folded t)
+
   ;; インデント表示を有効に
   (setq org-startup-indented t)
+
   ;; 強調マーカーを非表示にする
   (setq org-hide-emphasis-markers t)
+
   ;; * を非表示にしない
-  (setq org-hide-leading-stars nil)
+  (setq org-hide-leading-stars t)
+
   ;; * が減るのを防ぐ
-  (setq org-indent-mode-turns-on-hiding-stars nil)
+  ;;(setq org-indent-mode-turns-on-hiding-stars nil)
+
   ;; インデントの幅を設定
-  (setq org-indent-indentation-per-level 4))
+  ;;(setq org-indent-indentation-per-level 4)
+)
 
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
                              '((shell . t)))
+;;;; org header
+(custom-set-faces
+ '(org-level-1 ((t (:foreground "#87CEEB" :weight bold :height 2.0))))  ; 水色
+ '(org-level-2 ((t (:foreground "#7FFFD4" :weight bold :height 1.7))))  ; アクアマリン
+ '(org-level-3 ((t (:foreground "#40E0D0" :weight bold :height 1.4))))  ; ターコイズ
+ '(org-level-4 ((t (:foreground "#00CED1" :weight bold :height 1.1))))  ; ダークターコイズ
+ '(org-level-5 ((t (:foreground "#48D1CC" :weight bold))))) ; ミディアムターコイズ
 ;;;; 見ため
 (with-eval-after-load 'org
   (setq org-emphasis-alist
@@ -105,6 +118,7 @@
           ("=" org-verbatim verbatim)
           ("~" (:foreground "tan1"))
           ("+" (:strike-through t)))))
+
 ;;;; org fold をカスタムする
 ;;; 文字が不可視かどうか
 (defun is-fold-org-heading (eol)
@@ -143,7 +157,15 @@
 
 (add-hook 'org-mode-hook #'my-org-mode-text-color)
 
-;;;;; extention
+;;;; org でのみ空白非表示
+(add-hook 'org-mode-hook
+          (lambda ()
+            (whitespace-mode -1)))
+;;;; 行間
+(add-hook 'org-mode-hook
+          (lambda ()
+            (setq-local line-spacing 0.3)))
+;;;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("^;;;\\([;]*\\) \\(.*\\)$"
