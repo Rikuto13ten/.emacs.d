@@ -40,7 +40,7 @@
                          empty
                          space-mark
                          tab-mark))
-(global-whitespace-mode 1)
+(global-whitespace-mode -1)
 ;;;; Font 関係
 (when (display-graphic-p)
   (cond
@@ -70,8 +70,8 @@
 (custom-set-faces
  '(show-paren-match ((t (:background "cyan" :foreground "black" :weight bold)))))
 ;;;; gls を使うようにする
-(when (eq system-type 'darwin)
-(setq insert-directory-program "/opt/homebrew/bin/gls"))
+;;(when (eq system-type 'darwin)
+;;(setq insert-directory-program "/opt/homebrew/bin/gls"))
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
@@ -165,6 +165,11 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (setq-local line-spacing 0.3)))
+;;;; org-block
+(custom-set-faces
+ '(org-block-begin-line ((t (:background "#000022"))))
+ '(org-block-end-line ((t (:background "#000022"))))
+ '(org-block ((t (:background "#000022")))))
 ;;;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
