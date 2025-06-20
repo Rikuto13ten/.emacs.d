@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: task
+# key: task
+# --
+- [ ] $0
