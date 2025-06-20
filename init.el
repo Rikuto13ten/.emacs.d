@@ -145,9 +145,9 @@
       (org-cycle))))
 
 ;;; hook する
-(add-hook 'org-mode-hook
-          (lambda ()
-            (local-set-key (kbd "<tab>") 'my-org-heading-toggle)))
+;;(add-hook 'org-mode-hook
+  ;;        (lambda ()
+    ;;        (local-set-key (kbd "<tab>") 'my-org-heading-toggle)))
 
 ;;;; 文字色を変える
 ;; org-modeでのみ文字色を変更
@@ -170,7 +170,7 @@
  '(org-block-begin-line ((t (:background "#000022"))))
  '(org-block-end-line ((t (:background "#000022"))))
  '(org-block ((t (:background "#000022")))))
-;;;;;;; extention
+;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
                         '(("^;;;\\([;]*\\) \\(.*\\)$"

@@ -271,3 +271,24 @@
   :hook (org-mode . org-superstar-mode)
   :config
   (setq org-superstar-headline-bullets-list '("●" "○" "●" "○" "●")))
+
+;;;; yasnnipet
+(use-package yasnippet
+  :ensure t
+  :custom-face
+  (yas-field-highlight-face ((t (:inherit nil))))
+  :bind (:map yas-minor-mode-map
+              ;; バインドが使いづらいので解除
+              ("C-c & C-n" . nil)
+              ("C-c & C-s" . nil)
+              ("C-c & C-v" . nil)
+              ;; よく使うコマンドをバインド
+              ("C-x y n" . yas-new-snippet)
+              ("C-x y i" . yas-insert-snippet)
+              ("C-x y v" . yas-visit-snippet-file)
+              ("C-x y l" . yas-describe-tables)
+              ("C-x y r" . yas-reload-all))
+  :init
+  (yas-global-mode)
+  :config
+  (setq yas-prompt-functions '(yas-ido-prompt)))
