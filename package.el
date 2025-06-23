@@ -297,6 +297,7 @@
   :custom
   (org-modern-block-fringe 1)
   (org-modern-star '("◉" "○" "◈" "◇" "✱" "✲" "✳" "✴"))
+  (org-modern--table nil)
   :config
   (global-org-modern-mode))
 

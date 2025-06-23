@@ -54,42 +54,17 @@
    ;; 第一優先: Iosevka Custom Rikuto Code
    ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
     (set-face-attribute 'default nil
-                        :family "Iosevka Custom Rikuto Code"))
+                        :family "Iosevka Custom Rikuto Code"
+			:height 140))
    ;; フォールバック: Menlo
    (t
     (set-face-attribute 'default nil
                         :family "Menlo"
                         :height 120)))
 
-  ;; fixed-pitchも同じにする
-  (set-face-attribute 'fixed-pitch nil :inherit 'default))
-
-
-;;; org-mode専用設定
-(defun my-org-mode-font-setup ()
-  "org-mode用のフォント設定"
-  (when (display-graphic-p)
-    ;; org-mode用の日本語フォント設定
-    (set-fontset-font "fontset-default" 'japanese-jisx0208
-                      (font-spec :family "クレー"))
-
-    (set-face-attribute 'variable-pitch nil
-			:family "Iosevka Custom Rikuto Code")
-
-    (set-face-attribute 'fixed-pitch nil
-			:family "Iosevka Custom Rikuto Code")
-    
-    ;; variable-pitch-modeを有効化
-    (variable-pitch-mode 1)
-    
-    ;; コード部分は等幅フォント（Iosevka）に固定
-    (set-face-attribute 'org-code nil :family "Iosevka Custom Rikuto Code")
-    (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-verbatim nil :inherit 'fixed-pitch)
-    (set-face-attribute 'org-table nil :inherit 'fixed-pitch)))
-
-;;; org-modeでのみ適用
-(add-hook 'org-mode-hook 'my-org-mode-font-setup)
+  (set-fontset-font "fontset-default" 'japanese-jisx0208
+                    (font-spec :family "クレー"
+			       :height 140)))
 
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
