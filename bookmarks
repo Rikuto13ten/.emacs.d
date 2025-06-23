@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/fleeting/20250622123627-読書感想文の書き方.org")
- (front-context-string . "まずはありのままを書く。\n冗長に")
- (rear-context-string . "ITLE: 読書感想文の書き方\n")
- (position . 87)
- (last-modified 26711 33490 457753 0))
+ (filename . "~/blog/org-blog/fleeting/20250623163146-font.org")
+ (front-context-string . "\nあのイーハトーヴォのすきとおっ")
+ (rear-context-string . ":\n#+TITLE: font\n")
+ (position . 82)
+ (last-modified 26713 1083 324157 0))
 )

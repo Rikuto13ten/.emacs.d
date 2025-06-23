@@ -47,24 +47,23 @@
                          tab-mark))
 (global-whitespace-mode -1)
 ;;;; font
-;;; 基本フォント設定（グローバル）
 (when (display-graphic-p)
   ;; デフォルトは等幅フォント
-  (cond
-   ;; 第一優先: Iosevka Custom Rikuto Code
-   ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
-    (set-face-attribute 'default nil
-                        :family "Iosevka Custom Rikuto Code"
-			:height 140))
-   ;; フォールバック: Menlo
-   (t
-    (set-face-attribute 'default nil
-                        :family "Menlo"
-                        :height 120)))
+  ;;(cond
+  ;; ;; 第一優先: Iosevka Custom Rikuto Code
+  ;; ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
+  ;;  (set-face-attribute 'default nil
+  ;;                      :family "Iosevka Custom Rikuto Code"
+  ;;			:height 140))
+  ;; ;; フォールバック: Menlo
+  ;; (t
+  ;;  (set-face-attribute 'default nil
+  ;;                      :family "Menlo"
+  ;;                      :height 120)))
 
-  (set-fontset-font "fontset-default" 'japanese-jisx0208
-                    (font-spec :family "クレー"
-			       :height 140)))
+  (set-face-attribute 'default nil
+                      :family "IPAMincho"
+		      :height 160))
 
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
@@ -87,14 +86,11 @@
 
 ;;;;; org mode 関連
 ;;;; 設定
-(setq org-startup-indented nil
-      org-adapt-indentation nil)
-
 (use-package org
   :custom
-  (org-startup-indented nil)
-  (org-adapt-indentation nil)
-  (org-auto-align-tags nil)
+  (org-startup-indented t)
+  (org-adapt-indentation t)
+  (org-auto-align-tags t)
   (org-tags-column 0)
   (org-catch-invisible-edits 'show-and-error)
   (org-special-ctrl-a/e t)
@@ -102,40 +98,37 @@
   (org-hide-emphasis-markers t)
   (org-pretty-entities t)
   (org-agenda-tags-column 0)
-  (org-ellipsis "…")
-  (org-hide-leading-stars t)
+  (org-ellipsis "...")
   (org-fontify-quote-and-verse-blocks t)
   
   :config
   (add-hook 'org-mode-hook 
             (lambda () 
               (when (fboundp 'org-indent-mode)
-                (org-indent-mode -1))))
-  :custom-face
-  ;; 引用ブロックの背景色
-  (org-quote ((t (:inherit org-block
-		  :foreground "#515369"
-                  :slant italic)))))
+                (org-indent-mode -1)))))
 
 
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
                              '((shell . t)))
-;;;; org header
+;;;; org header size
 (custom-set-faces
- '(org-level-1 ((t (:foreground "#87CEEB" :weight bold :height 2.0))))  ; 水色
- '(org-level-2 ((t (:foreground "#7FFFD4" :weight bold :height 1.7))))  ; アクアマリン
- '(org-level-3 ((t (:foreground "#40E0D0" :weight bold :height 1.4))))  ; ターコイズ
- '(org-level-4 ((t (:foreground "#00CED1" :weight bold :height 1.1))))  ; ダークターコイズ
- '(org-level-5 ((t (:foreground "#48D1CC" :weight bold))))) ; ミディアムターコイズ
-;;;; 見ため disable 中
+ '(org-level-1 ((t (:height 2.0 :weight bold))))
+ '(org-level-2 ((t (:height 1.7 :weight bold))))
+ '(org-level-3 ((t (:height 1.4 :weight bold))))
+ '(org-level-4 ((t (:height 1.1 :weight bold))))
+ '(org-level-5 ((t (:height 1.0 :weight bold))))
+ '(org-level-6 ((t (:height 1.0 :weight bold))))
+ '(org-level-7 ((t (:height 1.0 :weight bold))))
+ '(org-level-8 ((t (:height 1.0 :weight bold)))))
+;;;; 強調要素の見ため
 (with-eval-after-load 'org
   (setq org-emphasis-alist
-        '(("*" (:foreground "OliveDrab3" :weight bold))
+        '(("*" (:weight bold))
           ("/" italic)
           ("_" underline)
           ("=" org-verbatim verbatim)
-          ("~" (:foreground "tan1"))
+          ("~" (:foreground "salmon3"))
           ("+" (:strike-through t)))))
 
 ;;;; org fold をカスタムする

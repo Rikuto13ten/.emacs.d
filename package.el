@@ -47,8 +47,11 @@
 ;;;; テーマ設定
 (use-package catppuccin-theme
   :config
-  (setq catppuccin-flavor 'mocha) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択
-  (load-theme 'catppuccin t))
+  (setq catppuccin-flavor 'mocha)) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択)
+
+(use-package spacemacs-theme
+  :config
+  (load-theme 'spacemacs-light t))
 
 ;;;; org-appear
 ;; マーカ編集中に強調マーカを表示する
@@ -109,17 +112,6 @@
 (rainbow-delimiters-mode 1)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq rainbow-delimiters-outermost-only-face-count 1)
-
-;; 色をつける
-(set-face-foreground 'rainbow-delimiters-depth-1-face "#fed4ff")
-(set-face-foreground 'rainbow-delimiters-depth-2-face "#ff5e5e")
-(set-face-foreground 'rainbow-delimiters-depth-3-face "#ffaa77")
-(set-face-foreground 'rainbow-delimiters-depth-4-face "#dddd77")
-(set-face-foreground 'rainbow-delimiters-depth-5-face "#80ee80")
-(set-face-foreground 'rainbow-delimiters-depth-6-face "#66bbff")
-(set-face-foreground 'rainbow-delimiters-depth-7-face "#da6bda")
-(set-face-foreground 'rainbow-delimiters-depth-8-face "#afafaf")
-(set-face-foreground 'rainbow-delimiters-depth-9-face "#f0f0f0")
 
 ;;;; lsp
 ;;; eglot
@@ -256,10 +248,6 @@
   (setq org-hugo-preserve-filling t)
   (setq org-export-preserve-breaks t))
 
-;;;; php-mode
-(use-package php-mode
-  :ensure t)
-
 ;;;; eat
 (use-package eat
   :ensure t
@@ -291,35 +279,6 @@
   :config
   (setq yas-prompt-functions '(yas-ido-prompt)))
 
-;;;; org-modern
-(use-package org-modern
-  :after org
-  :custom
-  (org-modern-block-fringe 1)
-  (org-modern-star '("◉" "○" "◈" "◇" "✱" "✲" "✳" "✴"))
-  (org-modern--table nil)
-  :config
-  (global-org-modern-mode))
-
-;;; 装飾を一時的に無効化
-(defun my/toggle-org-modern ()
-  "Toggle org-modern on/off"
-  (interactive)
-  (if org-modern-mode
-      (org-modern-mode -1)
-    (org-modern-mode 1)))
-
-;; キーバインド設定例
-(define-key org-mode-map (kbd "C-c m") 'my/toggle-org-modern)
-
-
-
-;;;; perfect margin
-(use-package perfect-margin
-  :config
-  (setq perfect-margin-ignore-filters nil)
-  (perfect-margin-mode +1))
-
 ;;;; super padding
 (use-package spacious-padding
   :config
@@ -341,3 +300,10 @@
 
 ;;;; json-mode
 (use-package json-mode)
+
+;;;; writeroom-mode
+(use-package writeroom-mode)
+(setq writeroom-width 120)
+(add-hook 'org-mode-hook 'writeroom-mode)
+(add-hook 'org-mode-hook 'visual-fill-column-mode)
+(add-hook 'org-mode-hook 'visual-line-mode)
