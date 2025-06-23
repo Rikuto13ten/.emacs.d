@@ -13,6 +13,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(unless (package-installed-p 'vc-use-package)
+  (package-vc-install "https://github.com/slotThe/vc-use-package"))
+(require 'vc-use-package)
+
+
 ;;;; ===== パッケージインストール =====
 ;;;; ivy
 (use-package ivy
@@ -265,13 +270,6 @@
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
 
-;;;; org-superstar
-(use-package org-superstar
-  :ensure t
-  :hook (org-mode . org-superstar-mode)
-  :config
-  (setq org-superstar-headline-bullets-list '("●" "○" "●" "○" "●")))
-
 ;;;; yasnnipet
 (use-package yasnippet
   :ensure t
@@ -292,3 +290,50 @@
   (yas-global-mode)
   :config
   (setq yas-prompt-functions '(yas-ido-prompt)))
+
+;;;; org-modern
+(use-package org-modern
+  :after org
+  :custom
+  (org-modern-block-fringe 1)
+  (org-modern-star '("◉" "○" "◈" "◇" "✱" "✲" "✳" "✴"))
+  :config
+  (global-org-modern-mode))
+
+;;; 装飾を一時的に無効化
+(defun my/toggle-org-modern ()
+  "Toggle org-modern on/off"
+  (interactive)
+  (if org-modern-mode
+      (org-modern-mode -1)
+    (org-modern-mode 1)))
+
+;; キーバインド設定例
+(define-key org-mode-map (kbd "C-c m") 'my/toggle-org-modern)
+
+
+
+;;;; perfect margin
+(use-package perfect-margin
+  :config
+  (setq perfect-margin-ignore-filters nil)
+  (perfect-margin-mode +1))
+
+;;;; super padding
+(use-package spacious-padding
+  :config
+  (setq spacious-padding-widths
+        '( :internal-border-width 15
+           :header-line-width 4
+           :mode-line-width 6
+           :tab-width 4
+           :right-divider-width 30
+           :scroll-bar-width 8))
+
+  ;; Read the doc string of `spacious-padding-subtle-mode-line' as it
+  ;; is very flexible and provides several examples.
+  (setq spacious-padding-subtle-mode-line
+        `( :mode-line-active 'default
+           :mode-line-inactive vertical-border))
+
+  (spacious-padding-mode +1))

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: qa
+# key: qa
+# --
+- Q :: $0
+- A :: 

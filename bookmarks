@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/fleeting/20250618112534-kotlin_seald_class_seald_interface_について.org")
- (front-context-string . "* 結論\n#+begin_src")
- (rear-context-string . "interface~ について\n")
- (position . 122)
- (last-modified 26706 12147 773360 0))
+ (filename . "~/blog/org-blog/fleeting/20250622123627-読書感想文の書き方.org")
+ (front-context-string . "まずはありのままを書く。\n冗長に")
+ (rear-context-string . "ITLE: 読書感想文の書き方\n")
+ (position . 87)
+ (last-modified 26711 33490 457753 0))
 )

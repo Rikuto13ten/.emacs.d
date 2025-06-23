@@ -32,6 +32,11 @@
 (setq auto-save-default nil) ;; 自動保存ファイルを作らない
 
 ;;;;; 基本的な設定
+;;;; margin
+ (setq-default left-margin-width 2 right-margin-width 2)
+;;;; line number
+(global-display-line-numbers-mode -1)
+
 ;;;; white space mode
 (setq whitespace-style '(face
                          trailing
@@ -41,22 +46,50 @@
                          space-mark
                          tab-mark))
 (global-whitespace-mode -1)
-;;;; Font 関係
+;;;; font
+;;; 基本フォント設定（グローバル）
 (when (display-graphic-p)
+  ;; デフォルトは等幅フォント
   (cond
-   ;; 第一優先のフォントが利用可能かチェック
+   ;; 第一優先: Iosevka Custom Rikuto Code
    ((find-font (font-spec :name "Iosevka Custom Rikuto Code"))
     (set-face-attribute 'default nil
-                        :family "Iosevka Custom Rikuto Code"
-                        :height 160))
-   ;; フォールバック1
+                        :family "Iosevka Custom Rikuto Code"))
+   ;; フォールバック: Menlo
    (t
     (set-face-attribute 'default nil
                         :family "Menlo"
-                        :height 120))))
+                        :height 120)))
 
-;;;; 行番号を表示
-(global-display-line-numbers-mode)
+  ;; fixed-pitchも同じにする
+  (set-face-attribute 'fixed-pitch nil :inherit 'default))
+
+
+;;; org-mode専用設定
+(defun my-org-mode-font-setup ()
+  "org-mode用のフォント設定"
+  (when (display-graphic-p)
+    ;; org-mode用の日本語フォント設定
+    (set-fontset-font "fontset-default" 'japanese-jisx0208
+                      (font-spec :family "クレー"))
+
+    (set-face-attribute 'variable-pitch nil
+			:family "Iosevka Custom Rikuto Code")
+
+    (set-face-attribute 'fixed-pitch nil
+			:family "Iosevka Custom Rikuto Code")
+    
+    ;; variable-pitch-modeを有効化
+    (variable-pitch-mode 1)
+    
+    ;; コード部分は等幅フォント（Iosevka）に固定
+    (set-face-attribute 'org-code nil :family "Iosevka Custom Rikuto Code")
+    (set-face-attribute 'org-block nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-verbatim nil :inherit 'fixed-pitch)
+    (set-face-attribute 'org-table nil :inherit 'fixed-pitch)))
+
+;;; org-modeでのみ適用
+(add-hook 'org-mode-hook 'my-org-mode-font-setup)
 
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
@@ -72,32 +105,43 @@
 ;;;; gls を使うようにする
 ;;(when (eq system-type 'darwin)
 ;;(setq insert-directory-program "/opt/homebrew/bin/gls"))
+
 ;;;;; Package.el
 ;; パッケージ設定のロード
 (load (expand-file-name "package.el" user-emacs-directory))
 
 ;;;;; org mode 関連
-;;;; 見出し設定
+;;;; 設定
+(setq org-startup-indented nil
+      org-adapt-indentation nil)
+
 (use-package org
+  :custom
+  (org-startup-indented nil)
+  (org-adapt-indentation nil)
+  (org-auto-align-tags nil)
+  (org-tags-column 0)
+  (org-catch-invisible-edits 'show-and-error)
+  (org-special-ctrl-a/e t)
+  (org-insert-heading-respect-content t)
+  (org-hide-emphasis-markers t)
+  (org-pretty-entities t)
+  (org-agenda-tags-column 0)
+  (org-ellipsis "…")
+  (org-hide-leading-stars t)
+  (org-fontify-quote-and-verse-blocks t)
+  
   :config
-  ;; 見出しの初期状態を折りたたんだ状態に変更
-  ;;(setq org-startup-folded t)
+  (add-hook 'org-mode-hook 
+            (lambda () 
+              (when (fboundp 'org-indent-mode)
+                (org-indent-mode -1))))
+  :custom-face
+  ;; 引用ブロックの背景色
+  (org-quote ((t (:inherit org-block
+		  :foreground "#515369"
+                  :slant italic)))))
 
-  ;; インデント表示を有効に
-  (setq org-startup-indented t)
-
-  ;; 強調マーカーを非表示にする
-  (setq org-hide-emphasis-markers t)
-
-  ;; * を非表示にしない
-  (setq org-hide-leading-stars t)
-
-  ;; * が減るのを防ぐ
-  ;;(setq org-indent-mode-turns-on-hiding-stars nil)
-
-  ;; インデントの幅を設定
-  ;;(setq org-indent-indentation-per-level 4)
-)
 
 ;;;; org bable
 (org-babel-do-load-languages 'org-babel-load-languages
@@ -109,7 +153,7 @@
  '(org-level-3 ((t (:foreground "#40E0D0" :weight bold :height 1.4))))  ; ターコイズ
  '(org-level-4 ((t (:foreground "#00CED1" :weight bold :height 1.1))))  ; ダークターコイズ
  '(org-level-5 ((t (:foreground "#48D1CC" :weight bold))))) ; ミディアムターコイズ
-;;;; 見ため
+;;;; 見ため disable 中
 (with-eval-after-load 'org
   (setq org-emphasis-alist
         '(("*" (:foreground "OliveDrab3" :weight bold))
@@ -149,27 +193,12 @@
   ;;        (lambda ()
     ;;        (local-set-key (kbd "<tab>") 'my-org-heading-toggle)))
 
-;;;; 文字色を変える
-;; org-modeでのみ文字色を変更
-(defun my-org-mode-text-color ()
-  "org-modeでのテキスト色を変更"
-  (face-remap-add-relative 'default :foreground "#d4d4d4"))
-
-(add-hook 'org-mode-hook #'my-org-mode-text-color)
-
-;;;; org でのみ空白非表示
+;;;; QA
 (add-hook 'org-mode-hook
           (lambda ()
-            (whitespace-mode -1)))
-;;;; 行間
-(add-hook 'org-mode-hook
-          (lambda ()
-            (setq-local line-spacing 0.3)))
-;;;; org-block
-(custom-set-faces
- '(org-block-begin-line ((t (:background "#000022"))))
- '(org-block-end-line ((t (:background "#000022"))))
- '(org-block ((t (:background "#000022")))))
+            (font-lock-add-keywords nil
+              '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
+                ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
 ;;;;; extention
 ;;;; 見出しを変える
 (font-lock-add-keywords 'emacs-lisp-mode
