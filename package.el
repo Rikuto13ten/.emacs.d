@@ -338,3 +338,6 @@
            :mode-line-inactive vertical-border))
 
   (spacious-padding-mode +1))
+
+;;;; json-mode
+(use-package json-mode)
