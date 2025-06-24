@@ -63,7 +63,7 @@
 
   (set-face-attribute 'default nil
                       :family "IPAMincho"
-		      :height 160))
+		      :height 180))
 
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
@@ -88,6 +88,7 @@
 ;;;; 設定
 (use-package org
   :custom
+  (org-indent-mode t)
   (org-startup-indented t)
   (org-adapt-indentation t)
   (org-auto-align-tags t)
