@@ -66,6 +66,18 @@
                     (font-spec :family font-name :size font-size) nil 'prepend)
   (set-fontset-font t 'katakana-jisx0201 
                     (font-spec :family font-name :size font-size) nil 'prepend))
+;;;; font
+(let ((font-name "IPAMincho"))
+  ;; デフォルトフォント
+  (set-face-attribute 'default nil :family font-name :height 180)
+  
+  ;; すべての文字セットに強制適用
+  (set-fontset-font t 'unicode font-name nil 'prepend)
+  (set-fontset-font t 'japanese-jisx0208 font-name nil 'prepend)
+  (set-fontset-font t 'japanese-jisx0212 font-name nil 'prepend)
+  (set-fontset-font t 'japanese-jisx0213-1 font-name nil 'prepend)
+  (set-fontset-font t 'japanese-jisx0213-2 font-name nil 'prepend)
+  (set-fontset-font t 'katakana-jisx0201 font-name nil 'prepend))
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
 ;;;; 対応する括弧を自動挿入
