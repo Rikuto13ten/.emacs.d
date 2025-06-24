@@ -48,24 +48,10 @@
 (global-whitespace-mode -1)
 ;;;; font
 (let ((font-name "IPAMincho")
-      (font-height 180))
-  (set-face-attribute 'default nil :family font-name :height font-height)
-  
-  ;; すべての文字セットに強制適用
-  (set-fontset-font t 'unicode font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0208 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0212 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-1 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-2 font-name nil 'prepend)
-  (set-fontset-font t 'katakana-jisx0201 font-name nil 'prepend))
-
-
-;;;; font
-(let ((font-name "IPAMincho")
-      (font-size 18))
+      (font-size 180))
   (set-face-attribute 'default nil 
                       :family font-name 
-                      :height (* font-size 10))
+                      :height font-size)
   
   ;; すべての文字セットに強制適用
   (set-fontset-font t 'unicode 
