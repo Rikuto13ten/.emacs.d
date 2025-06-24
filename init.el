@@ -47,26 +47,6 @@
                          tab-mark))
 (global-whitespace-mode -1)
 ;;;; font
-(let ((font-name "IPAMincho")
-      (font-size 180))
-  (set-face-attribute 'default nil 
-                      :family font-name 
-                      :height font-size)
-  
-  ;; すべての文字セットに強制適用
-  (set-fontset-font t 'unicode 
-                    (font-spec :family font-name :size font-size) nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0208 
-                    (font-spec :family font-name :size font-size) nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0212 
-                    (font-spec :family font-name :size font-size) nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-1 
-                    (font-spec :family font-name :size font-size) nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-2 
-                    (font-spec :family font-name :size font-size) nil 'prepend)
-  (set-fontset-font t 'katakana-jisx0201 
-                    (font-spec :family font-name :size font-size) nil 'prepend))
-;;;; font
 (let ((font-name "IPAMincho"))
   ;; デフォルトフォント
   (set-face-attribute 'default nil :family font-name :height 180)
@@ -78,6 +58,8 @@
   (set-fontset-font t 'japanese-jisx0213-1 font-name nil 'prepend)
   (set-fontset-font t 'japanese-jisx0213-2 font-name nil 'prepend)
   (set-fontset-font t 'katakana-jisx0201 font-name nil 'prepend))
+;;;; 行間
+(setq-default line-spacing 0.5)
 ;;;; ascii mode
 (mac-auto-ascii-mode 1)
 ;;;; 対応する括弧を自動挿入
