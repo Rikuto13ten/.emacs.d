@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/fleeting/20250623223228-何故私は怪異譚が好きなのか.org")
- (front-context-string . "\n** 好きな要素\n\n  - 怖")
- (rear-context-string . ": 何故私は怪異譚が好きなのか\n")
- (position . 91)
- (last-modified 26713 22601 968436 0))
+ (filename . "~/blog/org-blog/fleeting/20250624201819-文才とは.org")
+ (front-context-string)
+ (rear-context-string . ":\n#+TITLE: 文才とは\n")
+ (position . 82)
+ (last-modified 26714 35198 807882 0))
 )

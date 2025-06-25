@@ -47,17 +47,9 @@
                          tab-mark))
 (global-whitespace-mode -1)
 ;;;; font
-(let ((font-name "IPAMincho"))
-  ;; デフォルトフォント
-  (set-face-attribute 'default nil :family font-name :height 180)
-  
-  ;; すべての文字セットに強制適用
-  (set-fontset-font t 'unicode font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0208 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0212 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-1 font-name nil 'prepend)
-  (set-fontset-font t 'japanese-jisx0213-2 font-name nil 'prepend)
-  (set-fontset-font t 'katakana-jisx0201 font-name nil 'prepend))
+(set-face-attribute 'default nil :family "Iosevka Slab" :weight 'light :height 180)
+(set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "IPAMincho"))
+(setq use-default-font-for-symbols nil)
 ;;;; 行間
 (setq-default line-spacing 0.5)
 ;;;; ascii mode
