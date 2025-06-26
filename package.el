@@ -1,42 +1,28 @@
-;;;; package の設定
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;; パッケージの自動更新
 (unless package-archive-contents
   (package-refresh-contents))
 
-;; use-package（パッケージ管理用）
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
+
 (setq use-package-always-ensure t)
 
-(unless (package-installed-p 'vc-use-package)
-  (package-vc-install "https://github.com/slotThe/vc-use-package"))
-(require 'vc-use-package)
-
-
-;;;; ===== パッケージインストール =====
-;;;; ivy
 (use-package ivy
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) "))
 
-;;;; counsel
-;; ivy というコマンド補完機能を
-;; 用いて、絞りこみ検索をする
 (use-package counsel
   :config
   (counsel-mode 1))
-;;;; swiper
-;; Isearch の強化版
+
 (use-package swiper)
 
-;;;; Which Key（キーバインドヘルプ）
 (use-package which-key
   :config
   (which-key-mode)
@@ -44,17 +30,10 @@
   (setq which-key-prefix-prefix "⚡ ")
   (setq which-key-sort-order 'which-key-key-order-alpha))
 
-;;;; テーマ設定
-(use-package catppuccin-theme
-  :config
-  (setq catppuccin-flavor 'mocha)) ;; 'latte, 'frappe, 'macchiato, 'mocha から選択)
+(use-package spacemacs-theme)
 
-(use-package spacemacs-theme
-  :config
-  (load-theme 'spacemacs-light t))
+(load-theme 'spacemacs-light t)
 
-;;;; org-appear
-;; マーカ編集中に強調マーカを表示する
 (use-package org-appear
   :after org
   :hook (org-mode . org-appear-mode)
@@ -68,29 +47,9 @@
         org-appear-inside-latex t
         org-appear-trigger 'always) ; 常に表示（Evilモード対応）
   )
+
 (add-hook 'org-mode-hook 'org-appear-mode)
 
-;;;; DDSKK設定
-;; やったぜ 完成したぜ。
-(use-package ddskk
-  :ensure t
-  :config
-  (setq default-input-method "japanese-skk")
-  (global-set-key (kbd "C-x C-j") 'skk-mode))
-
-;;;; flycheck
-;; リアルタイムにソースの
-;; エラーやワーニングを表示するマイナーモード
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-(use-package flycheck-inline)
-;; flycheck で、インラインにエラーメッセージを追加
-(with-eval-after-load 'flycheck
-  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
-
-;;;; company
-;; コードの補完をするパッケージ
 (use-package company
   :ensure t
   :hook (after-init . global-company-mode)
@@ -99,13 +58,10 @@
   (setq company-idle-delay 0.3)           ; 補完表示遅延
   (setq company-backends '(company-capf)) ; eglotではcapfを使用
 
-  ;; キーバインド
   (define-key company-active-map (kbd "TAB") 'company-complete-selection)
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
-
-;;;; rainbow-delimiters
 (use-package rainbow-delimiters)
 (require 'cl-lib)
 (require 'color)
@@ -113,57 +69,9 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq rainbow-delimiters-outermost-only-face-count 1)
 
-;;;; lsp
-;;; eglot
-(use-package eglot
-  :ensure t
-  :hook
-  (elm-mode . eglot-ensure)
-  (kotlin-mode . eglot-ensure)
-  :config
-  (add-to-list
-   'eglot-server-programs `((kotlin-mode) . (,(concat user-emacs-directory "") ""))))
-;;; elm-mode
-;; Elm Mode
-(use-package elm-mode
-  :ensure t
-  :mode "\\.elm\\'"
-  :config
-  ;; 自動フォーマット
-  (setq elm-format-on-save t)
-  ;; キーバインド
-  (define-key elm-mode-map (kbd "C-c C-l") 'elm-repl-load)
-  (define-key elm-mode-map (kbd "C-c C-r") 'elm-repl)
-  (define-key elm-mode-map (kbd "C-c C-f") 'elm-format-buffer)
-  )
-;;;; nerd-icons
 (use-package nerd-icons
   :ensure t)
 
-;;;; dirvish
-;;; 基本設定
-(use-package dirvish
-  :ensure t
-  :after nerd-icons
-  :init (dirvish-override-dired-mode)
-  :config
-  (setq dired-listing-switches "-l --almost-all --human-readable --group-directories-first --no-group")
-
-  ;; dirvish属性の設定（左寄せ）
-  (setq dirvish-attributes
-        '(vc-state nerd-icons subtree-state))
-
-  ;; モードライン設定
-  (setq dirvish-mode-line-format
-        '(:left (sort symlink) :right (omit yank index))))
-
-;;; side bar mode
-(setq dirvish-side-follow-mode t)
-
-;;; C-f を押したらディレクトリを開く
-(with-eval-after-load 'dirvish
-  (define-key dirvish-mode-map (kbd "<tab>") 'dirvish-subtree-toggle))
-;;;; magit
 (use-package magit
   :ensure t
   :bind (("C-x g" . magit-status)
@@ -175,18 +83,9 @@
     (let ((buffers (magit-mode-get-buffers)))
       (magit-restore-window-configuration)
       (mapc #'kill-buffer buffers)))
+  ;; q で magit buffer を閉じる
   (bind-key "q" #'mu-magit-kill-buffers magit-status-mode-map))
 
-;;;; moody
-;; モードラインの要素をタブやリボンとして表示
-(use-package moody
-  :config
-  (moody-replace-mode-line-front-space)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
-
-;;;; org-roam
-;;; config
 (use-package org-roam
   :ensure t
   :custom
@@ -205,7 +104,6 @@
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
 
-;;; org-roam-capture
 (with-eval-after-load 'org-roam-capture
   (setq org-roam-capture-templates '(("f" "Fleeting(一時メモ)" plain "%?"
                                       :target (file+head "fleeting/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
@@ -233,13 +131,9 @@
                                      ("t" "TODO" plain "* TODO ${title}%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"
                                       :target (file+head "private/todo.org"
                                                          "#+title: TODO List\n
-                                                          #+filetags: :todo:\n\n")
+                                                        #+filetags: :todo:\n\n")
                                       :unnarrowed t))))
 
-;;;; one.el
-(use-package one)
-
-;;;; ox-hugo
 (use-package ox-hugo
   :ensure t
   :pin melpa
@@ -248,7 +142,6 @@
   (setq org-hugo-preserve-filling t)
   (setq org-export-preserve-breaks t))
 
-;;;; eat
 (use-package eat
   :ensure t
   :config
@@ -257,8 +150,6 @@
   ;; 視覚的コマンドの処理もeatで行う
   (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
 
-
-;;;; yasnnipet
 (use-package yasnippet
   :ensure t
   :custom-face
@@ -279,7 +170,6 @@
   :config
   (setq yas-prompt-functions '(yas-ido-prompt)))
 
-;;;; super padding
 (use-package spacious-padding
   :config
   (setq spacious-padding-widths
@@ -289,21 +179,16 @@
            :tab-width 4
            :right-divider-width 30
            :scroll-bar-width 8))
-
-  ;; Read the doc string of `spacious-padding-subtle-mode-line' as it
-  ;; is very flexible and provides several examples.
   (setq spacious-padding-subtle-mode-line
         `( :mode-line-active 'default
            :mode-line-inactive vertical-border))
 
   (spacious-padding-mode +1))
 
-;;;; json-mode
-(use-package json-mode)
-
-;;;; writeroom-mode
 (use-package writeroom-mode)
 (setq writeroom-width 120)
 (add-hook 'org-mode-hook 'writeroom-mode)
 (add-hook 'org-mode-hook 'visual-fill-column-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
+
+(use-package json-mode)

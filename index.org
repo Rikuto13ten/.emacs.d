@@ -1,0 +1,246 @@
+#+STARTUP: content
+#+STARTUP: fold
+* 設定
+** Boot
+*** セッション保存
+#+begin_src elisp
+  (require 'desktop)                          ;; desktopパッケージを読み込み
+  (desktop-save-mode 1)                       ;; セッション保存を有効化
+  (setq desktop-restore-eager 5)              ;; 起動時に復元するバッファの数（残りは遅延ロード）
+  (setq desktop-save t)                       ;; 毎回保存する（ask-if-new, ask, if-exists, always, t）
+  (setq desktop-load-locked-desktop t)        ;; ロックされていても読み込む
+  (setq desktop-path '("~/.emacs.d/desktop")) ;; セッション保存先
+  (setq desktop-auto-save-timeout 30)         ;; 自動保存（秒）
+#+end_src
+
+保存ディレクトリの作成
+#+begin_src elisp
+  (unless (file-exists-p "~/.emacs.d/desktop")
+    (make-directory "~/.emacs.d/desktop" t))
+#+end_src
+*** バックアップファイルを作らない
+#+begin_src elisp
+  (setq make-backup-files nil)
+#+end_src
+
+*** 自動保存ファイルを作らない
+#+begin_src elisp
+  (setq auto-save-default nil)
+#+end_src
+** init
+*** screen margin
+#+begin_src elisp
+  (setq-default left-margin-width 2
+                right-margin-width 2
+                top-margin-width 2)
+#+end_src
+*** 行番号を非表示
+#+begin_src elisp
+  (global-display-line-numbers-mode -1)
+#+end_src
+*** 空白関連
+#+begin_src elisp
+  (setq whitespace-style '(face
+                           trailing
+                           tabs
+                           spaces
+                           empty
+                           space-mark
+                           tab-mark))
+  (global-whitespace-mode -1)
+#+end_src
+*** Font
+**** Default Font
+#+begin_src elisp
+  (set-face-attribute 'default nil :family "Iosevka Slab" :weight 'light :height 180)
+#+end_src
+**** 日本語フォント
+#+begin_src elisp
+  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "IPAMincho"))
+#+end_src
+*** 行間
+#+begin_src elisp
+  (setq-default line-spacing 0.5)
+#+end_src
+*** Ascii Mode
+#+begin_src elisp
+  (mac-auto-ascii-mode 1)
+#+end_src
+*** 自動保存
+#+begin_src elisp
+  (auto-save-visited-mode 1)
+  (setq auto-save-visited-interval 2)
+#+end_src
+*** 括弧の中を強調する
+
+*** 括弧を自動挿入
+#+begin_src elisp
+  (electric-pair-mode 1)
+#+end_src
+** Org-mode
+*** 見出しをインデントする
+#+begin_src elisp
+  (setq org-startup-indented t)
+#+end_src
+*** 見出しをインデントしたら * が減らないようにする
+#+begin_src elisp
+  (setq org-indent-mode-turns-on-hiding-stars nil)
+#+end_src
+*** 見出しインデントの幅
+#+begin_src elisp
+  (setq org-indent-indentation-per-level 4)
+#+end_src
+*** 見出しの初期状態
+#+begin_src elisp
+  (setq org-startup-folded 'content)
+#+end_src
+*** 強調要素を非表示
+~*~ や ~~~ などの強調マーカーを非表示
+#+begin_src elisp
+  (setq org-hide-emphasis-markers t)
+#+end_src
+*** 見出しの大きさ設定
+#+begin_src elisp
+  (custom-set-faces
+   '(org-level-1 ((t (:height 2.0 :weight bold))))
+   '(org-level-2 ((t (:height 1.7 :weight bold))))
+   '(org-level-3 ((t (:height 1.4 :weight bold))))
+   '(org-level-4 ((t (:height 1.1 :weight bold))))
+   '(org-level-5 ((t (:height 1.0 :weight bold))))
+   '(org-level-6 ((t (:height 1.0 :weight bold))))
+   '(org-level-7 ((t (:height 1.0 :weight bold))))
+   '(org-level-8 ((t (:height 1.0 :weight bold)))))
+#+end_src
+*** 強調要素の見ため
+#+begin_src elisp
+  (with-eval-after-load 'org
+    (setq org-emphasis-alist
+          '(("*" (:weight bold))
+            ("/" italic)
+            ("_" underline)
+            ("=" org-verbatim verbatim)
+            ("~" (:foreground "salmon3"))
+            ("+" (:strike-through t)))))
+#+end_src
+*** 独自構文
+**** QA を定義
+#+begin_src elisp
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (font-lock-add-keywords nil
+                                      '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
+                                        ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
+#+end_src
+** 独自コマンド
+*** Window サイズを変えるコマンド
+#+begin_src elisp
+  (defun window-resizer ()
+    "Control window size and position."
+    (interactive)
+    (let ((window-obj (selected-window))
+          (current-width (window-width))
+          (current-height (window-height))
+          (dx (if (= (nth 0 (window-edges)) 0) 1
+                -1))
+          (dy (if (= (nth 1 (window-edges)) 0) 1
+                -1))
+          action c)
+      (catch 'end-flag
+        (while t
+          (setq action
+                (read-key-sequence-vector (format "size[%dx%d]"
+                                                  (window-width)
+                                                  (window-height))))
+          (setq c (aref action 0))
+          (cond ((= c ?f)
+                 (enlarge-window-horizontally dx))
+                ((= c ?b)
+                 (shrink-window-horizontally dx))
+                ((= c ?n)
+                 (enlarge-window dy))
+                ((= c ?p)
+                 (shrink-window dy))
+                ;; otherwise
+                (t
+                 (let ((last-command-char (aref action 0))
+                       (command (key-binding action)))
+                   (when command
+                     (call-interactively command)))
+                 (message "Quit")
+                 (throw 'end-flag t)))))))
+
+#+end_src
+*** Buffer の再読み込み
+#+begin_src elisp
+  (defun revert-buffer-no-confirm (&optional force-reverting)
+    (interactive "P")
+    (if (or force-reverting (not (buffer-modified-p)))
+        (revert-buffer :ignore-auto :noconfirm)
+      (error "The buffer has been modified")))
+#+end_src
+*** Open Init File
+#+begin_src elisp
+  (defun open-init-el ()
+    "open init.el"
+    (interactive)
+    (find-file "~/.emacs.d/init.el"))
+#+end_src
+*** Open Blog Folder
+#+begin_src elisp
+  (defun open-blog ()
+    "open blog"
+    (interactive)
+    (find-file "~/blog"))
+#+end_src
+*** Load File Init.el
+#+begin_src elisp
+  (defun load-file-init-el ()
+    "load-file init.el"
+    (interactive)
+    (load-file (expand-file-name "~/.emacs.d/init.el")))
+#+end_src
+** キーバインド
+*** Option/Alt を Meta Key にする
+#+begin_src elisp
+  (when (eq system-type 'darwin)
+    (setq mac-option-modifier 'meta))
+#+end_src
+*** Command を Super Key にする
+#+begin_src elisp
+  (when (eq system-type 'darwind)
+    (setq mac-command-modifer 'super))
+#+end_src
+*** C-h -> バックスペース
+#+begin_src elisp
+  (keyboard-translate ?\C-h ?\C-?)
+#+end_src
+*** C-x ? -> ヘルプコマンド
+#+begin_src elisp
+  (global-set-key (kbd "C-x ?") 'help-command)
+#+end_src
+*** ; -> sticky key for ddskk
+#+begin_src elisp
+  (setq skk-sticky-key ";")
+#+end_src
+*** C-k -> 行削除
+#+begin_src elisp
+  (with-eval-after-load 'simple
+    (setq kill-whole-line t))
+#+end_src
+*** C-z -> Mark
+#+begin_src elisp
+  (global-set-key (kbd "C-z") 'set-mark-command)
+#+end_src
+*** C-s -> Swiper
+#+begin_src elisp
+  (global-set-key (kbd "C-s") 'swiper)
+#+end_src
+*** M-r -> Buffer Reload
+#+begin_src elisp
+  (global-set-key (kbd "M-r") 'revert-buffer-no-confirm)
+#+end_src
+*** ￥ -> \
+#+begin_src elisp
+  (define-key global-map [?￥] [?\\])
+#+end_src
+* end
