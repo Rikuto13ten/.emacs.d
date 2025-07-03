@@ -169,14 +169,13 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                         :unnarrowed t)
 
                                        ("m" "Private" plain "%?"
-                                        :target (file+head "private/%<%Y%m%d%H%M%S>.org" "#+TITLE: ${title}\n")
+                                        :target (file+head "private/%<%Y%m%d%H%M%S>-${slug}.org" "#+TITLE: ${title}\n")
                                         :unnarrowed t)
 
                                        ;; TODO専用テンプレート
-                                       ("t" "TODO" plain "* TODO ${title}%?\n  :PROPERTIES:\n  :CREATED: %U\n  :END:\n"
-                                        :target (file+head "private/todo.org"
-                                                           "#+title: TODO List\n
-                                                          ,#+filetags: :todo:\n\n")
+                                       ("t" "TODO" plain "%?"
+                                        :target (file+head "private/%<%Y%m%d%H%M%S>-${slug}.org"
+                                                           "#+title: ${title}\n")
                                         :unnarrowed t))))
 #+end_src
 *** ox-hugo
@@ -227,7 +226,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     :config
     (setq spacious-padding-widths
           '( :internal-border-width 15
-             :header-line-width 4
+             :header-line-width 10
              :mode-line-width 6
              :tab-width 4
              :right-divider-width 30
@@ -250,3 +249,13 @@ ivy というコマンド補完機能で絞り込みできるようになる
 #+begin_src elisp
   (use-package json-mode)
 #+end_src
+*** focus-mode
+#+begin_src elisp
+  (use-package focus
+    :ensure t
+    :config
+    (add-to-list 'focus-mode-to-thing '(org-mode . org-element))
+    :bind
+    ("C-c F" . focus-mode))
+#+end_src
+*** end

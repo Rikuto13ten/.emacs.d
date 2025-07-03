@@ -131,6 +131,15 @@
                                       '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
                                         ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
 #+end_src
+*** todo keyword
+#+begin_src elisp
+  (setq org-todo-keywords
+        '((sequence "未着手(t)" "進行中(p)" "相手待ち(w)" "予定(s)" "|" "完了(d)" "キャンセル(c)")))
+#+end_src
+*** agenda-files にフォルダを追加
+#+begin_src elisp
+  (setq org-agenda-files '("~/blog/org-blog/private"))
+#+end_src
 ** 独自コマンド
 *** Window サイズを変えるコマンド
 #+begin_src elisp
@@ -242,5 +251,9 @@
 *** ￥ -> \
 #+begin_src elisp
   (define-key global-map [?￥] [?\\])
+#+end_src
+*** C-c a -> Org-agenda
+#+begin_src elisp
+  (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
 * end

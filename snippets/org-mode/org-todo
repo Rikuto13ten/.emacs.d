@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: org-todo
+# key: org-todo
+# --
+#+FILETAGS:
+
+- backlog:
+- slack:
+- github:
+
+*** 未着手 task [%]
