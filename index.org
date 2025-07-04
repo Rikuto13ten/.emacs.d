@@ -134,11 +134,42 @@
 *** todo keyword
 #+begin_src elisp
   (setq org-todo-keywords
-        '((sequence "未着手(t)" "進行中(p)" "相手待ち(w)" "予定(s)" "|" "完了(d)" "キャンセル(c)")))
+        '((sequence "未着手(t)"
+                    "進行中(p)"
+                    "相手待ち(w)"
+                    "予定(s)"
+                    "中断(i)"
+                    "|"
+                    "完了(d)"
+                    "キャンセル(c)")))
 #+end_src
 *** agenda-files にフォルダを追加
 #+begin_src elisp
   (setq org-agenda-files '("~/blog/org-blog/private"))
+#+end_src
+*** Clock in, Clock out 時に TODO のステータスを自動で更新
+#+begin_src elisp
+  ;; clock-in時に自動で「進行中」にする
+  (defun my/org-clock-in-set-status ()
+    "clock-in時に自動で進行中にする"
+    (when (not (string= (org-get-todo-state) "進行中"))
+      (org-todo "進行中")))
+
+  ;; clock-out時に完了状態を選択する
+  (defun my/org-clock-out-choose-status ()
+    "clock-out時に相手待ちか完了かを選択する"
+    (when (string= (org-get-todo-state) "進行中")
+      (let ((choice (read-char-choice 
+                     "タスクの状態を選択: (w)相手待ち (d)完了 (i)中断: " 
+                     '(?w ?d ?i))))
+        (cond
+         ((eq choice ?w) (org-todo "相手待ち"))
+         ((eq choice ?d) (org-todo "完了"))
+         ((eq choice ?i) (org-todo "中断")))))) ; 何もしない
+
+  ;; フックに追加
+  (add-hook 'org-clock-in-hook 'my/org-clock-in-set-status)
+  (add-hook 'org-clock-out-hook 'my/org-clock-out-choose-status)
 #+end_src
 ** 独自コマンド
 *** Window サイズを変えるコマンド

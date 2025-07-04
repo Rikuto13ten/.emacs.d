@@ -258,4 +258,13 @@ ivy というコマンド補完機能で絞り込みできるようになる
     :bind
     ("C-c F" . focus-mode))
 #+end_src
-*** end
+*** org-super-agenda
+#+begin_src elisp
+    (use-package org-super-agenda
+      :ensure t
+      :config
+      (org-super-agenda-mode 1)
+      (setq org-super-agenda-groups
+            '((:auto-category t))))
+#+end_src
+** end
