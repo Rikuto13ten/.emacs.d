@@ -171,6 +171,10 @@
   (add-hook 'org-clock-in-hook 'my/org-clock-in-set-status)
   (add-hook 'org-clock-out-hook 'my/org-clock-out-choose-status)
 #+end_src
+*** org-speed-command
+#+begin_src elisp
+  (setq org-use-speed-commands t)
+#+end_src
 ** 独自コマンド
 *** Window サイズを変えるコマンド
 #+begin_src elisp
@@ -220,10 +224,10 @@
 #+end_src
 *** Open Init File
 #+begin_src elisp
-  (defun open-init-el ()
+  (defun open-index-org ()
     "open init.el"
     (interactive)
-    (find-file "~/.emacs.d/init.el"))
+    (find-file "~/.emacs.d/index.org"))
 #+end_src
 *** Open Blog Folder
 #+begin_src elisp

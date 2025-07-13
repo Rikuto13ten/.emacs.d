@@ -257,7 +257,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     (add-to-list 'focus-mode-to-thing '(org-mode . org-element))
     :bind
     ("C-c F" . focus-mode))
-#+end_src
+  #+end_src
 *** org-super-agenda
 #+begin_src elisp
     (use-package org-super-agenda
