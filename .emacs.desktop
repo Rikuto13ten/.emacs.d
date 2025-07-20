@@ -1,0 +1,139 @@
+;; -*- mode: emacs-lisp; lexical-binding:t; coding: utf-8-emacs; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Thu Jul  3 11:16:57 2025
+;; Desktop file format version 208
+;; Emacs version 29.4
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (26725 59417 526927 0) (desktop . "208") "rikuto13ten@RikutonoMacBook-Pro.local" nil nil ((((minibuffer . t) (undecorated) (override-redirect) (font . "-*-Iosevka Slab-light-normal-normal-*-18-*-*-*-m-0-iso10646-1") (border-width . 0) (internal-border-width . 15) (child-frame-border-width) (right-divider-width . 30) (bottom-divider-width . 1) (vertical-scroll-bars) (horizontal-scroll-bars) (foreground-color . "#655370") (background-color . "#fbf8ef") (mouse-color . "black") (border-color . "black") (screen-gamma) (line-spacing) (left-fringe . 8) (right-fringe . 8) (no-special-glyphs) (alpha 100 100) (alpha-background) (scroll-bar-foreground) (scroll-bar-background) (tab-bar-lines . 0) (tool-bar-lines . 0) (title) (inhibit-double-buffering) (menu-bar-lines . 0) (icon-type) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 15) (scroll-bar-height . 15) (no-focus-on-map) (no-accept-focus) (fullscreen . fullboth) (visibility . t) (skip-taskbar) (z-group) (display-type . color) (background-mode . light) (cursor-color . "#100a14") (font-parameter) (environment) (ccc-frame-cursor-color . "#100a14") (ccc-frame-foreground-color . "#655370") (ccc-frame-background-color . "#fbf8ef") (last-focus-update . t) (writeroom-fullscreen) (writeroom-alpha) (writeroom-menu-bar-lines . 1) (writeroom-tool-bar-lines . 1) (writeroom-vertical-scroll-bars . right) (writeroom-bottom-divider-width . 0) (frameset--id . "EA86-7317-756D-D9E0") (frameset--mini t . t) (height . 59) (width . 223) (modeline . t) (unsplittable) (left . 0) (top . 0) (icon-name) (display . "Mac") (explicit-name) (tool-bar-position . top)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 4) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 88) (min-pixel-width . 90) (min-pixel-height-ignore . 44) (min-pixel-width-ignore . 36) (min-pixel-height-safe . 22) (min-pixel-width-safe . 18)) leaf (pixel-width . 2026) (pixel-height . 1277) (total-width . 225) (total-height . 58) (normal-height . 1.0) (normal-width . 1.0) (buffer "package.org" (selected . t) (hscroll . 0) (fringes 8 8 t nil) (margins 51 . 52) (scroll-bars nil 0 t nil 0 t nil) (vscroll . 0) (dedicated) (point . 5517) (start . 4037)) (next-buffers "index.org") (prev-buffers ("index.org" 36 3759) ("package.org" 4037 5051) ("init.el" 1 1) ("20250703105314.org" 1 244))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '(#("comap" 0 5 (isearch-case-fold-search t isearch-regexp-function nil))))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/package.org" "/Users/rikuto13ten/.emacs.d/index.org" "/Users/rikuto13ten/.emacs.d/package.org" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/package.org" "/Users/rikuto13ten/.emacs.d/index.org" "/Users/rikuto13ten/.emacs.d/" "/Users/rikuto13ten/.emacs.d/.gitignore" "/Users/rikuto13ten/.emacs.d/index.org" "/Users/rikuto13ten/.emacs.d/init.el" "/Users/rikuto13ten/.emacs.d/package.org"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/package.org"
+  "package.org"
+  'org-mode
+  '(yas-minor-mode rainbow-delimiters-mode font-lock-mode company-mode auto-revert-mode org-appear-mode visual-fill-column-mode writeroom-mode org-indent-mode)
+  5517
+  '(5939 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 26725 59416 289173 0) (buffer-file-coding-system . utf-8-unix) (truncate-lines . t))
+  '((mark-ring (5929 5927 5917 5723 5959 5959 5872 5959 691 8161 2298 2004 2298 2516 2298))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/index.org"
+  "index.org"
+  'org-mode
+  '(yas-minor-mode rainbow-delimiters-mode font-lock-mode company-mode auto-revert-mode org-appear-mode visual-fill-column-mode writeroom-mode visual-line-mode org-indent-mode)
+  3759
+  '(3759 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 26725 59356 39744 0) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring (3830 3780 3585 6919 6919))))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(yas-minor-mode font-lock-mode eldoc-mode company-mode auto-revert-mode rainbow-delimiters-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 26725 58994 939256 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/blog/org-blog/private/20250703105314.org"
+  "20250703105314.org"
+  'org-mode
+  '(yas-minor-mode font-lock-mode company-mode org-appear-mode visual-fill-column-mode writeroom-mode visual-line-mode org-indent-mode)
+  244
+  '(255 nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 26725 58989 40599 0) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/rikuto13ten/blog/org-blog/fleeting/20250626162448-ホラーの媒体による違い.org"
+  "20250626162448-ホラーの媒体による違い.org"
+  'org-mode
+  '(yas-minor-mode font-lock-mode company-mode auto-revert-mode org-appear-mode visual-fill-column-mode writeroom-mode visual-line-mode org-indent-mode)
+  645
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time 26725 57122 199897 0) (buffer-file-coding-system . utf-8-unix) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-append-buffer-args 208
+  nil
+  ".emacs.d"
+  'dired-mode
+  '(yas-minor-mode font-lock-mode company-mode)
+  1665
+  '(nil nil)
+  t
+  '("/Users/rikuto13ten/.emacs.d/")
+  '((buffer-display-time 26717 22904 764414 0))
+  '((mark-ring nil)))
+
+(desktop-append-buffer-args 208
+  "/Users/rikuto13ten/.emacs.d/.gitignore"
+  ".gitignore"
+  'fundamental-mode
+  '(yas-minor-mode auto-revert-mode font-lock-mode company-mode)
+  57
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 26717 22115 402743 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-append-buffer-args 208
+  "/Users/rikuto13ten/.emacs.d/custom.el"
+  "custom.el"
+  'emacs-lisp-mode
+  '(yas-minor-mode font-lock-mode eldoc-mode company-mode rainbow-delimiters-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 26717 21776 998139 0) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
+(desktop-append-buffer-args 208
+  "/Users/rikuto13ten/blog/org-blog/private/TODO-todow.org"
+  "TODO-todow.org"
+  'org-mode
+  '(yas-minor-mode font-lock-mode company-mode org-appear-mode visual-fill-column-mode writeroom-mode visual-line-mode org-indent-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time) (truncate-lines))
+  '((mark-ring nil)))
+
+(desktop-append-buffer-args 208
+  "/Users/rikuto13ten/blog/org-blog/private/TODO-todo_の確認.org"
+  "TODO-todo_の確認.org"
+  'org-mode
+  '(font-lock-mode company-mode yas-minor-mode org-appear-mode visual-fill-column-mode writeroom-mode visual-line-mode org-indent-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((indent-tabs-mode) (buffer-display-time) (truncate-lines))
+  '((mark-ring nil)))
+
