@@ -52,7 +52,7 @@
 *** Font
 **** Default Font
 #+begin_src elisp
-  (set-face-attribute 'default nil :family "Iosevka Slab" :weight 'light :height 180)
+  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'light :height 180)
 #+end_src
 **** 日本語フォント
 #+begin_src elisp
@@ -102,14 +102,14 @@
 *** 見出しの大きさ設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:height 2.0 :weight bold))))
-   '(org-level-2 ((t (:height 1.7 :weight bold))))
-   '(org-level-3 ((t (:height 1.4 :weight bold))))
-   '(org-level-4 ((t (:height 1.1 :weight bold))))
-   '(org-level-5 ((t (:height 1.0 :weight bold))))
-   '(org-level-6 ((t (:height 1.0 :weight bold))))
-   '(org-level-7 ((t (:height 1.0 :weight bold))))
-   '(org-level-8 ((t (:height 1.0 :weight bold)))))
+   '(org-level-1 ((t (:height 2.0))))
+   '(org-level-2 ((t (:height 1.7))))
+   '(org-level-3 ((t (:height 1.4))))
+   '(org-level-4 ((t (:height 1.1))))
+   '(org-level-5 ((t (:height 1.0))))
+   '(org-level-6 ((t (:height 1.0))))
+   '(org-level-7 ((t (:height 1.0))))
+   '(org-level-8 ((t (:height 1.0)))))
 #+end_src
 *** 強調要素の見ため
 #+begin_src elisp
