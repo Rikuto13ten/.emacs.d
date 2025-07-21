@@ -147,7 +147,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))
 #+end_src
-**** 
+**** capture
 #+begin_src elisp
   (with-eval-after-load 'org-roam-capture
     (setq org-roam-capture-templates '(("f" "Fleeting(一時メモ)" plain "%?"
@@ -177,6 +177,11 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                         :target (file+head "private/%<%Y%m%d%H%M%S>-${slug}.org"
                                                            "#+title: ${title}\n")
                                         :unnarrowed t))))
+#+end_src
+**** auto sync
+#+begin_src elisp
+  (autoload-if-found '(org-roam-db-autosync-enable) "org-roam-db" nil t)
+  (org-roam-db-autosync-enable)
 #+end_src
 *** ox-hugo
 #+begin_src elisp
