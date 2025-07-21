@@ -293,3 +293,6 @@ Hello
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
 * end
+| Hello | こんにちは |
+| こん  | ssss       |
+|       |            |

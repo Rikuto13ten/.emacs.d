@@ -3,7 +3,7 @@
 index.el
 package.el
 bookmark
-
+org-roam.db
 # 一時ファイル・バックアップファイル
 *~
 \#*\#
