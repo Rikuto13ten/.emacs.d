@@ -147,7 +147,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))
 #+end_src
-
+**** 
 #+begin_src elisp
   (with-eval-after-load 'org-roam-capture
     (setq org-roam-capture-templates '(("f" "Fleeting(一時メモ)" plain "%?"
