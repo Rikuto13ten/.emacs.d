@@ -181,10 +181,13 @@ ivy というコマンド補完機能で絞り込みできるようになる
 **** auto sync
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #+begin_src elisp
   (autoload-if-found '(org-roam-db-autosync-enable) "org-roam-db" nil t)
   (org-roam-db-autosync-enable)
 #+end_src
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
