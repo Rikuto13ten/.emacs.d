@@ -1,7 +1,6 @@
 #+STARTUP: content
 #+STARTUP: fold
 * 設定
-Hello
 ** Boot
 *** セッション保存
 #+begin_src elisp
@@ -293,6 +292,3 @@ Hello
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
 * end
-| Hello | こんにちは |
-| こん  | ssss       |
-|       |            |

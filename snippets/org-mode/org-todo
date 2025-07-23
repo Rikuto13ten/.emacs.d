@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: org-todo
-# key: org-todo
+# name: todo
+# key: todo
 # --
 #+FILETAGS:
 
@@ -8,4 +8,4 @@
 - slack:
 - github:
 
-*** 未着手 task [%]
+* 未着手 [%] 

@@ -178,11 +178,6 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                                            "#+title: ${title}\n")
                                         :unnarrowed t))))
 #+end_src
-**** auto sync
-#+begin_src elisp
-  (autoload-if-found '(org-roam-db-autosync-enable) "org-roam-db" nil t)
-  (org-roam-db-autosync-enable)
-#+end_src
 *** ox-hugo
 #+begin_src elisp
   (use-package ox-hugo
