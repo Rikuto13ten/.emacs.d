@@ -27,41 +27,7 @@
 #+begin_src elisp
   (setq auto-save-default nil)
 #+end_src
-** init
-*** screen margin
-#+begin_src elisp
-  (setq-default left-margin-width 2
-                right-margin-width 2
-                top-margin-width 2)
-#+end_src
-*** 行番号を非表示
-#+begin_src elisp
-  (global-display-line-numbers-mode -1)
-#+end_src
-*** 空白関連
-#+begin_src elisp
-  (setq whitespace-style '(face
-                           trailing
-                           tabs
-                           spaces
-                           empty
-                           space-mark
-                           tab-mark))
-  (global-whitespace-mode -1)
-#+end_src
-*** Font
-**** Default Font
-#+begin_src elisp
-  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'light :height 180)
-#+end_src
-**** 日本語フォント
-#+begin_src elisp
-  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "IPAMincho"))
-#+end_src
-*** 行間
-#+begin_src elisp
-  (setq-default line-spacing 0.5)
-#+end_src
+** 設定
 *** Ascii Mode
 #+begin_src elisp
   (mac-auto-ascii-mode 1)
@@ -71,47 +37,124 @@
   (auto-save-visited-mode 1)
   (setq auto-save-visited-interval 2)
 #+end_src
+** 見た目の設定
+*** 使うテーマ
+#+begin_src elisp
+  ;;(load-theme 'mindre t)
+#+end_src
+
+*** 画面の余白
+#+begin_src elisp
+  (setq-default left-margin-width 2
+                right-margin-width 2
+                top-margin-width 2)
+#+end_src
+
+*** フォント
+**** Default Font
+#+begin_src elisp
+  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'light :height 150)
+#+end_src
+**** 日本語フォント
+#+begin_src elisp
+  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "IPAMincho"))
+#+end_src
+
+*** メニューバー
+#+begin_src elisp
+  (menu-bar-mode 1)
+#+end_src
+
+*** ステータスバー
+#+begin_src elisp
+  (tool-bar-mode -1)
+#+end_src
+
+** エディター設定
+*** 空白関連
+
+#+begin_src elisp
+  (setq whitespace-style '(trailing
+                           tabs
+                           spaces
+                           empty
+                           space-mark
+                           tab-mark))
+#+end_src
+**** 空白設定を有効
+#+begin_src elisp
+  (global-whitespace-mode 1)
+#+end_src
+**** 記号の
+#+begin_src elisp
+  (setq whitespace-display-mappings
+        '(;; スペース文字: 中点（·）で表示
+          (space-mark 32 [8231] [46])
+          ;; タブ文字: 右向き三角（▷）+ タブで表示
+          (tab-mark 9 [9655 9] [92 9])
+          ;; 改行文字: 段落記号（¶）で表示
+          (newline-mark 10 [182 10])))
+#+end_src
+**** 色
+#+begin_src elisp
+  (custom-set-faces
+   '(whitespace-space ((t (:foreground "#e3dfd5")))))
+  (global-whitespace-mode t)
+#+end_src
+
+*** 行番号を表示
+#+begin_src elisp
+  (global-display-line-numbers-mode 1)
+#+end_src
+
+*** 行間
+#+begin_src elisp
+  (setq-default line-spacing 0.5)
+#+end_src
+
 *** 括弧の中を強調する
 
 *** 括弧を自動挿入
 #+begin_src elisp
   (electric-pair-mode 1)
 #+end_src
+
 ** Org-mode
-*** 見出しをインデントする
+*** Appearance
+**** 見出しをインデントする
 #+begin_src elisp
   (setq org-startup-indented t)
 #+end_src
-*** 見出しをインデントしたら * が減らないようにする
+**** 見出しをインデントしたら * が減らないようにする
 #+begin_src elisp
   (setq org-indent-mode-turns-on-hiding-stars nil)
 #+end_src
-*** 見出しインデントの幅
+**** 見出しインデントの幅
 #+begin_src elisp
   (setq org-indent-indentation-per-level 4)
 #+end_src
-*** 見出しの初期状態
+**** 見出しの初期状態
 #+begin_src elisp
   (setq org-startup-folded 'content)
 #+end_src
-*** 強調要素を非表示
+**** 強調要素を非表示
 ~*~ や ~~~ などの強調マーカーを非表示
 #+begin_src elisp
   (setq org-hide-emphasis-markers t)
 #+end_src
-*** 見出しの大きさ設定
+**** 見出しの大きさと色の設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:height 2.0))))
-   '(org-level-2 ((t (:height 1.7))))
-   '(org-level-3 ((t (:height 1.4))))
-   '(org-level-4 ((t (:height 1.1))))
-   '(org-level-5 ((t (:height 1.0))))
-   '(org-level-6 ((t (:height 1.0))))
-   '(org-level-7 ((t (:height 1.0))))
-   '(org-level-8 ((t (:height 1.0)))))
+   '(org-level-1 ((t (:foreground "#7f1d1d" :background "#fecaca" :height 1.0))))
+   '(org-level-2 ((t (:foreground "#a16207" :background "#fef3c7" :height 1.0))))
+   '(org-level-3 ((t (:foreground "#166534" :background "#dcfce7" :height 1.0))))
+   '(org-level-4 ((t (:foreground "#0f766e" :background "#ccfbf1" :height 1.0))))
+   '(org-level-5 ((t (:foreground "#1e40af" :background "#dbeafe" :height 1.0))))
+   '(org-level-6 ((t (:foreground "#7c2d92" :background "#f3e8ff" :height 1.0))))
+   '(org-level-7 ((t (:foreground "#be185d" :background "#fce7f3" :height 1.0))))
+   '(org-level-8 ((t (:foreground "#6b7280" :background "#f3f4f6" :height 1.0)))))
 #+end_src
-*** 強調要素の見ため
+**** 強調要素の見ため
 #+begin_src elisp
   (with-eval-after-load 'org
     (setq org-emphasis-alist
@@ -122,7 +165,42 @@
             ("~" (:foreground "salmon3"))
             ("+" (:strike-through t)))))
 #+end_src
-*** 独自構文
+**** org block の begin と end の背景色を設定
+#+begin_src elisp
+  ;;(set-face-attribute 'org-block-begin-line nil
+  ;;                    :background "#f0ead9"
+  ;;                    :extend t)
+  ;;
+  ;;(set-face-attribute 'org-block-end-line nil
+  ;;                    :background "#f0ead9"
+  ;;                    :extend t)
+#+end_src
+
+**** org block の背景色を設定
+#+begin_src elisp
+  ;; block要素リストを定義
+  (defvar my-org-block-faces
+    '(org-block
+      org-quote
+      org-verse))
+
+  ;; 各block要素に背景色を適用する関数
+  (defun my-set-org-block-backgrounds (color)
+    "すべてのorg block要素に背景色を設定する関数"
+    (mapcar (lambda (face)
+              (set-face-attribute face nil
+                                  :background color
+                                  :extend t))
+            my-org-block-faces))
+
+  ;; quote/verseブロックのフォント化を有効化
+  (setq org-fontify-quote-and-verse-blocks t)
+
+  ;; 背景色を適用
+  ;;(my-set-org-block-backgrounds "#f0ead9")
+#+end_src
+
+*** Editor
 **** QA を定義
 #+begin_src elisp
   (add-hook 'org-mode-hook
@@ -131,23 +209,28 @@
                                       '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
                                         ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
 #+end_src
-*** todo keyword
+**** todo keyword
 #+begin_src elisp
   (setq org-todo-keywords
         '((sequence "未着手(t)"
                     "進行中(p)"
                     "相手待ち(w)"
-                    "予定(s)"
-                    "中断(i)"
                     "|"
                     "完了(d)"
                     "キャンセル(c)")))
+  ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
+  (setq org-todo-keyword-faces
+        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold))
+          ("進行中" . (:background "#fff3cd" :foreground "#996600" :weight bold))
+          ("相手待ち" . (:background "#E1EFE6" :foreground "#00479F" :weight bold))
+          ("完了" . (:background "#E1F0C8" :foreground "#348300" :weight bold))
+          ("キャンセル" . (:background "#f5f5f5" :foreground "#666666" :weight bold))))
 #+end_src
-*** agenda-files にフォルダを追加
+**** agenda-files にフォルダを追加
 #+begin_src elisp
   (setq org-agenda-files '("~/blog/org-blog/private"))
 #+end_src
-*** Clock in, Clock out 時に TODO のステータスを自動で更新
+**** Clock in, Clock out 時に TODO のステータスを自動で更新
 #+begin_src elisp
   ;; clock-in時に自動で「進行中」にする
   (defun my/org-clock-in-set-status ()
@@ -171,7 +254,7 @@
   (add-hook 'org-clock-in-hook 'my/org-clock-in-set-status)
   (add-hook 'org-clock-out-hook 'my/org-clock-out-choose-status)
 #+end_src
-*** org-speed-command
+**** org-speed-command
 #+begin_src elisp
   (setq org-use-speed-commands t)
 #+end_src
@@ -222,21 +305,21 @@
         (revert-buffer :ignore-auto :noconfirm)
       (error "The buffer has been modified")))
 #+end_src
-*** Open Init File
+*** ~/.emacs/index.org を開く
 #+begin_src elisp
   (defun open-index-org ()
     "open init.el"
     (interactive)
     (find-file "~/.emacs.d/index.org"))
 #+end_src
-*** Open Blog Folder
+*** ~/blog を開く
 #+begin_src elisp
   (defun open-blog ()
     "open blog"
     (interactive)
     (find-file "~/blog"))
 #+end_src
-*** Load File Init.el
+*** ~/.emacs/init.el を読み込み
 #+begin_src elisp
   (defun load-file-init-el ()
     "load-file init.el"
@@ -258,7 +341,7 @@
 #+begin_src elisp
   (keyboard-translate ?\C-h ?\C-?)
 #+end_src
-*** C-x ? -> ヘルプコマンド
+*** C-x ? > ヘルプコマンド
 #+begin_src elisp
   (global-set-key (kbd "C-x ?") 'help-command)
 #+end_src
@@ -291,4 +374,5 @@
 #+begin_src elisp
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
+
 * end

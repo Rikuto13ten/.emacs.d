@@ -26,8 +26,27 @@ use-package-always-ensure を t に設定することで
   (setq use-package-always-ensure t)
 #+end_src
 
-** Install Packages
-*** ivy
+*** straight のセットアップ
+#+begin_src elisp
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+         (expand-file-name
+          "straight/repos/straight.el/bootstrap.el"
+          (or (bound-and-true-p straight-base-dir)
+              user-emacs-directory)))
+        (bootstrap-version 7))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+          (url-retrieve-synchronously
+           "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+           'silent 'inhibit-cookies)
+        (goto-char (point-max))
+        (eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+#+end_src
+** インストールパッケージ
+*** 機能追加パッケージ
+**** ivy
 #+begin_src elisp
   (use-package ivy
     :config
@@ -35,18 +54,18 @@ use-package-always-ensure を t に設定することで
     (setq ivy-use-virtual-buffers t)
     (setq ivy-count-format "(%d/%d) "))
 #+end_src
-*** counsel
+**** counsel
 ivy というコマンド補完機能で絞り込みできるようになる
 #+begin_src elisp
   (use-package counsel
     :config
     (counsel-mode 1))
 #+end_src
-*** swiper
+**** swiper
 #+begin_src elisp
   (use-package swiper)
 #+end_src
-*** Which Key
+**** Which Key
 #+begin_src elisp
   (use-package which-key
     :config
@@ -55,15 +74,127 @@ ivy というコマンド補完機能で絞り込みできるようになる
     (setq which-key-prefix-prefix "⚡ ")
     (setq which-key-sort-order 'which-key-key-order-alpha))
 #+end_src
-*** Theme
+**** company
 #+begin_src elisp
-  (use-package spacemacs-theme)
+  (use-package company
+    :ensure t
+    :hook (after-init . global-company-mode)
+    :config
+    (setq company-minimum-prefix-length 1)  ; 1文字から補完開始
+    (setq company-idle-delay 0.3)           ; 補完表示遅延
+    (setq company-backends '(company-capf)) ; eglotではcapfを使用
+
+    (define-key company-active-map (kbd "TAB") 'company-complete-selection)
+    (define-key company-active-map (kbd "C-n") 'company-select-next)
+    (define-key company-active-map (kbd "C-p") 'company-select-previous))
+#+end_src
+**** magit
+#+begin_src elisp
+  (use-package magit
+    :ensure t
+    :bind (("C-x g" . magit-status)
+           ("C-x M-g" . magit-dispatch-popup))
+    :config
+    (defun mu-magit-kill-buffers ()
+      "magit buffer 内で、 `q` を押したら閉じる''"
+      (interactive)
+      (let ((buffers (magit-mode-get-buffers)))
+        (magit-restore-window-configuration)
+        (mapc #'kill-buffer buffers)))
+    ;; q で magit buffer を閉じる
+    (bind-key "q" #'mu-magit-kill-buffers magit-status-mode-map))
+#+end_src
+**** ox-hugo
+#+begin_src elisp
+  (use-package ox-hugo
+    :ensure t
+    :pin melpa
+    :after ox
+    :config
+    (setq org-hugo-preserve-filling t)
+    (setq org-export-preserve-breaks t))
+#+end_src
+**** eat
+#+begin_src elisp
+  (use-package eat
+    :ensure t
+    :config
+    ;; シェル統合の有効化
+    (add-hook 'eshell-load-hook #'eat-eshell-mode)
+    ;; 視覚的コマンドの処理もeatで行う
+    (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
+#+end_src
+**** yasnnipet
+#+begin_src elisp
+  (use-package yasnippet
+    :ensure t
+    :custom-face
+    (yas-field-highlight-face ((t (:inherit nil))))
+    :bind (:map yas-minor-mode-map
+                ;; バインドが使いづらいので解除
+                ("C-c & C-n" . nil)
+                ("C-c & C-s" . nil)
+                ("C-c & C-v" . nil)
+                ;; よく使うコマンドをバインド
+                ("C-x y n" . yas-new-snippet)
+                ("C-x y i" . yas-insert-snippet)
+                ("C-x y v" . yas-visit-snippet-file)
+                ("C-x y l" . yas-describe-tables)
+                ("C-x y r" . yas-reload-all))
+    :init
+    (yas-global-mode)
+    :config
+    (setq yas-prompt-functions '(yas-ido-prompt)))
 #+end_src
 
-#+begin_src elisp
-  (load-theme 'spacemacs-light t)
+*** 見た目のパッケージ
+**** doomemacs-theme
+#+begin_src emacs-lisp
+  (use-package doom-themes
+    :ensure t
+    :custom
+    ;; グローバル設定（デフォルト）
+    (doom-themes-enable-bold nil)   ; nilの場合、太字が全体的に無効になる
+    (doom-themes-enable-italic nil) ; nilの場合、斜体が全体的に無効になる
+    :config
+    (load-theme 'doom-one-light t)
+    ;; エラー時にmodelineを点滅させる
+    (doom-themes-visual-bell-config)
+    (doom-themes-org-config))
 #+end_src
-*** org appear
+**** writeroom-mode
+#+begin_src elisp
+  (use-package writeroom-mode
+    :config
+    ;; modelineを下に表示する
+    (setq writeroom-mode-line t)
+    ;; 切り替え時の位置をmodelineに設定
+    (setq writeroom-mode-line-toggle-position 'mode-line))
+
+  (setq writeroom-width 200)
+  (add-hook 'org-mode-hook 'writeroom-mode)
+  (add-hook 'org-mode-hook 'visual-fill-column-mode)
+  (add-hook 'org-mode-hook 'visual-line-mode)
+#+end_src
+
+**** telephone-line
+#+begin_src elisp
+  (use-package telephone-line)
+  (telephone-line-mode 1)
+#+end_src
+*** エディターのパッケージ
+**** rainbow-delimiters
+#+begin_src elisp
+  (use-package rainbow-delimiters)
+  (require 'cl-lib)
+  (require 'color)
+  (rainbow-delimiters-mode 1)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  (setq rainbow-delimiters-outermost-only-face-count 1)
+#+end_src
+
+*** Org mode 関連のパッケージ
+**** org appear
 #+begin_src elisp
   (use-package org-appear
     :after org
@@ -83,51 +214,8 @@ ivy というコマンド補完機能で絞り込みできるようになる
 #+begin_src elisp
   (add-hook 'org-mode-hook 'org-appear-mode)
 #+end_src
-*** company
-#+begin_src elisp
-  (use-package company
-    :ensure t
-    :hook (after-init . global-company-mode)
-    :config
-    (setq company-minimum-prefix-length 1)  ; 1文字から補完開始
-    (setq company-idle-delay 0.3)           ; 補完表示遅延
-    (setq company-backends '(company-capf)) ; eglotではcapfを使用
 
-    (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-    (define-key company-active-map (kbd "C-n") 'company-select-next)
-    (define-key company-active-map (kbd "C-p") 'company-select-previous))
-#+end_src
-*** rainbow-delimiters
-#+begin_src elisp
-  (use-package rainbow-delimiters)
-  (require 'cl-lib)
-  (require 'color)
-  (rainbow-delimiters-mode 1)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-  (setq rainbow-delimiters-outermost-only-face-count 1)
-#+end_src
-*** nerd-icons
-#+begin_src elisp
-  (use-package nerd-icons
-    :ensure t)
-#+end_src
-*** magit
-#+begin_src elisp
-  (use-package magit
-    :ensure t
-    :bind (("C-x g" . magit-status)
-           ("C-x M-g" . magit-dispatch-popup))
-    :config
-    (defun mu-magit-kill-buffers ()
-      "magit buffer 内で、 `q` を押したら閉じる''"
-      (interactive)
-      (let ((buffers (magit-mode-get-buffers)))
-        (magit-restore-window-configuration)
-        (mapc #'kill-buffer buffers)))
-    ;; q で magit buffer を閉じる
-    (bind-key "q" #'mu-magit-kill-buffers magit-status-mode-map))
-#+end_src
-*** org-roam
+**** org-roam
 #+begin_src elisp
   (use-package org-roam
     :ensure t
@@ -147,7 +235,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))
 #+end_src
-**** capture
+***** capture
 #+begin_src elisp
   (with-eval-after-load 'org-roam-capture
     (setq org-roam-capture-templates '(("f" "Fleeting(一時メモ)" plain "%?"
@@ -178,93 +266,141 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                                            "#+title: ${title}\n")
                                         :unnarrowed t))))
 #+end_src
-*** ox-hugo
-#+begin_src elisp
-  (use-package ox-hugo
-    :ensure t
-    :pin melpa
-    :after ox
-    :config
-    (setq org-hugo-preserve-filling t)
-    (setq org-export-preserve-breaks t))
-#+end_src
-*** eat
-#+begin_src elisp
-  (use-package eat
-    :ensure t
-    :config
-    ;; シェル統合の有効化
-    (add-hook 'eshell-load-hook #'eat-eshell-mode)
-    ;; 視覚的コマンドの処理もeatで行う
-    (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
-#+end_src
-*** yasnnipet
-#+begin_src elisp
-  (use-package yasnippet
-    :ensure t
-    :custom-face
-    (yas-field-highlight-face ((t (:inherit nil))))
-    :bind (:map yas-minor-mode-map
-                ;; バインドが使いづらいので解除
-                ("C-c & C-n" . nil)
-                ("C-c & C-s" . nil)
-                ("C-c & C-v" . nil)
-                ;; よく使うコマンドをバインド
-                ("C-x y n" . yas-new-snippet)
-                ("C-x y i" . yas-insert-snippet)
-                ("C-x y v" . yas-visit-snippet-file)
-                ("C-x y l" . yas-describe-tables)
-                ("C-x y r" . yas-reload-all))
-    :init
-    (yas-global-mode)
-    :config
-    (setq yas-prompt-functions '(yas-ido-prompt)))
-#+end_src
-*** super padding
-#+begin_src elisp
-  (use-package spacious-padding
-    :config
-    (setq spacious-padding-widths
-          '( :internal-border-width 15
-             :header-line-width 10
-             :mode-line-width 6
-             :tab-width 4
-             :right-divider-width 30
-             :scroll-bar-width 8))
-    (setq spacious-padding-subtle-mode-line
-          `( :mode-line-active 'default
-             :mode-line-inactive vertical-border))
 
-    (spacious-padding-mode +1))
-#+end_src
-*** writeroom-mode
+**** org-super-agenda
 #+begin_src elisp
-  (use-package writeroom-mode)
-  (setq writeroom-width 120)
-  (add-hook 'org-mode-hook 'writeroom-mode)
-  (add-hook 'org-mode-hook 'visual-fill-column-mode)
-  (add-hook 'org-mode-hook 'visual-line-mode)
+  (use-package org-super-agenda
+    :ensure t
+    :config
+    (org-super-agenda-mode 1))
 #+end_src
-*** json-mode
+
+***** ヘルパー関数
+#+begin_src elisp
+  ;; ヘルパー関数
+  (defun my/skip-unless-today ()
+    "今日のスケジュール・デッドライン以外はスキップ"
+    (let* ((scheduled (org-get-scheduled-time (point)))
+          (deadline (org-get-deadline-time (point)))
+          (today (format-time-string "%Y-%m-%d"))
+          (scheduled-match-today (string= today (format-time-string "%Y-%m-%d" scheduled)))
+          (deadline-match-today (string= today (format-time-string "%Y-%m-%d" deadline))))
+      ;; スケジュール又は、デッドラインが今日でない場合はスキップ
+      (unless (or
+               ;; スケジュールが存在 && 日と一致
+               (and scheduled scheduled-match-today)
+               ;; デッドラインが存在 && 今日と一致
+               (and deadline deadline-match-today))
+        ;; 条件に合わない場合、次の見出しまたはバッファの最後に移動してスキップ
+        (or (outline-next-heading) (point-max)))))
+
+  (defun my/skip-not-processing-task ()
+    "進行中のみを表示 それ以外はスキップ"
+    (unless (and (member (org-get-todo-state) '("進行中")))
+      (or (outline-next-heading) (point-max))))
+
+  (defun my/skip-not-todo-task ()
+    "未着手だけを表示 それ以外はスキップ"
+    (unless (and (member (org-get-todo-state) '("未着手")))
+      (or (outline-next-heading) (point-max))))
+
+  (defun my/skip-not-wait-task ()
+    "相手待ちだけを表示 それ以外はスキップ"
+    (unless (and (member (org-get-todo-state) '("相手待ち")))
+      (or (outline-next-heading) (point-max))))
+#+end_src
+***** アジェンダカテゴリ
+#+begin_src elisp
+  ;; カスタムアジェンダコマンド
+  (setq org-agenda-custom-commands
+        '(("h" "階層アジェンダ"
+           ((todo ""
+                  ((org-agenda-overriding-header "今日のタスク")
+                   (org-agenda-skip-function 'my/skip-unless-today)
+                   (org-super-agenda-groups '((:auto-category t)))))
+            (todo ""
+                  ((org-agenda-overriding-header "進行中")
+                   (org-agenda-skip-function 'my/skip-not-processing-task)
+                   (org-super-agenda-groups '((:auto-category t)))))
+            (todo ""
+                  ((org-agenda-overriding-header "相手待ち")
+                   (org-agenda-skip-function 'my/skip-not-wait-task)
+                   (org-super-agenda-groups '((:auto-category t)))))
+            (todo ""
+                  ((org-agenda-overriding-header "未着手タスク")
+                   (org-agenda-skip-function 'my/skip-not-todo-task)
+                   (org-super-agenda-groups '((:auto-category t)))))))))
+#+end_src
+***** スケジュールをタスク名の後に表示する
+#+begin_src elisp
+  ;; スケジュール/デッドライン日付を取得するヘルパー関数
+  (defun my/org-agenda-entry-get-schedule-info ()
+    "現在のエントリのスケジュールとデッドライン情報を取得する"
+    (when-let ((marker (org-get-at-bol 'org-marker))
+               (buffer (marker-buffer marker))
+               (pos (marker-position marker)))
+      (with-current-buffer buffer
+        (goto-char pos)
+        (let ((scheduled (org-get-scheduled-time (point)))
+              (deadline (org-get-deadline-time (point))))
+          (cond
+           ((and scheduled deadline)
+            (format " [予定: %s] [期限: %s]" 
+                    (format-time-string "20%y/%m/%d" scheduled)
+                    (format-time-string "20%y/%m/%d" deadline)))
+           (scheduled 
+            (format " [予定: %s]" (format-time-string "20%y/%m/%d" scheduled)))
+           (deadline
+            (format " [期限: %s]" (format-time-string "20%y/%m/%d" deadline)))
+           (t ""))))))
+
+  ;; 現在のエントリにスケジュール情報を追加する関数
+  (defun my/org-agenda-add-schedule-suffix ()
+    "現在のエントリのタスク名の後ろにスケジュール情報を追加する"
+    (save-excursion
+      (when-let ((schedule-info (my/org-agenda-entry-get-schedule-info)))
+        (when (not (string= schedule-info ""))
+          ;; 行末に移動してスケジュール情報を追加
+          (end-of-line)
+          ;; 既にスケジュール情報が追加されていないかチェック
+          (unless (looking-back "\\[予定:\\|\\[期限:" (line-beginning-position))
+            (insert-and-inherit schedule-info))))))
+
+  ;; 全エントリにスケジュール情報を追加する関数
+  (defun my/org-agenda-add-schedule-suffixes ()
+    "全エントリのタスク名の後ろにスケジュール情報を追加する"
+    (save-excursion
+      (goto-char (point-min))
+      ;; org-markerプロパティを持つ行を全て処理
+      (while (not (eobp))
+        (when (org-get-at-bol 'org-marker)
+          (my/org-agenda-add-schedule-suffix))
+        (forward-line 1))))
+
+  ;; org-agenda-prefix-formatからスケジュール表示を削除（シンプルに）
+  (setq org-agenda-prefix-format
+        '((agenda . " %i %?-12t% s")
+          (todo . " ")     ; スケジュール表示を削除
+          (tags . " ")     ; スケジュール表示を削除
+          (search . " "))) ; スケジュール表示を削除
+#+end_src
+***** hook & add
+#+begin_src elisp
+  ;; org-agenda-finalize-hookにスケジュール情報追加関数を登録
+  (add-hook 'org-agenda-finalize-hook #'my/org-agenda-add-schedule-suffixes)
+
+  ;; org agenda をサイドバーに固定（通常のアジェンダとカスタムアジェンダ両方）
+  (add-to-list 'display-buffer-alist
+               '("\\*Org Agenda.*\\*"
+                 (display-buffer-in-side-window)
+                 (side . left)
+                 (window-width . 70)
+                 (window-parameters . ((no-delete-other-windows . t)))))
+#+end_src
+
+**** json-mode
 #+begin_src elisp
   (use-package json-mode)
 #+end_src
-*** focus-mode
-#+begin_src elisp
-  (use-package focus
-    :ensure t
-    :config
-    (add-to-list 'focus-mode-to-thing '(org-mode . org-element))
-    :bind
-    ("C-c F" . focus-mode))
-  #+end_src
-*** org-super-agenda
-#+begin_src elisp
-    (use-package org-super-agenda
-      :ensure t
-      :config
-      (org-super-agenda-mode 1)
-      (setq org-super-agenda-groups
-            '((:auto-category t))))
-#+end_src
-** end
+
+* end
