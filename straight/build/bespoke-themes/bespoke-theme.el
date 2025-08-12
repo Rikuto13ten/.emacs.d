@@ -1,1 +1,0 @@
-/Users/impl/.emacs.d/straight/repos/bespoke-themes/bespoke-theme.el
