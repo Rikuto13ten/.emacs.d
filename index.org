@@ -145,14 +145,14 @@
 **** 見出しの大きさと色の設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :background "#fecaca" :height 1.0 ))))
-   '(org-level-2 ((t (:foreground "#a16207" :background "#fef3c7" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-3 ((t (:foreground "#166534" :background "#dcfce7" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-4 ((t (:foreground "#0f766e" :background "#ccfbf1" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-5 ((t (:foreground "#1e40af" :background "#dbeafe" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-6 ((t (:foreground "#7c2d92" :background "#f3e8ff" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-7 ((t (:foreground "#be185d" :background "#fce7f3" :height 1.0 :box (:line-width 2 :style released-button)))))
-   '(org-level-8 ((t (:foreground "#6b7280" :background "#f3f4f6" :height 1.0 :box (:line-width 2 :style released-button))))))
+   '(org-level-1 ((t (:foreground "#7f1d1d" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-2 ((t (:foreground "#a16207" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-3 ((t (:foreground "#166534" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-4 ((t (:foreground "#0f766e" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-5 ((t (:foreground "#1e40af" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-6 ((t (:foreground "#7c2d92" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-7 ((t (:foreground "#be185d" :background nil :height 1.0 :box (:line-width 2 :style released-button)))))
+   '(org-level-8 ((t (:foreground "#6b7280" :background nil :height 1.0 :box (:line-width 2 :style released-button))))))
 #+end_src
 **** 強調要素の見ため
 #+begin_src elisp
@@ -220,7 +220,7 @@
                     "キャンセル(c)")))
   ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
   (setq org-todo-keyword-faces
-        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold :box (:line-width 2 :style released-button)))
+        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold))
           ("進行中" . (:background "#fff3cd" :foreground "#996600" :weight bold))
           ("相手待ち" . (:background "#E1EFE6" :foreground "#00479F" :weight bold))
           ("完了" . (:background "#E1F0C8" :foreground "#348300" :weight bold))
