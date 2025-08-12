@@ -3,9 +3,9 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/blog/org-blog/private/20250808141736-org_agenda_運用方法を考える.org")
+ (filename . "~/blog/org-blog/private/20250812145123-1068_pr確認.org")
  (front-context-string . "#+FILETAGS:\n\n- b")
- (rear-context-string . "agenda 運用方法を考える\n")
- (position . 97)
- (last-modified 26773 34972 403179 0))
+ (rear-context-string . "itle: 1068 PR確認\n")
+ (position . 87)
+ (last-modified 26778 55050 969163 0))
 )

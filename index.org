@@ -116,7 +116,6 @@
 #+begin_src elisp
   (setq-default line-spacing 0.5)
 #+end_src
-
 *** 括弧の中を強調する
 
 *** 括弧を自動挿入
@@ -161,11 +160,10 @@
   (setq org-hide-emphasis-markers t)
 #+end_src
 **** 強調要素の見ため
-~let message = ""~ は
 #+begin_src elisp
   (with-eval-after-load 'org
     (setq org-emphasis-alist
-          '(("*" (:weight bold :foreground "green"))
+          '(("*" (:weight bold :foreground "forest green"))
             ("/" italic)
             ("_" underline)
             ("=" org-verbatim verbatim)
@@ -207,15 +205,6 @@
   ;;(my-set-org-block-backgrounds "#f0ead9")
 #+end_src
 
-*** Editor
-**** QA を定義
-#+begin_src elisp
-  (add-hook 'org-mode-hook
-            (lambda ()
-              (font-lock-add-keywords nil
-                                      '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
-                                        ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
-#+end_src
 **** todo keyword
 #+begin_src elisp
   (setq org-todo-keywords
@@ -227,11 +216,20 @@
                     "キャンセル(c)")))
   ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
   (setq org-todo-keyword-faces
-        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold :box (:line-width 2 :style released-button)))
+        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold :box (:style released-button)))
           ("進行中" . (:background "#fff3cd" :foreground "#996600" :weight bold :box (:line-width 2 :style released-button)))
           ("相手待ち" . (:background "#E1EFE6" :foreground "#00479F" :weight bold :box (:line-width 2 :style released-button)))
           ("完了" . (:background "#E1F0C8" :foreground "#348300" :weight bold :box (:line-width 2 :style released-button)))
           ("キャンセル" . (:background "#f5f5f5" :foreground "#666666" :weight bold :box (:line-width 2 :style released-button)))))
+#+end_src
+*** Editor
+**** QA を定義
+#+begin_src elisp
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (font-lock-add-keywords nil
+                                      '(("^- Q ::" 0 '(:foreground "IndianRed4" :weight bold) prepend)
+                                        ("^- A ::" 0 '(:foreground "OliveDrab4" :weight bold) prepend)))))
 #+end_src
 **** agenda-files にフォルダを追加
 #+begin_src elisp
