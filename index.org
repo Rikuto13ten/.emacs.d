@@ -339,8 +339,8 @@
 #+end_src
 *** Command を Super Key にする
 #+begin_src elisp
-  (when (eq system-type 'darwind)
-    (setq mac-command-modifer 'super))
+  (when (eq system-type 'darwin)
+    (setq mac-command-modifier 'super))
 #+end_src
 *** C-h -> バックスペース
 #+begin_src elisp

@@ -266,55 +266,6 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                                            "#+title: ${title}\n")
                                         :unnarrowed t))))
 #+end_src
-<<<<<<< Updated upstream
-=======
-**** auto sync
-#+begin_src elisp
-  (autoload-if-found '(org-roam-db-autosync-enable) "org-roam-db" nil t)
-  (org-roam-db-autosync-enable)
-#+end_src
-*** ox-hugo
-#+begin_src elisp
-  (use-package ox-hugo
-    :ensure t
-    :pin melpa
-    :after ox
-    :config
-    (setq org-hugo-preserve-filling t)
-    (setq org-export-preserve-breaks t))
-#+end_src
-*** eat
-#+begin_src elisp
-  (use-package eat
-    :ensure t
-    :config
-    ;; シェル統合の有効化
-    (add-hook 'eshell-load-hook #'eat-eshell-mode)
-    ;; 視覚的コマンドの処理もeatで行う
-    (add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode))
-#+end_src
-*** yasnnipet
-#+begin_src elisp
-  (use-package yasnippet
-    :ensure t
-    :custom-face
-    (yas-field-highlight-face ((t (:inherit nil))))
-    :bind (:map yas-minor-mode-map
-                ;; バインドが使いづらいので解除
-                ("C-c & C-n" . nil)
-                ("C-c & C-s" . nil)
-                ("C-c & C-v" . nil)
-                ;; よく使うコマンドをバインド
-                ("C-x y n" . yas-new-snippet)
-                ("C-x y i" . yas-insert-snippet)
-                ("C-x y v" . yas-visit-snippet-file)
-                ("C-x y l" . yas-describe-tables)
-                ("C-x y r" . yas-reload-all))
-    :init
-    (yas-global-mode)
-    :config
-    (setq yas-prompt-functions '(yas-ido-prompt)))
-#+end_src
 *** super padding
 #+begin_src elisp
   (use-package spacious-padding
@@ -328,9 +279,8 @@ ivy というコマンド補完機能で絞り込みできるようになる
              :scroll-bar-width 8))
     (setq spacious-padding-subtle-mode-line
           `( :mode-line-active 'default
-             :mode-line-inactive vertical-border))
->>>>>>> Stashed changes
-
+             :mode-line-inactive vertical-border)))
+#+end_src
 **** org-super-agenda
 #+begin_src elisp
   (use-package org-super-agenda
