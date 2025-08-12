@@ -161,6 +161,7 @@
   (setq org-hide-emphasis-markers t)
 #+end_src
 **** 強調要素の見ため
+~let message = ""~ は
 #+begin_src elisp
   (with-eval-after-load 'org
     (setq org-emphasis-alist
@@ -168,7 +169,7 @@
             ("/" italic)
             ("_" underline)
             ("=" org-verbatim verbatim)
-            ("~" (:foreground "salmon3"))
+            ("~" (:foreground "salmon3" :box (:color nil :style line)))
             ("+" (:strike-through t)))))
 #+end_src
 **** org block の begin と end の背景色を設定
