@@ -145,14 +145,14 @@
 **** 見出しの大きさと色の設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :background "#fecaca" :height 1.0))))
-   '(org-level-2 ((t (:foreground "#a16207" :background "#fef3c7" :height 1.0))))
-   '(org-level-3 ((t (:foreground "#166534" :background "#dcfce7" :height 1.0))))
-   '(org-level-4 ((t (:foreground "#0f766e" :background "#ccfbf1" :height 1.0))))
-   '(org-level-5 ((t (:foreground "#1e40af" :background "#dbeafe" :height 1.0))))
-   '(org-level-6 ((t (:foreground "#7c2d92" :background "#f3e8ff" :height 1.0))))
-   '(org-level-7 ((t (:foreground "#be185d" :background "#fce7f3" :height 1.0))))
-   '(org-level-8 ((t (:foreground "#6b7280" :background "#f3f4f6" :height 1.0)))))
+   '(org-level-1 ((t (:foreground "#7f1d1d" :background "#fef2f2" :height 1.0))))
+   '(org-level-2 ((t (:foreground "#a16207" :background "#fffbeb" :height 1.0))))
+   '(org-level-3 ((t (:foreground "#166534" :background "#f0fdf4" :height 1.0))))
+   '(org-level-4 ((t (:foreground "#0f766e" :background "#f0fdfa" :height 1.0))))
+   '(org-level-5 ((t (:foreground "#1e40af" :background "#eff6ff" :height 1.0))))
+   '(org-level-6 ((t (:foreground "#7c2d92" :background "#faf5ff" :height 1.0))))
+   '(org-level-7 ((t (:foreground "#be185d" :background "#fdf2f8" :height 1.0))))
+   '(org-level-8 ((t (:foreground "#6b7280" :background "#f9fafb" :height 1.0)))))
 #+end_src
 **** 強調要素の見ため
 #+begin_src elisp
