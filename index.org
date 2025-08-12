@@ -164,7 +164,7 @@
 #+begin_src elisp
   (with-eval-after-load 'org
     (setq org-emphasis-alist
-          '(("*" (:weight bold))
+          '(("*" (:weight bold :foreground "green"))
             ("/" italic)
             ("_" underline)
             ("=" org-verbatim verbatim)
