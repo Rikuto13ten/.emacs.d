@@ -37,6 +37,11 @@
   (auto-save-visited-mode 1)
   (setq auto-save-visited-interval 2)
 #+end_src
+*** revert 無効
+#+begin_src elisp
+  (setq global-auto-revert-mode nil)
+  (setq auto-revert-mode nil)
+#+end_src
 ** 見た目の設定
 *** 使うテーマ
 #+begin_src elisp
@@ -137,32 +142,23 @@
 #+begin_src elisp
   (setq org-startup-folded 'content)
 #+end_src
+**** 見出しの大きさと色の設定
+#+begin_src elisp
+  (custom-set-faces
+   '(org-level-1 ((t (:foreground "#7f1d1d" :background nil :height 1.0))))
+   '(org-level-2 ((t (:foreground "#a16207" :background nil :height 1.0))))
+   '(org-level-3 ((t (:foreground "#166534" :background nil :height 1.0))))
+   '(org-level-4 ((t (:foreground "#0f766e" :background nil :height 1.0))))
+   '(org-level-5 ((t (:foreground "#1e40af" :background nil :height 1.0))))
+   '(org-level-6 ((t (:foreground "#7c2d92" :background nil :height 1.0))))
+   '(org-level-7 ((t (:foreground "#be185d" :background nil :height 1.0))))
+   '(org-level-8 ((t (:foreground "#6b7280" :background nil :height 1.0)))))
+#+end_src
+
 **** 強調要素を非表示
 ~*~ や ~~~ などの強調マーカーを非表示
 #+begin_src elisp
   (setq org-hide-emphasis-markers t)
-#+end_src
-**** 見出しの大きさと色の設定
-#+begin_src elisp
-  (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :background "#fef2f2" :height 1.0))))
-   '(org-level-2 ((t (:foreground "#a16207" :background "#fffbeb" :height 1.0))))
-   '(org-level-3 ((t (:foreground "#166534" :background "#f0fdf4" :height 1.0))))
-   '(org-level-4 ((t (:foreground "#0f766e" :background "#f0fdfa" :height 1.0))))
-   '(org-level-5 ((t (:foreground "#1e40af" :background "#eff6ff" :height 1.0))))
-   '(org-level-6 ((t (:foreground "#7c2d92" :background "#faf5ff" :height 1.0))))
-   '(org-level-7 ((t (:foreground "#be185d" :background "#fdf2f8" :height 1.0))))
-   '(org-level-8 ((t (:foreground "#6b7280" :background "#f9fafb" :height 1.0)))))
-
-  (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :background nil :height 1.0 :underline (:color "#7f1d1d" :style line)))))
-   '(org-level-2 ((t (:foreground "#a16207" :background nil :height 1.0 :underline (:color "#a16207" :style line)))))
-   '(org-level-3 ((t (:foreground "#166534" :background nil :height 1.0 :underline (:color "#166534" :style line)))))
-   '(org-level-4 ((t (:foreground "#0f766e" :background nil :height 1.0 :underline (:color "#0f766e" :style line)))))
-   '(org-level-5 ((t (:foreground "#1e40af" :background nil :height 1.0 :underline (:color "#1e40af" :style line)))))
-   '(org-level-6 ((t (:foreground "#7c2d92" :background nil :height 1.0 :underline (:color "#7c2d92" :style line)))))
-   '(org-level-7 ((t (:foreground "#be185d" :background nil :height 1.0 :underline (:color "#be185d" :style line)))))
-   '(org-level-8 ((t (:foreground "#6b7280" :background nil :height 1.0 :underline (:color "#6b7280" :style line))))))
 #+end_src
 **** 強調要素の見ため
 #+begin_src elisp
