@@ -145,14 +145,14 @@
 **** 見出しの大きさと色の設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :box (:line-width 2 :color "#fecaca" :style released-button) :height 1.0))))
-   '(org-level-2 ((t (:foreground "#a16207" :box (:line-width 2 :color "#fef3c7" :style released-button) :height 1.0))))
-   '(org-level-3 ((t (:foreground "#166534" :box (:line-width 2 :color "#dcfce7" :style released-button) :height 1.0))))
-   '(org-level-4 ((t (:foreground "#0f766e" :box (:line-width 2 :color "#ccfbf1" :style released-button) :height 1.0))))
-   '(org-level-5 ((t (:foreground "#1e40af" :box (:line-width 2 :color "#dbeafe" :style released-button) :height 1.0))))
-   '(org-level-6 ((t (:foreground "#7c2d92" :box (:line-width 2 :color "#f3e8ff" :style released-button) :height 1.0))))
-   '(org-level-7 ((t (:foreground "#be185d" :box (:line-width 2 :color "#fce7f3" :style released-button) :height 1.0))))
-   '(org-level-8 ((t (:foreground "#6b7280" :box (:line-width 2 :color "#f3f4f6" :style released-button) :height 1.0))))
+   '(org-level-1 ((t (:foreground "#7f1d1d" :box (:line-width 2 :color "#fecaca" :style nil) :height 1.0))))
+   '(org-level-2 ((t (:foreground "#a16207" :box (:line-width 2 :color "#fef3c7" :style nil) :height 1.0))))
+   '(org-level-3 ((t (:foreground "#166534" :box (:line-width 2 :color "#dcfce7" :style nil) :height 1.0))))
+   '(org-level-4 ((t (:foreground "#0f766e" :box (:line-width 2 :color "#ccfbf1" :style nil) :height 1.0))))
+   '(org-level-5 ((t (:foreground "#1e40af" :box (:line-width 2 :color "#dbeafe" :style nil) :height 1.0))))
+   '(org-level-6 ((t (:foreground "#7c2d92" :box (:line-width 2 :color "#f3e8ff" :style nil) :height 1.0))))
+   '(org-level-7 ((t (:foreground "#be185d" :box (:line-width 2 :color "#fce7f3" :style nil) :height 1.0))))
+   '(org-level-8 ((t (:foreground "#6b7280" :box (:line-width 2 :color "#f3f4f6" :style nil) :height 1.0))))
 #+end_src
 **** 強調要素の見ため
 #+begin_src elisp
