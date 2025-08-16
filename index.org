@@ -58,11 +58,12 @@
 *** フォント
 **** Default Font
 #+begin_src elisp
-  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'light :height 150)
+  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'ExtraLight :height 150)
+  ;;(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Code" :weight 'light :height 150)
 #+end_src
 **** 日本語フォント
 #+begin_src elisp
-  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "IPAMincho"))
+  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "PlemolJP"))
 #+end_src
 
 *** メニューバー
@@ -77,7 +78,7 @@
 
 ** エディター設定
 *** 空白関連
-
+**** 表示する空白を設定
 #+begin_src elisp
   (setq whitespace-style '(trailing
                            tabs
@@ -86,11 +87,11 @@
                            space-mark
                            tab-mark))
 #+end_src
-**** 空白設定を有効
+**** 空白モードを有効にする
 #+begin_src elisp
   (global-whitespace-mode 1)
 #+end_src
-**** 記号の
+**** 空白の記号を設定
 #+begin_src elisp
   (setq whitespace-display-mappings
         '(;; スペース文字: 中点（·）で表示
@@ -100,7 +101,7 @@
           ;; 改行文字: 段落記号（¶）で表示
           (newline-mark 10 [182 10])))
 #+end_src
-**** 色
+**** 空白の色を設定
 #+begin_src elisp
   (custom-set-faces
    '(whitespace-space ((t (:foreground "#e3dfd5")))))
@@ -114,10 +115,8 @@
 
 *** 行間
 #+begin_src elisp
-  (setq-default line-spacing 0.5)
+  ;;(setq-default line-spacing 0.5)
 #+end_src
-*** 括弧の中を強調する
-
 *** 括弧を自動挿入
 #+begin_src elisp
   (electric-pair-mode 1)
@@ -144,9 +143,9 @@
 **** 見出しの大きさと色の設定
 #+begin_src elisp
   (custom-set-faces
-   '(org-level-1 ((t (:foreground "#7f1d1d" :background nil :height 1.0))))
-   '(org-level-2 ((t (:foreground "#a16207" :background nil :height 1.0))))
-   '(org-level-3 ((t (:foreground "#166534" :background nil :height 1.0))))
+   '(org-level-1 ((t (:foreground "#7f1d1d" :background nil :height 1.1))))
+   '(org-level-2 ((t (:foreground "#a16207" :background nil :height 1.1))))
+   '(org-level-3 ((t (:foreground "#166534" :background nil :height 1.1))))
    '(org-level-4 ((t (:foreground "#0f766e" :background nil :height 1.0))))
    '(org-level-5 ((t (:foreground "#1e40af" :background nil :height 1.0))))
    '(org-level-6 ((t (:foreground "#7c2d92" :background nil :height 1.0))))
@@ -208,19 +207,19 @@
 **** todo keyword
 #+begin_src elisp
   (setq org-todo-keywords
-        '((sequence "未着手(t)"
-                    "進行中(p)"
-                    "相手待ち(w)"
+        '((sequence "TODO(t)"
+                    "WIP(p)"
+                    "WAIT(w)"
                     "|"
-                    "完了(d)"
-                    "キャンセル(c)")))
+                    "DONE(d)"
+                    "CANCELL(c)")))
   ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
   (setq org-todo-keyword-faces
-        '(("未着手" . (:background "#ffe6e6" :foreground "#cc0000" :weight bold :box (:style released-button)))
-          ("進行中" . (:background "#fff3cd" :foreground "#996600" :weight bold :box (:line-width 2 :style released-button)))
-          ("相手待ち" . (:background "#E1EFE6" :foreground "#00479F" :weight bold :box (:line-width 2 :style released-button)))
-          ("完了" . (:background "#E1F0C8" :foreground "#348300" :weight bold :box (:line-width 2 :style released-button)))
-          ("キャンセル" . (:background "#f5f5f5" :foreground "#666666" :weight bold :box (:line-width 2 :style released-button)))))
+        '(("TODO" . (:background "#ffe6e6" :foreground "#cc0000" :weight light))
+          ("WIP" . (:background "#fff3cd" :foreground "#996600" :weight light))
+          ("WAIT" . (:background "#E1EFE6" :foreground "#00479F" :weight light))
+          ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
+          ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
 #+end_src
 *** Editor
 **** QA を定義
