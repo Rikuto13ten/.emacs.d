@@ -80,12 +80,12 @@
 *** 空白関連
 **** 表示する空白を設定
 #+begin_src elisp
-  (setq whitespace-style '(trailing
-                           tabs
-                           spaces
-                           empty
-                           space-mark
-                           tab-mark))
+(setq whitespace-style '(trailing
+                         tabs
+                         spaces
+                         empty
+                         space-mark
+                         tab-mark))
 #+end_src
 **** 空白モードを有効にする
 #+begin_src elisp
@@ -95,19 +95,12 @@
 #+begin_src elisp
   (setq whitespace-display-mappings
         '(;; スペース文字: 中点（·）で表示
-          (space-mark 32 [8231] [46])
+          (space-mark 32 [8287])
           ;; タブ文字: 右向き三角（▷）+ タブで表示
           (tab-mark 9 [9655 9] [92 9])
           ;; 改行文字: 段落記号（¶）で表示
           (newline-mark 10 [182 10])))
 #+end_src
-**** 空白の色を設定
-#+begin_src elisp
-  (custom-set-faces
-   '(whitespace-space ((t (:foreground "#e3dfd5")))))
-  (global-whitespace-mode t)
-#+end_src
-
 *** 行番号を表示
 #+begin_src elisp
   (global-display-line-numbers-mode 1)
@@ -115,13 +108,17 @@
 
 *** 行間
 #+begin_src elisp
-  ;;(setq-default line-spacing 0.5)
+  ;;(setq-default line-spacing 0.3)
 #+end_src
+~Hello~
 *** 括弧を自動挿入
 #+begin_src elisp
   (electric-pair-mode 1)
 #+end_src
-
+*** インデントの代わりに、空白を使う
+#+begin_src elisp
+(setq-default indent-tabs-mode nil)
+#+end_src
 ** Org-mode
 *** Appearance
 **** 見出しをインデントする
@@ -166,10 +163,12 @@
             ("/" italic)
             ("_" underline)
             ("=" org-verbatim verbatim)
-            ("~" (:foreground "salmon3" :box (:color nil :style line)))
+            ("~" (:background "gray91" :box (:line-width (2 . 0) :color "gray91")))
             ("+" (:strike-through t)))))
 #+end_src
-**** org block の begin と end の背景色を設定
+
+~Light Sammol~ これは
+**** org block の begin と end の背景色を設定 無効中
 #+begin_src elisp
   ;;(set-face-attribute 'org-block-begin-line nil
   ;;                    :background "#f0ead9"
@@ -262,6 +261,99 @@
 #+begin_src elisp
   (setq org-use-speed-commands t)
 #+end_src
+**** focus
+#+begin_src elisp
+  (use-package focus
+    :ensure t
+    :config
+    ;; org-mode用のカスタムfocus動作
+    (defun my-org-focus-bounds ()
+      "org-mode用のカスタムfocus範囲計算"
+      (when (derived-mode-p 'org-mode)
+        (cond
+         ;; サブツリー内にいる場合
+         ((not (org-before-first-heading-p))
+          (save-excursion
+            (let ((start (progn (org-back-to-heading t) (point)))
+                  (end (progn (org-end-of-subtree t t) (point))))
+              (cons start end))))
+         ;; サブツリー外にいる場合は全体をフォーカス（薄くしない）
+         (t
+          (cons (point-min) (point-max))))))
+
+    ;; デフォルトのfocus-boundsをオーバーライド
+    (defun focus-bounds ()
+      "カスタムbounds計算"
+      (if (derived-mode-p 'org-mode)
+          (my-org-focus-bounds)
+        ;; org-mode以外では通常のfocus動作
+        (let ((thing (focus-get-thing)))
+          (cond ((eq thing 'org-element)
+                 (let* ((elem (org-element-at-point))
+                        (beg (org-element-property :begin elem))
+                        (end (org-element-property :end elem)))
+                   (cons beg end)))
+                (t (bounds-of-thing-at-point thing))))))
+
+    ;; org-subtree-boundsは削除（上記のカスタム関数で処理）
+    (add-to-list 'focus-mode-to-thing '(org-mode . org-subtree))
+
+    ;; faceのカスタマイズ
+    (custom-set-faces
+     '(focus-unfocused ((t (:foreground "gray85")))))
+    ;; org-modeで常に有効化
+    :hook (org-mode . focus-mode))
+#+end_src
+**** org-block が勝手にインデントするのを防ぐ
+#+begin_src elisp
+(setq org-edit-src-content-indentation 0)
+(setq org-src-preserve-indentation t)
+#+end_src
+**** image paste
+#+begin_src elisp
+;; Org-mode で pngpaste を使って画像を貼り付ける（シンプル版）
+
+(defun my/org-paste-image ()
+  "クリップボードから画像を貼り付けて、ファイル名と同じディレクトリに保存する"
+  (interactive)
+  (let* ((file-name (file-name-sans-extension (file-name-base (buffer-file-name))))
+         (image-dir file-name)
+         (timestamp (format-time-string "%Y%m%d_%H%M%S"))
+         (image-file (concat "image_" timestamp ".png"))
+         (image-path (concat image-dir "/" image-file)))
+    
+    ;; ディレクトリ作成
+    (make-directory image-dir t)
+    
+    ;; 画像保存
+    (call-process "pngpaste" nil nil nil image-path)
+    
+    ;; リンク挿入
+    (insert (format "[[file:%s]]" image-path))))
+
+;; キーバインド設定
+(define-key org-mode-map (kbd "C-c C-v") 'my/org-paste-image)
+
+;; 設定ファイルに追加
+(setq org-image-actual-width nil)
+#+end_src
+**** image 上で TAB を押したら org-toggle-inline-image
+#+begin_src elisp
+(defun my/org-toggle-image-at-point ()
+  "カーソル位置が画像リンクの場合、インライン画像表示を切り替える"
+  (interactive)
+  (let ((element (org-element-context)))
+    (if (and (eq (org-element-type element) 'link)
+             (member (org-element-property :type element) '("file"))
+             (string-match-p "\\(?:png\\|jpg\\|jpeg\\|gif\\|svg\\)\\'" 
+                           (org-element-property :path element)))
+        (org-toggle-inline-images)
+      ;; 画像でない場合は通常のTAB動作
+      (org-cycle))))
+
+;; org-modeでTABキーを再定義
+(define-key org-mode-map (kbd "TAB") 'my/org-toggle-image-at-point)
+#+end_src
 ** 独自コマンド
 *** Window サイズを変えるコマンド
 #+begin_src elisp
@@ -331,7 +423,7 @@
     (load-file (expand-file-name "~/.emacs.d/init.el")))
 #+end_src
 ** キーバインド
-*** Option/Alt を Meta Key にする
+*** <Option/Alt> を Meta Key にする
 #+begin_src elisp
   (when (eq system-type 'darwin)
     (setq mac-option-modifier 'meta))
@@ -341,40 +433,40 @@
   (when (eq system-type 'darwin)
     (setq mac-command-modifier 'super))
 #+end_src
-*** C-h -> バックスペース
+*** <C-h> バックスペース
 #+begin_src elisp
   (keyboard-translate ?\C-h ?\C-?)
 #+end_src
-*** C-x ? > ヘルプコマンド
+*** <C-x ?> ヘルプコマンド
 #+begin_src elisp
   (global-set-key (kbd "C-x ?") 'help-command)
 #+end_src
-*** ; -> sticky key for ddskk
+*** <;> sticky key for ddskk
 #+begin_src elisp
   (setq skk-sticky-key ";")
 #+end_src
-*** C-k -> 行削除
+*** <C-k> 行削除
 #+begin_src elisp
   (with-eval-after-load 'simple
     (setq kill-whole-line t))
 #+end_src
-*** C-z -> Mark
+*** <C-z> Mark
 #+begin_src elisp
   (global-set-key (kbd "C-z") 'set-mark-command)
 #+end_src
-*** C-s -> Swiper
+*** <C-s> Swiper
 #+begin_src elisp
   (global-set-key (kbd "C-s") 'swiper)
 #+end_src
-*** M-r -> Buffer Reload
+*** <M-r> Buffer Reload
 #+begin_src elisp
   (global-set-key (kbd "M-r") 'revert-buffer-no-confirm)
 #+end_src
-*** ￥ -> \
+*** <￥> \
 #+begin_src elisp
   (define-key global-map [?￥] [?\\])
 #+end_src
-*** C-c a -> Org-agenda
+*** <C-c a> Org-agenda
 #+begin_src elisp
   (global-set-key (kbd "C-c a") 'org-agenda)
 #+end_src
