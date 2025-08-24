@@ -27,7 +27,7 @@
 #+begin_src elisp
   (setq auto-save-default nil)
 #+end_src
-** 設定
+**  設定
 *** Ascii Mode
 #+begin_src elisp
   (mac-auto-ascii-mode 1)
@@ -42,7 +42,7 @@
   (setq global-auto-revert-mode nil)
   (setq auto-revert-mode nil)
 #+end_src
-** 見た目の設定
+**  見た目の設定
 *** 使うテーマ
 #+begin_src elisp
   ;;(load-theme 'mindre t)
@@ -58,8 +58,9 @@
 *** フォント
 **** Default Font
 #+begin_src elisp
-  (set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'ExtraLight :height 150)
-  ;;(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Code" :weight 'light :height 150)
+(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'ExtraLight :height 150)
+;;(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Code" :weight 'light :height 150)
+(set-fontset-font t 'unicode "Symbols Nerd Font Mono" nil 'prepend)
 #+end_src
 **** 日本語フォント
 #+begin_src elisp
@@ -76,7 +77,7 @@
   (tool-bar-mode -1)
 #+end_src
 
-** エディター設定
+** 󱃖 エディター設定
 *** 空白関連
 **** 表示する空白を設定
 #+begin_src elisp
@@ -119,8 +120,8 @@
 #+begin_src elisp
 (setq-default indent-tabs-mode nil)
 #+end_src
-** Org-mode
-*** Appearance
+**  Org-mode
+***  Appearance
 **** 見出しをインデントする
 #+begin_src elisp
   (setq org-startup-indented t)
@@ -220,7 +221,22 @@
           ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
           ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
 #+end_src
-*** Editor
+
+**** Icon
+#+begin_src elisp
+(defun my/org-prettify-symbols ()
+  "Setup prettify symbols for org-mode."
+  (setq prettify-symbols-alist
+        '(("[ ]" . "☐")    ; 未チェック
+          ("[X]" . "☑")
+          ("#+begin_src" . "")
+          ("#+end_src" . "")
+          ("#+begin_quote" . "󱆨")
+          ("#+end_quote" . "󱆧")))
+  (prettify-symbols-mode 1))
+(add-hook 'org-mode-hook #'my/org-prettify-symbols)
+#+end_src
+*** 󱃖 Editor
 **** QA を定義
 #+begin_src elisp
   (add-hook 'org-mode-hook
@@ -354,7 +370,7 @@
 ;; org-modeでTABキーを再定義
 (define-key org-mode-map (kbd "TAB") 'my/org-toggle-image-at-point)
 #+end_src
-** 独自コマンド
+** 󰘳 独自コマンド
 *** Window サイズを変えるコマンド
 #+begin_src elisp
   (defun window-resizer ()
@@ -422,7 +438,7 @@
     (interactive)
     (load-file (expand-file-name "~/.emacs.d/init.el")))
 #+end_src
-** キーバインド
+** 󰌌 キーバインド
 *** <Option/Alt> を Meta Key にする
 #+begin_src elisp
   (when (eq system-type 'darwin)

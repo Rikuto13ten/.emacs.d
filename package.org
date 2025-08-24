@@ -183,8 +183,8 @@ ivy というコマンド補完機能で絞り込みできるようになる
                 (defhydra switch-save-file (:hint nil)
                   "
 ^                   ^
-^ _i_ : index.org   ^
-^ _p_ : package.org ^
+^ _i_ : 󰈤 index.org   ^
+^ _p_ : 󰈤 package.org ^
 "
                   ("i" (find-file "~/.emacs.d/index.org"))
                   ("p" (find-file "~/.emacs.d/package.org"))))
@@ -261,10 +261,17 @@ ivy というコマンド補完機能で絞り込みできるようになる
           `( :mode-line-active 'default
              :mode-line-inactive vertical-border)))
 #+end_src
-**** all-icons
+**** nerd-icons
 #+begin_src elisp
-(use-package all-the-icons
-  :ensure t)
+(use-package nerd-icons
+  ;; :custom
+  ;; The Nerd Font you want to use in GUI
+  ;; "Symbols Nerd Font Mono" is the default and is recommended
+  ;; but you can use any other Nerd Font if you want
+  ;; (nerd-icons-font-family "Symbols Nerd Font Mono")
+  )
+
+(global-set-key (kbd "C-c i") 'nerd-icons-insert)
 #+end_src
 *** エディターのパッケージ
 **** rainbow-delimiters
@@ -357,14 +364,16 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                         :unnarrowed t))))
 #+end_src
 **** org-superstar
+- hello
+- [X] Hello
 #+begin_src elisp
-  (use-package org-superstar
-    :ensure t
-    :hook (org-mode . org-superstar-mode)
-    :config
-    (setq org-superstar-headline-bullets-list
-          '("" "" "" "" "" "" "" ""))
-    (setq org-superstar-remove-leading-stars t))
+(use-package org-superstar
+  :ensure t
+  :hook (org-mode . org-superstar-mode)
+  :config
+  (setq org-superstar-headline-bullets-list
+        '("󰎤" "󰎧" "󰎪" "󰎭" "󰎱" "󰎳" "󰎶" "󰎹"))
+  (setq org-superstar-remove-leading-stars t))
 #+end_src
 **** org-super-agenda
 #+begin_src elisp
