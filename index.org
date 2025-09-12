@@ -27,7 +27,7 @@
 #+begin_src elisp
   (setq auto-save-default nil)
 #+end_src
-**  設定
+** 設定
 *** Ascii Mode
 #+begin_src elisp
   (mac-auto-ascii-mode 1)
@@ -42,31 +42,23 @@
   (setq global-auto-revert-mode nil)
   (setq auto-revert-mode nil)
 #+end_src
-**  見た目の設定
+** 見た目の設定
 *** 使うテーマ
 #+begin_src elisp
   ;;(load-theme 'mindre t)
 #+end_src
 
-*** 画面の余白
-#+begin_src elisp
-  (setq-default left-margin-width 2
-                right-margin-width 2
-                top-margin-width 2)
-#+end_src
-
 *** フォント
 **** Default Font
 #+begin_src elisp
-(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Slab" :weight 'ExtraLight :height 150)
+;;(set-face-attribute 'default nil :family "Nosutaru-dot (M+)" :height 140)
+
 ;;(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Code" :weight 'light :height 150)
-(set-fontset-font t 'unicode "Symbols Nerd Font Mono" nil 'prepend)
 #+end_src
 **** 日本語フォント
 #+begin_src elisp
-  (set-fontset-font nil '(#x80 . #x10ffff) (font-spec :family "PlemolJP"))
+(set-fontset-font nil '(#x0000 . #x10FFFF) "Nosutaru-dot (M+)")
 #+end_src
-
 *** メニューバー
 #+begin_src elisp
   (menu-bar-mode 1)
@@ -77,7 +69,7 @@
   (tool-bar-mode -1)
 #+end_src
 
-** 󱃖 エディター設定
+** エディター設定
 *** 空白関連
 **** 表示する空白を設定
 #+begin_src elisp
@@ -94,9 +86,9 @@
 #+end_src
 **** 空白の記号を設定
 #+begin_src elisp
-  (setq whitespace-display-mappings
+(setq whitespace-display-mappings
         '(;; スペース文字: 中点（·）で表示
-          (space-mark 32 [8287])
+          (space-mark 32 [9251])
           ;; タブ文字: 右向き三角（▷）+ タブで表示
           (tab-mark 9 [9655 9] [92 9])
           ;; 改行文字: 段落記号（¶）で表示
@@ -120,8 +112,8 @@
 #+begin_src elisp
 (setq-default indent-tabs-mode nil)
 #+end_src
-**  Org-mode
-***  Appearance
+** Org-mode
+*** Appearance
 **** 見出しをインデントする
 #+begin_src elisp
   (setq org-startup-indented t)
@@ -206,37 +198,61 @@
 
 **** todo keyword
 #+begin_src elisp
-  (setq org-todo-keywords
-        '((sequence "TODO(t)"
-                    "WIP(p)"
-                    "WAIT(w)"
-                    "|"
-                    "DONE(d)"
-                    "CANCELL(c)")))
+;;  (setq org-todo-keywords
+;;        '((sequence "TODO(t)"
+;;                    "WIP(p)"
+;;                    "WAIT(w)"
+;;                    "|"
+;;                    "DONE(d)"
+;;                    "CANCELL(c)")))
   ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
-  (setq org-todo-keyword-faces
-        '(("TODO" . (:background "#ffe6e6" :foreground "#cc0000" :weight light))
-          ("WIP" . (:background "#fff3cd" :foreground "#996600" :weight light))
-          ("WAIT" . (:background "#E1EFE6" :foreground "#00479F" :weight light))
-          ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
-          ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
+;;  (setq org-todo-keyword-faces
+;;        '(("TODO" . (:background "#ffe6e6" :foreground "#cc0000" :weight light))
+;;          ("WIP" . (:background "#fff3cd" :foreground "#996600" :weight light))
+;;          ("WAIT" . (:background "#E1EFE6" :foreground "#00479F" :weight light))
+;;          ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
+;;          ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
+#+end_src
+**** org-error-block
+#+begin_src elisp
+;; 行全体に色を付ける設定
+(setq org-fontify-whole-block-delimiter-line t)
+
+;; フェイス定義
+(defface org-error-block-face
+  '((t (:background "#ffebee" :foreground "#c62828" :extend t)))
+  "Face for error blocks")
+
+;; エラーブロックの設定（prepend で強制上書き）
+(add-hook 'org-mode-hook
+  (lambda ()
+    (font-lock-add-keywords nil
+      '(;; BEGIN/END行を強制的に上書き
+        ("^[ \t]*#\\+[Bb][Ee][Gg][Ii][Nn]_[Ee][Rr][Rr][Oo][Rr].*$" 
+         0 'org-error-block-face prepend)
+        ("^[ \t]*#\\+[Ee][Nn][Dd]_[Ee][Rr][Rr][Oo][Rr].*$" 
+         0 'org-error-block-face prepend)
+        ;; ブロック内容
+        ("^[ \t]*#\\+[Bb][Ee][Gg][Ii][Nn]_[Ee][Rr][Rr][Oo][Rr].*\n\\(\\(?:.*\n\\)*?\\)[ \t]*#\\+[Ee][Nn][Dd]_[Ee][Rr][Rr][Oo][Rr]"
+         1 'org-error-block-face t)))))
 #+end_src
 
-**** Icon
+#+begin_error
+Hello
+aaaaaaaaaaaaaaaaaaaaa
+eeeeeeeeeeeeeeeeeeee
+#+end_error
+**** diff
 #+begin_src elisp
-(defun my/org-prettify-symbols ()
-  "Setup prettify symbols for org-mode."
-  (setq prettify-symbols-alist
-        '(("[ ]" . "☐")    ; 未チェック
-          ("[X]" . "☑")
-          ("#+begin_src" . "")
-          ("#+end_src" . "")
-          ("#+begin_quote" . "󱆨")
-          ("#+end_quote" . "󱆧")))
-  (prettify-symbols-mode 1))
-(add-hook 'org-mode-hook #'my/org-prettify-symbols)
+;; add
+;;(set-face-attribute 'diff-added nil :background "honeydew")
+;;(set-face-attribute 'diff-indicator-added nil :background "honeydew")
+
+;; removed
+;;(set-face-attribute 'diff-removed nil :background "lavender blush")
+;;(set-face-attribute 'diff-indicator-removed nil :foreground "red" :background "lavender blush")
 #+end_src
-*** 󱃖 Editor
+*** Editor
 **** QA を定義
 #+begin_src elisp
   (add-hook 'org-mode-hook
@@ -316,13 +332,13 @@
 
     ;; faceのカスタマイズ
     (custom-set-faces
-     '(focus-unfocused ((t (:foreground "gray85")))))
+     '(focus-unfocused ((t (:foreground "gray20")))))
     ;; org-modeで常に有効化
     :hook (org-mode . focus-mode))
 #+end_src
 **** org-block が勝手にインデントするのを防ぐ
 #+begin_src elisp
-(setq org-edit-src-content-indentation 0)
+(setq org-edit-src-content-indentation 2)
 (setq org-src-preserve-indentation t)
 #+end_src
 **** image paste
@@ -370,7 +386,23 @@
 ;; org-modeでTABキーを再定義
 (define-key org-mode-map (kbd "TAB") 'my/org-toggle-image-at-point)
 #+end_src
-** 󰘳 独自コマンド
+**** error language を追加
+#+begin_src elisp
+(setq org-src-block-faces
+      '(("error" (:foreground "red"))
+        ("warning" (:foreground "DarkGoldenrod1"))
+        ("success" (:foreground "OliveDrab4"))))
+#+end_src
+**** org babel の言語を追加
+#+begin_src elisp
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)
+   (emacs-lisp . t)
+   ;; 必要に応じて他の言語も追加
+   ))
+#+end_src
+** 独自コマンド
 *** Window サイズを変えるコマンド
 #+begin_src elisp
   (defun window-resizer ()
@@ -438,7 +470,7 @@
     (interactive)
     (load-file (expand-file-name "~/.emacs.d/init.el")))
 #+end_src
-** 󰌌 キーバインド
+** キーバインド
 *** <Option/Alt> を Meta Key にする
 #+begin_src elisp
   (when (eq system-type 'darwin)

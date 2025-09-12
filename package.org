@@ -221,7 +221,7 @@ ivy というコマンド補完機能で絞り込みできるようになる
     (doom-themes-enable-bold nil)   ; nilの場合、太字が全体的に無効になる
     (doom-themes-enable-italic nil) ; nilの場合、斜体が全体的に無効になる
     :config
-    (load-theme 'doom-one-light t)
+    (load-theme 'doom-ayu-mirage t)
     ;; エラー時にmodelineを点滅させる
     (doom-themes-visual-bell-config)
     (doom-themes-org-config))
@@ -362,18 +362,6 @@ ivy というコマンド補完機能で絞り込みできるようになる
                                         :target (file+head "private/%<%Y%m%d%H%M%S>-${slug}.org"
                                                            "#+title: ${title}\n")
                                         :unnarrowed t))))
-#+end_src
-**** org-superstar
-- hello
-- [X] Hello
-#+begin_src elisp
-(use-package org-superstar
-  :ensure t
-  :hook (org-mode . org-superstar-mode)
-  :config
-  (setq org-superstar-headline-bullets-list
-        '("󰎤" "󰎧" "󰎪" "󰎭" "󰎱" "󰎳" "󰎶" "󰎹"))
-  (setq org-superstar-remove-leading-stars t))
 #+end_src
 **** org-super-agenda
 #+begin_src elisp
