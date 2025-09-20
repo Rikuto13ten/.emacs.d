@@ -212,19 +212,19 @@ ivy というコマンド補完機能で絞り込みできるようになる
           ("C-c e" . treemacs)))
 #+end_src
 *** 見た目のパッケージ
-**** doomemacs-theme
-#+begin_src emacs-lisp
-  (use-package doom-themes
-    :ensure t
-    :custom
-    ;; グローバル設定（デフォルト）
-    (doom-themes-enable-bold nil)   ; nilの場合、太字が全体的に無効になる
-    (doom-themes-enable-italic nil) ; nilの場合、斜体が全体的に無効になる
-    :config
-    (load-theme 'doom-ayu-mirage t)
-    ;; エラー時にmodelineを点滅させる
-    (doom-themes-visual-bell-config)
-    (doom-themes-org-config))
+**** doomemacs
+#+begin_src elisp
+(use-package doom-themes
+  :ensure t
+  :custom
+  (doom-theme-enable-bold nil)
+  (doom-theme-enable-italic nil)
+  (load-theme 'doom-ayu-mirage t))
+#+end_src
+**** Spacemacs Theme
+#+begin_src elisp
+(use-package spacemacs-theme
+  :ensure t)
 #+end_src
 **** writeroom-mode
 #+begin_src elisp

@@ -45,19 +45,14 @@
 ** 見た目の設定
 *** 使うテーマ
 #+begin_src elisp
-  ;;(load-theme 'mindre t)
+;;(load-theme 'spacemacs-light)
 #+end_src
 
 *** フォント
 **** Default Font
 #+begin_src elisp
-;;(set-face-attribute 'default nil :family "Nosutaru-dot (M+)" :height 140)
-
-;;(set-face-attribute 'default nil :family "Iosevka Custom Rikuto Code" :weight 'light :height 150)
-#+end_src
-**** 日本語フォント
-#+begin_src elisp
-(set-fontset-font nil '(#x0000 . #x10FFFF) "Nosutaru-dot (M+)")
+(set-face-attribute 'default nil :family "Kogin" :height 110)
+(set-fontset-font nil '(#x80 . #x10FFFF) (font-spec :family "Nosutaru-dot (M+)"))
 #+end_src
 *** メニューバー
 #+begin_src elisp
@@ -73,7 +68,8 @@
 *** 空白関連
 **** 表示する空白を設定
 #+begin_src elisp
-(setq whitespace-style '(trailing
+(setq whitespace-style '(face
+                         trailing
                          tabs
                          spaces
                          empty
@@ -82,17 +78,7 @@
 #+end_src
 **** 空白モードを有効にする
 #+begin_src elisp
-  (global-whitespace-mode 1)
-#+end_src
-**** 空白の記号を設定
-#+begin_src elisp
-(setq whitespace-display-mappings
-        '(;; スペース文字: 中点（·）で表示
-          (space-mark 32 [9251])
-          ;; タブ文字: 右向き三角（▷）+ タブで表示
-          (tab-mark 9 [9655 9] [92 9])
-          ;; 改行文字: 段落記号（¶）で表示
-          (newline-mark 10 [182 10])))
+;;  (global-whitespace-mode -1)
 #+end_src
 *** 行番号を表示
 #+begin_src elisp
@@ -332,7 +318,7 @@ eeeeeeeeeeeeeeeeeeee
 
     ;; faceのカスタマイズ
     (custom-set-faces
-     '(focus-unfocused ((t (:foreground "gray20")))))
+     '(focus-unfocused ((t (:foreground "gray90")))))
     ;; org-modeで常に有効化
     :hook (org-mode . focus-mode))
 #+end_src
