@@ -45,14 +45,14 @@
 ** 見た目の設定
 *** 使うテーマ
 #+begin_src elisp
-;;(load-theme 'spacemacs-light)
+(load-theme 'doom-solarized-light t)
 #+end_src
 
 *** フォント
 **** Default Font
 #+begin_src elisp
-(set-face-attribute 'default nil :family "Kogin" :height 110)
-(set-fontset-font nil '(#x80 . #x10FFFF) (font-spec :family "Nosutaru-dot (M+)"))
+(set-face-attribute 'default nil :family "Kogin_Nosutaru" :height 140)
+(set-fontset-font nil '(#x000000 . #x10FFFF) (font-spec :family "Kogin_Nosutaru"))
 #+end_src
 *** メニューバー
 #+begin_src elisp
@@ -142,7 +142,7 @@
             ("/" italic)
             ("_" underline)
             ("=" org-verbatim verbatim)
-            ("~" (:background "gray91" :box (:line-width (2 . 0) :color "gray91")))
+            ("~" (:background "gray10" :box (:line-width (2 . 1) :color "gray10")))
             ("+" (:strike-through t)))))
 #+end_src
 
@@ -184,20 +184,20 @@
 
 **** todo keyword
 #+begin_src elisp
-;;  (setq org-todo-keywords
-;;        '((sequence "TODO(t)"
-;;                    "WIP(p)"
-;;                    "WAIT(w)"
-;;                    "|"
-;;                    "DONE(d)"
-;;                    "CANCELL(c)")))
-  ;; TODOキーワードごとに異なる背景色と濃い文字色を設定
-;;  (setq org-todo-keyword-faces
-;;        '(("TODO" . (:background "#ffe6e6" :foreground "#cc0000" :weight light))
-;;          ("WIP" . (:background "#fff3cd" :foreground "#996600" :weight light))
-;;          ("WAIT" . (:background "#E1EFE6" :foreground "#00479F" :weight light))
-;;          ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
-;;          ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)"
+                    "WIP(p)"
+                    "WAIT(w)"
+                    "|"
+                    "DONE(d)"
+                    "CANCELL(c)")))
+;; TODOキーワードごとに異なる背景色と濃い文字色を設定
+  (setq org-todo-keyword-faces
+        '(("TODO" . (:background "#ffe6e6" :foreground "#cc0000" :weight light))
+          ("WIP" . (:background "#fff3cd" :foreground "#996600" :weight light))
+          ("WAIT" . (:background "#E1EFE6" :foreground "#00479F" :weight light))
+          ("DONE" . (:background "#E1F0C8" :foreground "#348300" :weight light))
+          ("CANCELL" . (:background "#f5f5f5" :foreground "#666666" :weight light))))
 #+end_src
 **** org-error-block
 #+begin_src elisp

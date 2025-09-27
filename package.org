@@ -219,7 +219,8 @@ ivy というコマンド補完機能で絞り込みできるようになる
   :custom
   (doom-theme-enable-bold nil)
   (doom-theme-enable-italic nil)
-  (load-theme 'doom-ayu-mirage t))
+  ;;(load-theme 'doom-ayu-mirage t)
+  )
 #+end_src
 **** Spacemacs Theme
 #+begin_src elisp
@@ -494,4 +495,9 @@ ivy というコマンド補完機能で絞り込みできるようになる
                  (window-parameters . ((no-delete-other-windows . t)))))
 #+end_src
 
+**** ob-mermaid
+#+begin_src elisp
+(use-package ob-mermaid
+  :ensure t)
+#+end_src
 * end
