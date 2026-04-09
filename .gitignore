@@ -10,3 +10,4 @@ transient
 .org-id-locations
 *_archive
 .DS_Store
+eln-cache
