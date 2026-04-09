@@ -2,6 +2,7 @@
 (load "~/.emacs.d/settings/early.el")
 (load "~/.emacs.d/settings/keybind.el")
 (load "~/.emacs.d/settings/org.el")
+(load "~/.emacs.d/settings/action_lock.el")
 (load "~/.emacs.d/settings/howm.el")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
