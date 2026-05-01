@@ -40,17 +40,12 @@
 (setq-default buffer-file-coding-system 'utf-8) ; デフォルトバッファファイル文字コードを UTF-8 に設定
 
 ;; ===================================================================
-;; macOS 固有の設定
-;; ===================================================================
-
-(mac-auto-ascii-mode 1) ; ASCII 文字への自動切り替え（IM 対応）
-
-;; ===================================================================
 ;; UI 設定（フォント・テーマ）
 ;; ===================================================================
 (use-package spacemacs-theme :ensure t)
 
 (use-package telephone-line)
+
 (telephone-line-mode 1)
 
 (load-theme 'spacemacs-dark t) ; spacemacs-dark テーマを読み込み
@@ -64,6 +59,13 @@
 (menu-bar-mode 1) ; メニューバーを表示
 (tool-bar-mode -1) ; ツールバーを非表示
 (global-display-line-numbers-mode 1) ; 行番号を表示
+
+;; ===================================================================
+;; macOS 固有の設定
+;; ===================================================================
+
+;;(mac-auto-ascii-mode 1) ; ASCII 文字への自動切り替え（IM 対応）
+
 
 ;; ===================================================================
 ;; 空白
@@ -130,4 +132,39 @@
 ;; ===================================================================
 
 (use-package swiper)
+
+;; ===================================================================
+;; nskk
+;; ===================================================================
+
+;; C-j : nskk-mode に入り日本語入力切り替え
+;; q   : カタカナ
+;; l   : 小文字入力
+;; x   : nskk-mode を終了
+
+(use-package nskk
+  :straight (:host github :repo "takeokunn/nskk.el" :build (:not autoloads))
+  :custom
+  (nskk-dict-system-dictionary-files '("/usr/share/skk/SKK-JISYO.L"))
+  ;;(nskk-converter-romaji-style 'azik)
+
+  :bind
+  (("C-j" . nskk-mode-toggle-japanese))
+
+  :config
+  (defun nskk-mode-toggle-japanese ()
+    "C-j で nskk-mode を有効にして日本語入力にする"
+    (interactive)
+    (unless nskk-mode (nskk-mode 1))
+    (when nskk-mode
+      (nskk-kakutei)))
+  
+  (defun nskk-disable ()
+    "x で nskk-mode を無効にする"
+    (interactive)
+    (nskk-mode -1))
+
+  (define-key nskk-mode-map "l" 'nskk-handle-x) ; l に小文字を割り当て
+  (define-key nskk-mode-map "x" 'nskk-disable)  ; x にモード終了を割り当て
+  )
 

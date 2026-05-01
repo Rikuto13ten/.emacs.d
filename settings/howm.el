@@ -1,13 +1,15 @@
 ;;; >>> は単純なリンク
 ;;; >>> 
-
 (use-package howm
   :ensure t
   :init
+  (setq howm-keyword-body-regexp "[^;\r\n]+")
+  (setq howm-ref-body-regexp "[^;\r\n]+")
   (require 'howm-org))
 
 (global-set-key "\C-c,," 'howm-menu) ; menu を開く
 (autoload 'howm-menu "howm" "Hitori Otegaru Wiki Modoki" t)
+
 (setq howm-menu-lang 'ja) ; menu を日本語対応にする
 (setq howm-menu-file "~/.emacs.d/straight/repos/howm/ja/0000-00-00-000000.txt") ; menu の表示を日本語にする
 (setq howm-file-name-format "%Y/%m/%Y_%m_%d.org") ; 1 日 1 ファイル
@@ -20,6 +22,9 @@
     (howm-mode 1)))
 
 (add-hook 'find-file-hook 'my-howm-auto-enable)
+
+(setq howm-keyword-file "~/howm/.howm-keys") ; .howm-keys のディレクトリ
+(setq howm-menu-refresh-after-save nil) ; ノート保存時の自動メニュー更新を無効
 
 ;; =================================================================
 ;; テンプレート
@@ -40,3 +45,5 @@
               "%cursor"))))
 (setq howm-template 'my-howm-template)
 
+(setq howm-remember-insertion-format "%s") ; remeber のテンプレート
+(setq howm-highlight-date-regexp-format "%Y-%m-%d %a %H:%M")

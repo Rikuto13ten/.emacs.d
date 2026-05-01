@@ -10,3 +10,4 @@
   (setq kill-whole-line t))
 (global-set-key (kbd "C-c SPC") 'set-mark-command) ; Set Mark
 (global-set-key (kbd "C-s") 'swiper) ; 文字列検索
+

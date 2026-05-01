@@ -3,8 +3,9 @@
 (setq org-startup-indented t) ; アウトラインでインデント
 (setq org-indent-mode-turns-on-hiding-stars nil) ; * を減らさない
 (setq org-indent-indentation-per-level 4) ; インデントの幅
-
 (setq org-startup-folded 'fold) ; アウトラインを閉じておく
+
+(define-key org-mode-map (kbd "C-j") 'nskk-mode-toggle-japanese)
 
 ;; アウトラインのフォントサイズ
 (custom-set-faces
