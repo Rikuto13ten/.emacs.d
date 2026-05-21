@@ -22,6 +22,12 @@
 (setq org-src-preserve-indentation t) ; コードブロックの空白を厳密に保持（エクスポート時に改変しない）
 (setq org-edit-src-content-indentation 0) ; コード編集時にコンテンツに追加するインデントなし
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((shell . t)))
+
+(setq org-element-use-cache nil)
+
 ;; ===================================================
 ;; 画像のペースト
 ;; ===================================================
@@ -52,4 +58,18 @@
       (org-cycle)))) ; 画像でない場合は通常のTAB動作
 (define-key org-mode-map (kbd "TAB") 'my/org-toggle-image-at-point) ; org-modeでTABキーを再定義
 
-
+;; ================================
+;; mermaid-ascii
+;; ================================
+(defun insert-mermaid-ascii ()
+  (interactive)
+  (insert (concat-line '("#+BEGIN_SRC shell :results code"
+                         "mermaid-ascii -a -y 1 << 'EOF'"
+                         "graph LR"
+                         "EOF"
+                         "#+END_SRC"))))
+;; ================
+;; org-agenda
+;; ================
+(setq org-agenda-files
+      '("~/blog/org-blog/private/Impl.org"))

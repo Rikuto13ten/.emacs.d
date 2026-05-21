@@ -39,6 +39,11 @@
 (set-buffer-file-coding-system 'utf-8) ; バッファのファイル文字コードを UTF-8 に設定
 (setq-default buffer-file-coding-system 'utf-8) ; デフォルトバッファファイル文字コードを UTF-8 に設定
 
+;; init.el に追加
+(setq default-file-coding-system 'utf-8)
+(setq-default buffer-file-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;; ===================================================================
 ;; UI 設定（フォント・テーマ）
 ;; ===================================================================
@@ -168,3 +173,8 @@
   (define-key nskk-mode-map "x" 'nskk-disable)  ; x にモード終了を割り当て
   )
 
+(setenv "PATH" (concat (getenv "HOME") "/go/bin:" (getenv "PATH")))
+
+;; magit
+(use-package magit
+  :ensure t)

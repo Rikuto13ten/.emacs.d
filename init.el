@@ -1,3 +1,4 @@
+(load "~/.emacs.d/settings/util.el")
 (load "~/.emacs.d/settings/package.el")
 (load "~/.emacs.d/settings/early.el")
 (load "~/.emacs.d/settings/keybind.el")
