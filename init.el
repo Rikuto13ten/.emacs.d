@@ -11,6 +11,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("9af2b1c0728d278281d87dc91ead7f5d9f2287b1ed66ec8941e97ab7a6ab73c0"
+     default))
  '(howm-word-match-required-cases '(filter-by-keyword)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

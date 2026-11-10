@@ -19,7 +19,7 @@
     "load-file init.el"
     (interactive)
     (load-file (expand-file-name "~/.emacs.d/init.el")))
-
+(global-set-key (kbd "C-j") nil)
 ;; ===================================================================
 ;; ファイル管理
 ;; ===================================================================
@@ -55,7 +55,9 @@
 
 (load-theme 'spacemacs-dark t) ; spacemacs-dark テーマを読み込み
 (set-face-attribute 'default nil :family "PlemolJP" :height 150) ; デフォルトフォントを PlemolJP 15pt に設定
-(set-fontset-font nil '(#x000000 . #x10FFFF) (font-spec :family "PlemolJP")) ; Unicode 全範囲を PlemolJP でカバー
+(set-fontset-font nil '(#x000000 . #x10FFFF)
+                  (font-spec :family "Iosevka Custom Rikuto Code"
+                             :weight 'light)) ; Unicode 全範囲を PlemolJP でカバー
 
 ;; ===================================================================
 ;; UI 要素の表示設定
@@ -99,6 +101,8 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 (setq rainbow-delimiters-outermost-only-face-count 1)
 
+(use-package swift-mode)
+(setq org-src-fontify-natively t)
 ;; ===================================================================
 ;; 補完
 ;; ===================================================================
@@ -178,3 +182,4 @@
 ;; magit
 (use-package magit
   :ensure t)
+

@@ -21,13 +21,33 @@
 
 (setq org-src-preserve-indentation t) ; コードブロックの空白を厳密に保持（エクスポート時に改変しない）
 (setq org-edit-src-content-indentation 0) ; コード編集時にコンテンツに追加するインデントなし
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((shell . t)))
+(use-package ob-d2)
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((shell . t)
+     (d2 . t))))
 
 (setq org-element-use-cache nil)
 
+;; ソースブロック全体の太さを light にする
+(set-face-attribute 'org-block nil :weight 'light)
+
+;; 太字とみなす太さ(普通より濃いもの)
+(defconst my/heavy-weights '(bold ultra-bold extra-bold semi-bold))
+
+;; フェイスが太字かどうかを判定する
+(defun my/heavy-face-p (face)
+  (memq (face-attribute face :weight) my/heavy-weights))
+
+;; 太字のフェイスだけを、指定の太さに置き換える
+(defun my/unbold-faces (weight)
+  (mapc (lambda (face) (set-face-attribute face nil :weight weight))
+        (seq-filter #'my/heavy-face-p (face-list))))
+
+;; 言語モードのフェイスが定義された後に実行する
+(with-eval-after-load 'swift-mode
+  (my/unbold-faces 'light))
 ;; ===================================================
 ;; 画像のペースト
 ;; ===================================================
@@ -73,3 +93,10 @@
 ;; ================
 (setq org-agenda-files
       '("~/blog/org-blog/private/Impl.org"))
+(require 'ob-plantuml)
+(setq org-plantuml-exec-mode 'plantuml)
+;; エラーを回避するためのダミー定義
+(unless (fboundp 'org-fold-core-update-optimization)
+  (defun org-fold-core-update-optimization (&rest _args)
+    nil))
+
